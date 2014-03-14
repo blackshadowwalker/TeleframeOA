@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- Struts 2的Action必须放在指定的包空间下定义 -->
+	<package name="/" extends="common" >
+	
+	    <!-- 登录 -->
+		<action name="LoginAction" class="LoginAction" >
+			<result name="success">/frame/index.jsp</result>
+			<result name="faile">/login.jsp</result>
+		</action>
+		
+		<!-- 车辆管理 -->
+		<action name="RoleAction" class="RoleAction">
+			<result name="list">/modules/role/roleQuery.jsp</result>
+			<result name="update">/modules/role/roleUpdate.jsp</result>
+			<result name="add">/modules/role/roleAdd.jsp</result>
+		</action>
+		
+		<action name="RulerAction" class="RulerAction">
+			<result name="list">/modules/ruler/query.jsp</result>
+			<result name="add">/modules/ruler/add.jsp</result>
+			<result name="update">/modules/ruler/update.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="TestAction" class="TestAction">
+			<result name="list">/test1.jsp</result>
+			<result name="getById">/test2.jsp</result>
+			<result name="edit">/test3.jsp</result>
+
+		</action>
+		
+			<!-- 部门管理  唐梦岚-->
+		<action name="DeptAction" class="DeptAction">
+			<result name="list">/modules/dept/query.jsp</result>
+			<result name="add">/modules/dept/add.jsp</result>
+			<result name="view">/modules/dept/deptViewTree.jsp</result>
+			<result name="beforUpdate">/modules/dept/deptUpdate.jsp</result>
+
+			<result name="updateNameError">/modules/dept/deptListTree.jsp</result>
+			<result name="updateManagerError">/modules/dept/deptListTree.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="UserAction" class="UserAction">
+			<result name="list">/modules/user/userQuery.jsp</result>
+			<result name="add">/modules/user/userAdd.jsp</result>
+			<result name="update">/modules/user/userUpdate.jsp</result>
+		</action>
+		
+		<!-- karl file manager-->
+		<action name="FileAction" class="FileAction">
+			<result name="list">/modules/file/fileQuery.jsp</result>
+			<result name="add">/modules/file/fileAdd.jsp</result>
+			<result name="update">/modules/file/fileUpdate.jsp</result>
+		</action>
+		
+		
+		<!-- karl upload file action-->
+		<action name="UploadAction" class="UploadAction">
+			<result name="list">/modules/file/fileQuery.jsp</result>
+			<result name="add">/modules/file/fileAdd.jsp</result>
+			<result name="update">/modules/file/fileUpdate.jsp</result>
+		</action>
+		
+		<action name="VehicleAction" class="VehicleAction">
+			<result name="list">/vehicle.jsp</result>
+		</action>
+		
+	</package>
+</struts>
