@@ -1,46 +1,52 @@
 package com.dao;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import net.sf.json.JSONArray;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.base.BaseDao;
-import com.bean.Dept;
 import com.bean.DeptInfo;
 import com.bean.UserInfo;
 import com.util.Util;
 public class DeptDao extends BaseDao {
 	
-	public JSONArray queryAllDept(){
+	public DeptInfo get(Integer id){
+		Session session = super.getSession();
+		if(id==null || id<1)
+			return null;
+		return (DeptInfo)session.get(DeptInfo.class, id);
+	}
+	
+	public List<DeptInfo> getList(){
 		Session session = super.getSession();
 
-        String hql="select a.deptId,a.deptName,a.deptManager,(select b.deptName from DeptInfo b where a.deptManager=b.deptId),a.lastUpdate,a.status from DeptInfo a ";
+        String hql="select a.id,a.deptName,a.manager,(select b.deptName from DeptInfo b where a.manager=b.id), a.lastUpdate,a.status from DeptInfo a ";
         List<Object> list = session.createQuery(hql).list();
         
-        Dept dept;
-        List<Dept> listDept=new ArrayList<Dept>();
+        DeptInfo dept;
+        List<DeptInfo> listDept=new ArrayList<DeptInfo>();
         for(int i=0;i<list.size();i++){
-        	dept=new Dept();
+        	dept=new DeptInfo();
         	Object[] object = (Object[])list.get(i);
-        	dept.setDeptId((Integer)object[0]);
+        	dept.setId((Integer)object[0]);
         	dept.setDeptName((String)object[1]);
-        	dept.setPid((Integer)object[2]);
-        	dept.setDeptManager((String)object[3]);
-        	dept.setLastUpdate((String)object[4]);
+        	dept.setManager((Integer)object[2]);
+        	dept.setManagerName((String)object[3]);
+        	dept.setLastUpdate((Timestamp)object[4]);
         	dept.setStatus((Integer)object[5]);
         	listDept.add(dept);
         }
 
-        JSONArray json = JSONArray.fromObject(listDept);
-        return json;
+        
+        return listDept;
 	}
 
 	public JSONArray getDeptView(String deptName,String deptManager){
@@ -64,16 +70,16 @@ public class DeptDao extends BaseDao {
 		}*/
 		List<Object> list =session.createQuery(hql).list(); 
 		
-		Dept dept;
-        List<Dept> listDept=new ArrayList<Dept>();
+		DeptInfo dept;
+        List<DeptInfo> listDept=new ArrayList<DeptInfo>();
         for(int i=0;i<list.size();i++){
-        	dept=new Dept();
+        	dept=new DeptInfo();
         	Object[] object = (Object[])list.get(i);
-        	dept.setDeptId((Integer)object[0]);
+        	dept.setId((Integer)object[0]);
         	dept.setDeptName((String)object[1]);
-        	dept.setPid((Integer)object[2]);
-        	dept.setDeptManager((String)object[3]);
-        	dept.setLastUpdate((String)object[4]);
+        	dept.setManager((Integer)object[2]);
+        	dept.setManagerName((String)object[3]);
+        	dept.setLastUpdate((Timestamp)object[4]);
         	listDept.add(dept);
         }
 		
@@ -83,33 +89,30 @@ public class DeptDao extends BaseDao {
 	
 	DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 	
-	public String add(Dept dept1){
+	public String add(DeptInfo dept){
 		Session session = super.getSession();
 		int n=0;
 		int i;
 		
-		Query query = session.createQuery(" From DeptInfo where deptName=:deptName and deptManager=:deptmanager ");
-		query.setString("deptName", dept1.getDeptName());
-		query.setLong("deptmanager", dept1.getPid());
+		Query query = session.createQuery(" From DeptInfo where deptName=:deptName and manager=:manager ");
+		query.setString("deptName", dept.getDeptName());
+		query.setLong("manager", dept.getManager());
 		List<DeptInfo> list=query.list();
 		
 		if(list!=null && list.size()>0)
 			return Util.EXIST;
 		
-		DeptInfo dept=new DeptInfo();
-		dept.setDeptName(dept1.getDeptName());
-		dept.setDeptManager(dept1.getPid());
-		dept.setLastUpdate(dateFormat.format(new Date()));
-		dept.setStatus(dept1.getStatus());
+		dept.setLastUpdate(new Timestamp(System.currentTimeMillis()));
 	
 		session.save(dept);	
 		
 		return Util.SUCCESS;
 	}
 	
-	public List<Dept> deptBeforUpdate(int id){
+	public DeptInfo beforUpdate(int id){
 		
 		Session session = super.getSession();
+		/*
 		String hql="select a.deptId,a.deptName,a.deptManager,(select b.deptName from DeptInfo b where a.deptManager=b.deptId),a.lastUpdate,a.status from DeptInfo a where a.deptId="+id;
 		List<Object> listOne =session.createQuery(hql).list();
 		Dept dept;
@@ -124,69 +127,73 @@ public class DeptDao extends BaseDao {
         	dept.setLastUpdate((String)object[4]);
         	dept.setStatus((Integer)object[5]);
         	listDept.add(dept);
-        }	
-		return listDept;
+        }	*/
+		
+		return (DeptInfo) session.get(DeptInfo.class, id);
 	}
 
-	public String deptUpdate(int id,Dept dept){
+	public String update(int id, DeptInfo dept){
+		
+		System.out.println(" update dao "+dept);
 		Session session = super.getSession();
+		/*
 		DeptInfo deptInfo=new DeptInfo();
-		deptInfo.setDeptId(dept.getDeptId());
+		deptInfo.setId(dept.getId());
 		deptInfo.setDeptName(dept.getDeptName());
 		deptInfo.setStatus(dept.getStatus());
 		int m=0;
 		int i;
 		List<DeptInfo> list=session.createQuery("From DeptInfo where status=1").list();
 		for(i=0;i<list.size();i++){
-			if(dept.getDeptManager().equals(list.get(i).getDeptName())){
-				deptInfo.setDeptManager(list.get(i).getDeptId());
+			if(dept.getManager().equals(list.get(i).getDeptName())){
+				deptInfo.setManager(list.get(i).getId());
 			}else
 				m++;
-			if(dept.getDeptManager().equals("") || dept.getDeptManager()==null){
-				deptInfo.setDeptManager(null);
+			if(dept.getManager().equals("") || dept.getManager()==null){
+				deptInfo.setManager(null);
 				m--;
 			}
-			if(deptInfo.getDeptName().equals(list.get(i).getDeptName()) && deptInfo.getDeptManager()==list.get(i).getDeptManager() )
+			if(deptInfo.getDeptName().equals(list.get(i).getDeptName()) && deptInfo.getManager()==list.get(i).getManager() )
 				return "nameError";
 		}
 		if(m==i)
 			return "managerError";
-
+*/
 		DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd HH-mm-ss");
-		deptInfo.setLastUpdate(dateFormat.format(new Date()));
+		dept.setLastUpdate(new Timestamp(System.currentTimeMillis()));
 	
 		session.clear();
-		session.update("DeptInfo where deptId="+id,deptInfo);
-
+		dept.setId(id);
+		session.update(dept);
 		
-		return "true";
+		return Util.SUCCESS;
 	}
 
-	public boolean deptDel(int id){
+	public boolean delete(int id){
 		Session session = super.getSession();
 		List<DeptInfo> list=session.createQuery("From DeptInfo where status=1").list();
 		List<UserInfo> listUser=session.createQuery("From UserInfo where status=1").list();
-		Query query = session.createQuery("from DeptInfo where deptId=:id ");
+		Query query = session.createQuery("from DeptInfo where id=:id ");
 		query.setParameter("id", id);
 		
 		DeptInfo dept=(DeptInfo)query.uniqueResult();
 		
 		//当删除的部门有成员时提示  不允许删除
 		for(int j=0;j<listUser.size();j++){
-			if(dept.getDeptId()==listUser.get(j).getUserDepartment()){
+			if(dept.getId()==listUser.get(j).getUserDepartment()){
 				return false;
 			}
 		}
 		
 		//当删除的部门有子部门时修改子部门的上级部门
 		for(int i=0;i<list.size();i++){
-			if(dept.getDeptId()==list.get(i).getDeptManager()){
-				list.get(i).setDeptManager(dept.getDeptManager());
+			if(dept.getId()==list.get(i).getManager()){
+				list.get(i).setManager(dept.getManager());
+				session.update(list.get(i));
 			}
 		}
-	
 		dept.setStatus(0);
-		//session.update("DeptInfo where deptId="+id,dept);
+		session.delete(dept);
 		
 		return true;
 	}

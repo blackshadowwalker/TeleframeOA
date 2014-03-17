@@ -34,6 +34,7 @@ public abstract class BaseAction extends ActionSupport {
 	protected String str = null;
 	protected Integer  id;
 	protected String goBackUrl = null;
+	protected String target = null;
 
 	protected Integer pageIndex = 0;
 	protected Integer pageSize=0;
@@ -126,6 +127,7 @@ public abstract class BaseAction extends ActionSupport {
 			if(function.getReturnType()==String.class){
 				System.out.println(function.getName()+".invoke("+this+")");
 				Object obj = function.invoke(this);
+				System.out.println(obj);
 				return  (String) obj;
 			}else{
 				function.invoke(this.getClass());
@@ -295,6 +297,12 @@ public abstract class BaseAction extends ActionSupport {
 	}
 	public void setId(String id) {
 		this.id = Integer.parseInt(id);
+	}
+	public String getTarget() {
+		return target;
+	}
+	public void setTarget(String target) {
+		this.target = target;
 	}
 
 

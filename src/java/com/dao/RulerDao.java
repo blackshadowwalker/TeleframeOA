@@ -149,7 +149,7 @@ public class RulerDao extends BaseDao {
 		Session session = this.getSession();
 		rulerInfo.setRulerid(id);
 		//rulerInfo.setLastupdate(df.format(new Timestamp(System.currentTimeMillis())));
-		rulerInfo.setLastupdate((new Timestamp(System.currentTimeMillis())));
+		rulerInfo.setLastUpdate((new Timestamp(System.currentTimeMillis())));
 		session.update(rulerInfo);
 		return Util.SUCCESS;
 	}

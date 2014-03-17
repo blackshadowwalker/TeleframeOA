@@ -4,7 +4,6 @@ import java.util.List;
 import net.sf.json.JSONArray;
 
 
-import com.bean.Dept;
 import com.bean.DeptInfo;
 import com.dao.DeptDao;
 import com.service.DeptService;
@@ -17,17 +16,10 @@ public class DeptServiceImpl implements DeptService{
 	public void setDeptDao(DeptDao deptDao) {
 		this.deptDao = deptDao;
 	}
-	/*
-	@Override
-	public List<DeptInfo> queryDept(){
-		return deptDao.queryAllDept();
-		
-	}
-	*/
 	
 	@Override
-	public JSONArray queryDept(){
-		return deptDao.queryAllDept();
+	public List<DeptInfo> getList(){
+		return deptDao.getList();
 		
 	}
 	
@@ -38,24 +30,27 @@ public class DeptServiceImpl implements DeptService{
 	}
 	
 	@Override
-	public String add(Dept dept){
-		
+	public String add(DeptInfo dept){
 		return deptDao.add(dept);
 	}
 	
 	@Override
-	public List<Dept> deptBeforUpdate(int id){
+	public DeptInfo deptBeforUpdate(int id){
 		
-		return deptDao.deptBeforUpdate(id);
+		return deptDao.beforUpdate(id);
 	}
 	
-	public String deptUpdate(int id,Dept dept){
-		return deptDao.deptUpdate(id,dept);
+	public String deptUpdate(int id, DeptInfo dept){
+		return deptDao.update(id,dept);
 	}
 	
 	@Override
-	public boolean deptDel(int id){
-		return deptDao.deptDel(id);
+	public boolean delete(int id){
+		return deptDao.delete(id);
+	}
+	@Override
+	public DeptInfo get(Integer id) {
+		return deptDao.get(id);
 	}
 	
 	

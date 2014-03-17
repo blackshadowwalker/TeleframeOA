@@ -36,33 +36,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</script>
 
 	<div>
-		<form action="<%= basePath%>/DeptAction?method=add" id="opForm" name="opForm" method="post" >
+		<!-- 返回 -->
+		<div class="menu-path">
+			<a href="${goBackUrl }">
+			<img class="goback" src="images/button/back.png" title="返回" style="cursor:pointer "></img></a>
+			 当前位置:&nbsp;部门管理 &gt; 部门添加
+		</div>
+		
+		<form action="<%= basePath%>/DeptAction?method=add"   method="post" >
 			<table id="table-data-outter">
 				<tr>
 					<td>
 						<table id="table-data-inner" cellspacing="0">
-							<tr id="tr-menu-path" >
-								<td  nowrap="nowrap">
-								<fieldset id="f-menu-path">当前位置:&nbsp;部门管理 &gt; 部门添加</fieldset>
-								</td>
-							</tr>
 							
 							<tr>
 								<td> 部门名称：
-									<input type="text" name="deptBean.deptName" id="dept_name" value="${deptBean.deptName}" onclick="alert(123);" /> 	
+									<input type="text" name="deptInfo.deptName" id="dept_name" value=""   /> 	
 									<span style="color:#f00;">${msg}</span>
 								</td>
 							</tr>
 							<tr>
 								<td> 上级部门：
-									<input type="hidden" name="deptBean.pid" id="dept_manager" value="${pid}" />
-									<input type="text" name="deptBean.deptManager" id="managerName" value="${pname}" readOnly /> 		
+									<input type="hidden" name="deptInfo.manager" id="dept_manager" value="${pid}" />
+									<input type="text" name="deptInfo.managerName" id="managerName" value="${pname}" readOnly /> 		
 								</td>
 							</tr>
 							
 							<tr>
 								<td> 是否启用：
-									<select name="deptBean.status" >
+									<select name="deptInfo.status" >
 										<option value="1" selected>启用</option>
 										<option value="0">禁用</option>
 									</select>

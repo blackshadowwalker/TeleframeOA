@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     
-    <title>role query</title>
+    <title>file query</title>
     <base href="<%=basePath%>/">
 	<link rel="stylesheet" href="css/common.css" type="text/css" media="all"/>
 	<link rel="stylesheet" href="css/main.css" type="text/css" media="all"/>
@@ -76,16 +76,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   	<iframe name="hidden_frame" style="display:none;" ></iframe>
   
+  		<!-- 返回 -->
+	<div class="menu-path">
+		<a href="${goBackUrl }">
+		<img class="goback" src="images/button/back.png" title="返回" style="cursor:pointer "></img></a>
+		<span class="locationLable"> 当前位置:&nbsp;菜单管理 &gt; 菜单添加 </span> 
+	</div>
+	
 	<s:form action="UploadAction?callback=callback"  method="post" ENCTYPE="multipart/form-data" target="hidden_frame" >
 		<div id="con" style="width:500px;">
 				<table id="table-data-outter">
 					<tr>
 						<td>
 							<table id="table-data-inner" cellspacing="1">
-								<tr id="tr-menu-path"><td colspan="2">
-									<a href="javascript:history.go(-1);">
-											<img src="images/button/back.png" title="返回" style="cursor:pointer "></img></a>
-									当前位置:&nbsp;文件中心 &gt; 文件管理</td></tr>
+								
 								<tr id="tr-title"><td colspan="2">添加文件</td></tr>
 								<tr>
 									<td width="10%" class="field-title">文件:</td>

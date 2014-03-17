@@ -5,7 +5,6 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 import com.base.BaseAction;
-import com.bean.Dept;
 import com.bean.DeptInfo;
 import com.service.DeptService;
 import com.util.Util;
@@ -22,15 +21,12 @@ public class DeptAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
 
 	DeptService deptService;
+	DeptInfo deptInfo;
 	List<DeptInfo> list;
-	List<Dept> listDeptBean;
-	DeptInfo dept = new DeptInfo();
-	Dept deptBean;
 
 	String name;
 	Integer pid;
 	String pname;
-
 
 	@Override
 	public String handle() throws Exception {
@@ -49,7 +45,7 @@ public class DeptAction extends BaseAction {
 			}
 		}
 		return Util.NONE;
-		
+
 	}
 
 	@Override
@@ -58,9 +54,9 @@ public class DeptAction extends BaseAction {
 	}
 	@Override
 	public String add() throws Exception {
-		String res=deptService.add(deptBean);
-		this.pid = deptBean.getPid();
-		this.pname = deptBean.getDeptManager();
+		String res=deptService.add(deptInfo);
+		this.pid = deptInfo.getManager();
+		this.pname = deptInfo.getManagerName();
 		if(res.equals(Util.SUCCESS)){
 			msg =  "添加成功" ;
 		}else{
@@ -71,38 +67,37 @@ public class DeptAction extends BaseAction {
 	}
 	@Override
 	public String beforeAdd() throws Exception {
-		System.out.println("before add : "+request.getRequestURI()+"?"+request.getQueryString());
+		
 		return Util.ADD;
 	}
 	@Override
 	public String beforeUpdate() throws Exception {
-		listDeptBean=deptService.deptBeforUpdate(id);
+		list = deptService.getList();
+		request.setAttribute("list", list);
 
-		if(listDeptBean!=null)
-			return Util.BEFORE_UPDATE;
-		else
-			return Util.ERROR;
-	}
-	@Override
-	public String delete() throws Exception {
-		boolean flag=deptService.deptDel(id);
-
-		if(flag==true)
-			return query();
-		if(flag==false){
-			request.setAttribute("HaveUsers","HaveUsers");
-			return query();
+		deptInfo = deptService.deptBeforUpdate(id);
+		if(deptInfo!=null){
+			msg = "";
+			if((deptInfo.getManager()!=null && deptInfo.getManager()>0))
+			{
+				DeptInfo pDept = deptService.get(deptInfo.getManager());
+				if(pDept!=null )
+					deptInfo.setManagerName(pDept.getDeptName());
+			}
+		}else{
+			msg = "获取信息失败";
 		}
-		else
-			return Util.ERROR;
+		System.out.println("beforeUpdate : " + deptInfo.getDeptName());
+		return Util.UPDATE;
 	}
-
 	@Override
 	public String update() throws Exception {
-		String str=deptService.deptUpdate(id,deptBean);
-		if(str.equals("true"))
+		System.out.println("update @ id="+id);
+		String str=deptService.deptUpdate(id, deptInfo);
+		if(str.equals(Util.SUCCESS)){
+			msg = "修改成功";
 			return query();
-		if(str.equals("managerError")){
+		}else if(str.equals("managerError")){
 			request.setAttribute("managerError", "managerError");
 			return "updateManagerError";
 		}
@@ -112,17 +107,35 @@ public class DeptAction extends BaseAction {
 		}
 		return Util.ERROR;
 	}
+
+	@Override
+	public String delete() throws Exception {
+		boolean flag=deptService.delete(id);
+
+		if(flag==true){
+			msg = "删除成功";
+			return query();
+		}if(flag==false){
+			request.setAttribute("HaveUsers","HaveUsers");
+			return query();
+		}
+		else
+			return Util.ERROR;
+	}
+
+
 	@Override
 	public String view() throws Exception {
-		name=deptBean.getDeptName();
-		pname=deptBean.getDeptManager();
+		name=deptInfo.getDeptName();
+		pname=deptInfo.getManagerName();
 
 		return Util.VIEW;
 	}
 
 	private void listTree(){
 
-		JSONArray json=deptService.queryDept();
+		list = deptService.getList();
+		JSONArray json = JSONArray.fromObject(list);
 		String jsonstr=json.toString();
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8"); 
@@ -135,7 +148,7 @@ public class DeptAction extends BaseAction {
 		}
 
 	}
-	
+/*
 	private void listTreeView(){
 
 		JSONArray json=deptService.getDeptView(name, pname);
@@ -152,7 +165,7 @@ public class DeptAction extends BaseAction {
 		}
 
 	}
-
+*/
 
 	//spring 注入
 	public DeptService getDeptService() {
@@ -171,27 +184,6 @@ public class DeptAction extends BaseAction {
 		this.list = list;
 	}
 
-	public DeptInfo getDept() {
-		return dept;
-	}
-
-	public void setDept(DeptInfo dept) {
-		this.dept = dept;
-	}
-
-	public Dept getDeptBean() {
-		return deptBean;
-	}
-	public void setDeptBean(Dept deptBean) {
-		this.deptBean = deptBean;
-	}
-
-	public List<Dept> getListDeptBean() {
-		return listDeptBean;
-	}
-	public void setListDeptBean(List<Dept> listDeptBean) {
-		this.listDeptBean = listDeptBean;
-	}
 	public String getName() {
 		return name;
 	}
@@ -211,6 +203,14 @@ public class DeptAction extends BaseAction {
 
 	public void setPname(String pname) {
 		this.pname = pname;
+	}
+
+	public DeptInfo getDeptInfo() {
+		return deptInfo;
+	}
+
+	public void setDeptInfo(DeptInfo deptInfo) {
+		this.deptInfo = deptInfo;
 	}
 
 

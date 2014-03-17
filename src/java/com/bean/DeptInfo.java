@@ -1,5 +1,9 @@
 package com.bean;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 /**
  * DeptInfo entity. @author MyEclipse Persistence Tools
  */
@@ -8,41 +12,23 @@ public class DeptInfo implements java.io.Serializable {
 
 	// Fields
 
-	private Integer deptId;
-	private String deptName;
-	private Integer deptManager;
-	private String lastUpdate;
-	private Integer status;
+	private Integer 	id;
+	private String 		deptName;
+	private Integer 	manager;
+	private String 		managerName;
+	private Timestamp  	lastUpdate;
+	private String 		lastUpdateString;
+	private Integer 	status;
 
 	// Constructors
 
 	/** default constructor */
 	public DeptInfo() {
+		manager = 0;
 	}
 
-	/** minimal constructor */
-	public DeptInfo(String lastUpdate) {
-		this.lastUpdate = lastUpdate;
-	}
-
-	/** full constructor */
-	public DeptInfo(String deptName, Integer deptManager, String lastUpdate,
-			Integer status) {
-		this.deptName = deptName;
-		this.deptManager = deptManager;
-		this.lastUpdate = lastUpdate;
-		this.status = status;
-	}
 
 	// Property accessors
-
-	public Integer getDeptId() {
-		return this.deptId;
-	}
-
-	public void setDeptId(Integer deptId) {
-		this.deptId = deptId;
-	}
 
 	public String getDeptName() {
 		return this.deptName;
@@ -52,21 +38,6 @@ public class DeptInfo implements java.io.Serializable {
 		this.deptName = deptName;
 	}
 
-	public Integer getDeptManager() {
-		return this.deptManager;
-	}
-
-	public void setDeptManager(Integer deptManager) {
-		this.deptManager = deptManager;
-	}
-
-	public String getLastUpdate() {
-		return this.lastUpdate;
-	}
-
-	public void setLastUpdate(String lastUpdate) {
-		this.lastUpdate = lastUpdate;
-	}
 
 	public Integer getStatus() {
 		return this.status;
@@ -75,5 +46,53 @@ public class DeptInfo implements java.io.Serializable {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public Integer getManager() {
+		if(manager==null)
+			return 0;
+		return manager;
+	}
+
+	public String getManagerName() {
+		return managerName;
+	}
+
+	public Timestamp getLastUpdate() {
+		return lastUpdate;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setManager(Integer manager) {
+		this.manager = manager;
+	}
+
+	public void setManagerName(String managerName) {
+		this.managerName = managerName;
+	}
+
+	private DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+	public void setLastUpdate(Timestamp lastUpdate) {
+		this.setLastUpdateString(df.format(lastUpdate));
+		this.lastUpdate = lastUpdate;
+	}
+
+
+	public String getLastUpdateString() {
+		this.setLastUpdateString(df.format(this.lastUpdate));
+		return lastUpdateString;
+	}
+
+
+	public void setLastUpdateString(String lastUpdateString) {
+		this.lastUpdateString = lastUpdateString;
+	}
+
 
 }

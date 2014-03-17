@@ -46,9 +46,7 @@ public class VehicleAction extends BaseAction {
 			return query();
 		}else if(method.equals("code")){
 			return GetCodeImage();
-			
 		}
-
 		return Util.NONE;
 	}
 	

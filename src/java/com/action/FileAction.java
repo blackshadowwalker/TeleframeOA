@@ -19,10 +19,8 @@ public class FileAction extends BaseAction {
 	
 	@Override
 	public String handle() throws Exception {
-		if(method==null || method.endsWith("query")){
-			System.out.println("id="+id);
-			System.out.println("reqid="+request.getParameter("id"));
-			if(id>0){
+		if(method==null  ){
+			if(id!=null && id>0){
 				FileInfo f = fileService.query(id);
 				//设置接收的编码格式    
 				request.setCharacterEncoding("UTF-8");
@@ -45,19 +43,6 @@ public class FileAction extends BaseAction {
 			}
 		}
 
-		/*
-		if(super.method.equals("query")){
-			return query();
-		}else if(method.equals("add")){
-			return add();
-		}else if(method.equals("beforeUpdate")){
-			return beforeUpdate();
-		}else if(method.equals("update")){
-			return update();
-		}else if(method.equals("delete")){
-			return delete();
-		}
-		*/
 		return Util.NONE;
 	}
 	
@@ -80,6 +65,7 @@ public class FileAction extends BaseAction {
 			request.setAttribute("msg", "操作成功");
 		else
 			request.setAttribute("msg", "删除失败");
+		this.fileInfo = null;
 		return query();
 	}
 
@@ -111,7 +97,6 @@ public class FileAction extends BaseAction {
 	}
 
 	public String beforeAdd() throws Exception {
-		request.setAttribute("str", fileService.beforeAdd());
 		return Util.ADD;
 	}
 

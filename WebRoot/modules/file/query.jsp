@@ -28,7 +28,6 @@ String msg = (String)request.getAttribute("msg");
 	<script src="scripts/common.js" type="text/javascript"></script>
 	<script src="scripts/validateForm.js" type="text/javascript"></script>
 	<script src="scripts/Calendar.js" type="text/javascript"></script>
-	<script type="text/javascript" src="scripts/frame/main.js"></script>
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -38,7 +37,7 @@ String msg = (String)request.getAttribute("msg");
 		//	alert(msg);
 		}
 		function add(){
-			location.href="<%= basePath%>/modules/file/fileAdd.jsp";
+			location.href="<%= basePath%>/FileAction?method=beforeAdd";
 		}
 		function del(id){
 			if(confirm("确定删除吗？"))
@@ -50,6 +49,8 @@ String msg = (String)request.getAttribute("msg");
   
   <body>
   	
+
+		
 	<div>
 		<form id="opForm" name="opForm" method="post" action="<%= basePath%>/FileAction?method=query">
 			
@@ -58,12 +59,12 @@ String msg = (String)request.getAttribute("msg");
 					<td>
 						<table id="table-data-inner" cellspacing="0">
 							<tr id="tr-menu-path">
-								<td colspan="2" nowrap="nowrap">
+								<td colspan="3" nowrap="nowrap">
 									
 									<fieldset id="f-menu-path">
-											<a href="javascript:history.go(-1);">
-											<img src="images/button/back.png" title="返回" style="cursor:pointer "></img></a>
-											当前位置:&nbsp;文件中心&gt; 文件管理
+
+											<span class="locationLable">当前位置:&nbsp;文件中心&gt; 文件管理</span>
+											
 									</fieldset>
 									<fieldset id="f-condition-display">
 										<img src="images/main/display_on.gif" onclick="displayCondition(this,'tr-menu-path')" 
@@ -101,8 +102,7 @@ String msg = (String)request.getAttribute("msg");
 								<td ondblclick="return sortQuery('carNumber')" style="cursor:pointer;" >名称</td>
 								<td ondblclick="return sortQuery('carNumber')" style="cursor:pointer;" >大小</td>
 								<td ondblclick="return sortQuery('carName')" style="cursor:pointer;" >类型</td>
-								<td ondblclick="return sortQuery('carName')" style="cursor:pointer;" >标志位</td>
-								<td ondblclick="return sortQuery('carName')" style="cursor:pointer;" >路径</td>
+								<td ondblclick="return sortQuery('carName')" style="cursor:pointer;" >MD5</td>
 								<td ondblclick="return sortQuery('carName')" style="cursor:pointer;" >级别</td>
 								<td ondblclick="return sortQuery('carName')" style="cursor:pointer;" >最后更新时间</td>
 								<td ondblclick="return sortQuery('carName')" style="cursor:pointer;" >创建时间</td>
@@ -123,8 +123,7 @@ String msg = (String)request.getAttribute("msg");
 									<td align="left"><s:property value="#l.fileName" /></td>
 									<td align="center"><s:property value="#l.fileFormatedSize" /></td>
 									<td align="center"><s:property value="#l.fileType" /></td>
-									<td align="center"><s:property value="#l.pathFlag" /></td>
-									<td align="center"><s:property value="#l.path" /></td>
+									<td align="center"><s:property value="#l.md5" /></td>
 									<td align="center"><s:property value="#l.securityLevel" /></td>
 									<td align="center"><s:property value="#l.lastUpdate" /></td>
 									<td align="center"><s:date name="#l.ctTime" format="yyyy-MM-dd hh:mm:ss" /></td>

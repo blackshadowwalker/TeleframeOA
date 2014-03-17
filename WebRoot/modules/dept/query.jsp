@@ -89,6 +89,11 @@ $(function() {
 		
 	//  }
 	});
+	
+	
+	var msg="${msg}";
+	if(msg!="null" && msg!="")
+		alert(msg);
 
 </script>
 </head>
@@ -122,7 +127,7 @@ $(function() {
                     <input  type="submit" value="查询" class="btns_mouseout" onmouseover="this.className='btns_mouseover'" 
 					onmouseout="this.className='btns_mouseout'" />  
 					<input  type="button" value="添加根部门" class="btns_mouseout" onmouseover="this.className='btns_mouseover'" 
-					onmouseout="this.className='btns_mouseout'" onclick="location.href='<%=basePath %>/modules/dept/deptAddRoot.jsp'"/>                    
+					onmouseout="this.className='btns_mouseout'" onclick="location.href='<%=basePath %>/modules/dept/add.jsp'"/>                    
 				</td>
 			</tr> 
 		</table>
@@ -130,21 +135,30 @@ $(function() {
 	</table>
 	  </form>	
 
-	<div id="treegrid1" class="mini-treegrid" style="width:600px;height:500px;"     
+	<div id="treegrid1" class="mini-treegrid" style="width:900px;height:500px;"     
 	   url="<%=basePath %>/DeptAction?method=listTree" ondrawcell="onDrawCell" showTreeIcon="true"  
-	    treeColumn="deptName" idField="deptName" parentField="deptManager" resultAsTree="false"
-	    allowResize="true" expandOnLoad="true" allowCellEdit="false" allowCellSelect="true"
-	>
+	    treeColumn="deptName" idField="id" parentField="manager" resultAsTree="false"
+	    allowResize="true" expandOnLoad="true" allowCellEdit="false" allowCellSelect="true">
+	    
 	    <div property="columns">
-	        <div type="indexcolumn"></div>
+	        <div  field="id" width="30">ID</div>
 	        <div name="deptName" field="deptName" width="200">部门名称
 	        <input property="editor" class="mini-textbox" style="width:100%;"  /> 
 	    </div> 
-	    <div field="lastUpdate" width="100" dateFormat="yyyy-MM-dd">最后修改日期
+	    <div  field="manager" width="0">上级部门id
+        	<input property="editor" class="mini-textbox" style="width:100%;"  /> 
+    	</div> 
+    	 <div name="" field="managerName" width="60">上级部门
+        	<input property="editor" class="mini-textbox" style="width:100%;"  /> 
+    	</div> 
+	    <div field="lastUpdateString" width="100" dateFormat="yyyy-MM-dd">最后修改日期
 	        <input property="editor" class="mini-datepicker" style="width:100%;" />
 	    </div>
-	         <div field="operator" width="100" >操作
-	         </div>        
+	    <div name="" field="status" width="60">是否启用
+        	<input property="editor" class="mini-textbox" style="width:100%;"  /> 
+    	</div>
+         <div field="operator" width="100" >操作
+         </div>        
 	    </div>
 	</div>
 	<script type="text/javascript">
@@ -159,18 +173,26 @@ $(function() {
 
             //超链接任务
             if (field == "operator") {
-                e.cellHtml = "<s:if test="#request.i>=0"><a class=opeate href=\"<%= basePath%>/DeptAction?method=beforeAdd&pid="+node.deptId+"&pname="+ node.deptName+"\" >"+
+                e.cellHtml = "<s:if test="#request.i>=0"><a class=opeate href=\"<%= basePath%>/DeptAction?method=beforeAdd&pid="+node.id+"&pname="+ node.deptName+"\" >"+
                 				"<img src=\"images/button/addnew.gif\" title=\"添加\" style=\"cursor:pointer \"></img></a></s:if> "+
-                			"<s:if test="#request.u>=0"><a class=opeate href=\"DeptAction?method=beforUpdate&id="+node.deptId+ "\">"+
+                			"<s:if test="#request.u>=0"><a class=opeate href=\"DeptAction?method=beforeUpdate&id="+node.id+ "\">"+
                 				"<img src=\"images/button/pen.png\" title=\"修改\" border=0 style=\"cursor:pointer\"></img></a></s:if>"+
-                			" <s:if test="#request.d>=0"><a class=opeate href=\"javascript:del("+ node.deptId +")\">"+
+                			" <s:if test="#request.d>=0"><a class=opeate href=\"javascript:del("+ node.id +")\">"+
                 				"<img src=\"images/button/delete.png\" title=\"删除\" style=\"cursor:pointer \"></img></a></s:if>";
             }
             //格式化日期
-            if (field == "lastUpdate") {
+            if (field == "lastUpdateString") {
                 if (mini.isDate(value)) 
                 	e.cellHtml = mini.formatDate(value, "yyyy年MM月dd日");
-            }
+             }
+             
+             if(field=="status")
+             	if(value==0)
+             		e.cellHtml = "禁用";
+             	else
+             		e.cellHtml = "启用";
+             	
+             
         };
         
         function del(id){
@@ -179,9 +201,7 @@ $(function() {
 				location.href="<%= basePath%>/DeptAction?method=delete&id="+id;
 			}
 		}
-		function add(id,name){
-		//alert("可以调用到该方法");
-		}
+		
 	
     </script>
 </body>

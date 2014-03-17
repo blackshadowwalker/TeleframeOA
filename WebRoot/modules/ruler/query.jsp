@@ -70,13 +70,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td>
 						<table id="table-data-inner" cellspacing="0">
 							<tr id="tr-menu-path">
-								<td colspan="2" nowrap="nowrap">
-									<fieldset id="f-menu-path">当前位置:&nbsp;系统管理 &gt; 菜单管理</fieldset>
+								<td colspan="3" nowrap="nowrap">
+									<fieldset id="f-menu-path">
+											
+											<span class="locationLable">当前位置:&nbsp;系统管理 &gt; 菜单管理</span>
+									
+									</fieldset>
 									<fieldset id="f-condition-display">
 										<img src="images/main/display_on.gif" onclick="displayCondition(this,'tr-menu-path')" 
 											align="bottom" width="17" height="15" alt="隐藏查询条件" />
 									</fieldset>
 								</td>
+								
 							</tr>
 							<tr>
 								<td>
@@ -84,8 +89,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<input type="text" name="rulerInfo.rulerName" id="rulerName" value="" />
 									<input  type="submit" value="查询" class="btns_mouseout" onmouseover="this.className='btns_mouseover'" 
 									onmouseout="this.className='btns_mouseout'" />                              
-								</td>
-								<td>
+
+									&nbsp;&nbsp;&nbsp;&nbsp;
 									<span style="color:#f00">${msg }</span>
 								</td>
 								<td align="right">
@@ -122,7 +127,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							    	<div name="" field="target" width="100">target
 							        	<input property="editor" class="mini-textbox" style="width:100%;"  /> 
 							    	</div> 
-							    	<div name="manager" field="rulerManager" width="0">上级部门
+							    	<div name="manager" field="manager" width="0">上级部门
 							        	<input property="editor" class="mini-textbox" style="width:100%;"  /> 
 							    	</div> 
 							    	<div name="" field="echo" width="60">是否显示
@@ -131,7 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							    	<div name="" field="sortorder" width="50">排序
 							        	<input property="editor" class="mini-textbox" style="width:100%;"  /> 
 							    	</div> 
-							    	<div name="" field="lastupdateString" width="100">最后修改日期
+							    	<div name="" field="lastUpdateString" width="100">最后修改日期
 							    	</div> 
 							    	
 						         	<div field="operator" headerAlign="center" width="130" >
@@ -172,9 +177,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 				"<img src=\"images/button/delete.png\" title=\"删除\" style=\"cursor:pointer \"></img></a></s:if>";
             }
             //格式化日期
-            else if (field == "lastupdateString") {
+            else if (field == "lastUpdateString") {
                 if (mini.isDate(value)) 
                 	e.cellHtml = mini.formatDate(value, "yyyy年MM月dd日");
+                	
+                	
             }else if (field=="echo"){
             	if(value==0)
             		e.cellHtml = "不显示";

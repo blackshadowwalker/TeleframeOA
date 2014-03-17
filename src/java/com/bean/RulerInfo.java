@@ -21,8 +21,8 @@ public class RulerInfo implements java.io.Serializable {
 	private String managerName;
 	private String target;
 	private Integer sortorder;
-	private Timestamp lastupdate;
-	private String lastupdateString;
+	private Timestamp lastUpdate;
+	private String lastUpdateString;
 	private Integer status;
 
 	// Constructors
@@ -47,7 +47,7 @@ public class RulerInfo implements java.io.Serializable {
 		this.manager = rulerManager;
 		this.target = rulerTarget;
 		this.sortorder = order;
-		this.lastupdate = lastUpdate;
+		this.lastUpdate = lastUpdate;
 		this.status = status;
 	}
 
@@ -139,21 +139,23 @@ public class RulerInfo implements java.io.Serializable {
 		this.rulerName = rulerName;
 	}
 	
-	public void setLastupdate(String lp) {
-		this.setLastupdate(Timestamp.valueOf(lp));//此处
+	public void setLastUpdate(String lp) {
+		this.setLastUpdate(Timestamp.valueOf(lp));//此处
 	}
-	public void setLastupdate(Timestamp lastupdate) {
+	public void setLastUpdate(Timestamp lastupdate) {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		lastupdateString = df.format(lastupdate);
-		this.lastupdate = lastupdate;
-	}
-	public Timestamp getLastupdate() {
-		return lastupdate;
+		lastUpdateString = df.format(lastupdate);
+		this.lastUpdate = lastupdate;
 	}
 
-	public String getLastupdateString() {
-		return lastupdateString;
+	public String getLastUpdateString() {
+		return lastUpdateString;
 	}
+
+	public Timestamp getLastUpdate() {
+		return lastUpdate;
+	}
+
 
 	
 

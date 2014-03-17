@@ -48,7 +48,7 @@ public class UserDao extends BaseDao{
 		StringBuffer sb=new StringBuffer();
 		List<DeptInfo> list=session.createQuery("from DeptInfo where status=1").list();
 		for(int i=0;i<list.size();i++){
-			sb.append(list.get(i).getDeptId()).append(",").append(list.get(i).getDeptName()).append(";");
+			sb.append(list.get(i).getId()).append(",").append(list.get(i).getDeptName()).append(";");
 		}
 		sb.append("#");
 		
