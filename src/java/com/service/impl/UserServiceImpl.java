@@ -30,8 +30,8 @@ public class UserServiceImpl implements UserService {
 	
 
 	@Override
-	public String delete(UserInfo userInfo) throws Exception {
-		return userDao.delete(userInfo);
+	public String delete(Integer id) throws Exception {
+		return userDao.delete(id);
 	}
 
 	@Override

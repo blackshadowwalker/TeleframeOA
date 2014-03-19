@@ -55,6 +55,9 @@ public class FileDao extends BaseDao {
 		query.setString("md5", md5);
 		query.setString("sha1", sha1);
 		FileInfo fileInfo = (FileInfo) query.uniqueResult();
+		if(fileInfo==null)
+			return null;
+		
 		return fileInfo;
 	}
 

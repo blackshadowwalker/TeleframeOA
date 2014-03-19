@@ -56,6 +56,7 @@ public abstract class BaseAction extends ActionSupport {
 	public abstract String update() throws Exception;
 	public abstract String delete() throws Exception;
 	public abstract String view() throws Exception;
+	public abstract boolean validate(Object obj) throws Exception;
 
 	@Override
 	public String execute() throws Exception {

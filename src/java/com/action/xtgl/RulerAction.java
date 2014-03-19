@@ -178,4 +178,10 @@ public class RulerAction extends BaseAction {
 		this.pid = pid;
 	}
 
+	@Override
+	public boolean validate(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

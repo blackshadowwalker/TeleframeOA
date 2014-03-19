@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50513
 File Encoding         : 65001
 
-Date: 2014-03-17 18:24:26
+Date: 2014-03-19 17:44:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,15 +30,14 @@ CREATE TABLE `dept_info` (
 -- ----------------------------
 -- Records of dept_info
 -- ----------------------------
-INSERT INTO dept_info VALUES ('44', '北京总部', '0', '2014-03-17 17:56:17', '1');
+INSERT INTO dept_info VALUES ('44', '北京总部', '0', '2014-03-18 18:43:01', '1');
 INSERT INTO dept_info VALUES ('45', '总经办', '44', '2014-03-17 18:05:04', '1');
 INSERT INTO dept_info VALUES ('46', '财务部', '44', '2014-03-17 18:05:38', '1');
 INSERT INTO dept_info VALUES ('48', '西安研发部', '0', '2014-03-17 18:04:15', '1');
-INSERT INTO dept_info VALUES ('49', '分部2-1', '48', '2014-02-12 09:33:21', '1');
-INSERT INTO dept_info VALUES ('50', '分部2-2', '48', '2014-02-11 18:08:03', '1');
-INSERT INTO dept_info VALUES ('51', '分部2-3', '48', '2014-02-11 18:08:06', '1');
+INSERT INTO dept_info VALUES ('49', '硬件开发', '48', '2014-03-18 16:04:30', '1');
+INSERT INTO dept_info VALUES ('50', '软件开发', '48', '2014-03-18 16:04:45', '1');
 INSERT INTO dept_info VALUES ('53', '贵阳办事处', '0', '2014-03-17 18:04:50', '1');
-INSERT INTO dept_info VALUES ('54', '分部3-1', '53', '2014-03-17 18:21:36', '0');
+INSERT INTO dept_info VALUES ('54', '实施部', '53', '2014-03-18 16:05:08', '0');
 INSERT INTO dept_info VALUES ('70', '行政人事部', '44', '2014-03-17 18:05:56', '1');
 INSERT INTO dept_info VALUES ('71', '行政', '70', '2014-03-17 18:06:12', '1');
 INSERT INTO dept_info VALUES ('83', '人事', '70', '2014-03-17 18:11:06', '1');
@@ -65,7 +64,7 @@ CREATE TABLE `file_info` (
   UNIQUE KEY `id` (`id`),
   KEY `fileName` (`fileName`),
   KEY `fileType` (`fileType`)
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of file_info
@@ -73,9 +72,7 @@ CREATE TABLE `file_info` (
 INSERT INTO file_info VALUES ('73', 'E682D8C921E30187E39333B60B124995', 'AC76D9F04F11AEFAB7084F7BD5485F1326C92621', '4320054', '20131107_101151.bmp', '.bmp', '2', '/download-center/upload/teleframe/行政/20140311044825335_0.bmp', '0', '2014-03-11 04:48:25', '1', '2014-03-11 16:48:25');
 INSERT INTO file_info VALUES ('74', 'A2489818D79EB8DCA82908DFF6AB670F', '19B5198FC2EAD1848FA35D1B15E41B899AE78E33', '178598', 'jacobBin_17.zip', '.zip', '2', '/download-center/upload/teleframe/行政/20140311044825814_1.zip', '0', '2014-03-11 04:48:25', '1', '2014-03-11 16:48:25');
 INSERT INTO file_info VALUES ('75', '4524FCA5B7AD0CE480AB713753B7DCC9', '992840D965ED3B59F076A2110F0D0BF87AD024AA', '1303', 'Teleframe智能监控系统新方案数据设计和工作计划报告.pptx', '.pptx', '2', '/download-center/upload/teleframe/行政/20140311044825879_2.pptx', '0', '2014-03-11 04:48:25', '1', '2014-03-11 16:48:25');
-INSERT INTO file_info VALUES ('76', null, null, null, '安装维护员申报表.htm', '.htm', '2', '/download-center/upload/teleframe/行政/20140311044825934_3.htm', '0', '2014-03-17 02:41:21', '1', '2014-03-11 16:48:25');
 INSERT INTO file_info VALUES ('77', '31F965183E2DFA7E3E0E4CBAC1F4583A', '7197731B82AB5EBE29CB9F7ADE7E7052E602106F', '15151', 'Struts2Example19.zip', '.zip', '2', '/download-center/upload/teleframe/行政/20140311044825979_4.zip', '0', '2014-03-11 04:48:25', '1', '2014-03-11 16:48:25');
-INSERT INTO file_info VALUES ('79', null, null, null, 'Teleframe制度.zip', '.zip', '2', '/download-center/upload/teleframe/行政/20140311044826054_6.zip', '0', '2014-03-17 02:58:44', '1', '2014-03-11 16:48:26');
 INSERT INTO file_info VALUES ('82', '835F9DF22E4F849516EB071D454F159B', '0272FC63FA675E09491EA4E25536BD17C8C95042', '36049', '2013.11.26贵州省检察院初步考察0.pptx', '.pptx', '2', '/download-center/upload/teleframe/行政/20140317024616888_2.pptx', '0', '2014-03-17 02:46:16', '1', '2014-03-17 14:46:16');
 INSERT INTO file_info VALUES ('83', 'E1695F561838E64CB3475F6AE9A881F9', 'ED91BDC6C5C000AF93E0CD1591ACA97DB33022F9', '4795586', '2013.11.1文档管理 - 报告.pptx', '.pptx', '2', '/download-center/upload/teleframe/行政/20140317024616933_3.pptx', '0', '2014-03-17 02:46:17', '1', '2014-03-17 14:46:17');
 INSERT INTO file_info VALUES ('84', 'AC4C8FF36022D2FD0F2ACB3FBB839689', '52806A5E922E99B703103EBFB93E2B0EA0260D47', '656331', 'teleframemonitor130405123220.sql', '.sql', '2', '/download-center/upload/teleframe/行政/20140317024617155_4.sql', '0', '2014-03-17 02:46:17', '1', '2014-03-17 14:46:17');
@@ -85,6 +82,16 @@ INSERT INTO file_info VALUES ('87', '96BF2D5E7418093D9992FE9FB326FBB5', '602DB40
 INSERT INTO file_info VALUES ('88', '98D4F57C46C347EFABA8D2B716D2DB7E', '8E353FA655D132E53292CB4A621725920C82FAE4', '122', '_indexOfProduction.ini', '.ini', '2', '/download-center/upload/teleframe/行政/20140317024617577_8.ini', '0', '2014-03-17 02:46:17', '1', '2014-03-17 14:46:17');
 INSERT INTO file_info VALUES ('89', '019ACAB19E03AD553431F7B49152FD81', '0CF2C9AE3880CF7156090FB32286B1184339F2E3', '9508352', '信帧电子技术（北京）有限公司201211.ppt', '.ppt', '2', '/download-center/upload/teleframe/行政/20140317025436295_0.ppt', '0', '2014-03-17 02:54:36', '1', '2014-03-17 14:54:36');
 INSERT INTO file_info VALUES ('90', 'C2BF85D7AA53DAACDD7BDC9FD0B296F1', '1FED2A820AB2714094D28259AE4E8DFA72ADC323', '8472959', '信帧智能交通(ITS)WEB系统使用手册.docx', '.docx', '2', '/download-center/upload/teleframe/行政/20140317025703257_0.docx', '0', '2014-03-17 02:57:03', '1', '2014-03-17 14:57:03');
+INSERT INTO file_info VALUES ('91', '3F6926506D46050008147260351D0FC6', 'FD187EE5C6ABDA814267FD0C477AD94CA8187F31', '141701', '154634_969.jpg', '.jpg', '2', '/download-center/upload/user/photos/20140319044922230_0.jpg', '0', '2014-03-19 04:49:22', '1', '2014-03-19 16:49:22');
+INSERT INTO file_info VALUES ('106', '69C08CB6311B7A14A2FCF166D13AFB6E', 'D7953DB09E46E4B52B9541D0BC28189ED47A146F', '22292', 'feng1.JPG', '.JPG', '2', '/download-center/upload/user/photos/20140319051929288_0.JPG', '0', '2014-03-19 05:19:29', '1', '2014-03-19 17:19:29');
+INSERT INTO file_info VALUES ('107', 'AF951CCBA2D113E8CBA9BABF537DDF0A', '3617E4E196A8340B2A2EFF0A703D3DC7463E4395', '370343', 'earth space.jpg', '.jpg', '2', '/download-center/upload/user/photos/20140319051947180_0.jpg', '0', '2014-03-19 05:19:47', '1', '2014-03-19 17:19:47');
+INSERT INTO file_info VALUES ('108', 'BBBAECF6D22ABCB093C3B2787EFDBEE9', '3C83CB47617AB7BD76FCABC34D1CF23DBF4A4E25', '75177', '雷文顿2800x600.jpg', '.jpg', '2', '/download-center/upload/user/photos/20140319051957746_0.jpg', '0', '2014-03-19 05:19:57', '1', '2014-03-19 17:19:57');
+INSERT INTO file_info VALUES ('110', '363CDA20FA1FFACA77CB5EE963279B0E', '5158745D7BDCA2B90D7122EFE7CE694E63395F9D', '6927', '01_avatar_middle.jpg', '.jpg', '2', '/download-center/upload/user/photos/20140319052137459_0.jpg', '0', '2014-03-19 05:21:37', '1', '2014-03-19 17:21:37');
+INSERT INTO file_info VALUES ('111', 'D590A6C04325F8948D7CF92882BE99D0', 'DC8954A12E068CDEED1AA8CB5C68CA2F4A518158', '116162', '026005555.JPG', '.JPG', '2', '/download-center/upload/user/photos/20140319052139570_0.JPG', '0', '2014-03-19 05:21:39', '1', '2014-03-19 17:21:39');
+INSERT INTO file_info VALUES ('112', '909BA077C3EE0E64D4A45ED3130C0542', 'A2309375BF65207D0C32376402BD13848AC426D2', '18931', 'Basketball.png', '.png', '2', '/download-center/upload/user/photos/20140319054037760_0.png', '0', '2014-03-19 05:40:37', '1', '2014-03-19 17:40:37');
+INSERT INTO file_info VALUES ('113', '5E67856269FB4364A99604708D28038C', 'ACC28490A9714478ADEA2259D5DC492C011040AA', '69638', '雷文顿3方形.jpg', '.jpg', '2', '/download-center/upload/user/photos/20140319054109855_0.jpg', '0', '2014-03-19 05:41:09', '1', '2014-03-19 17:41:09');
+INSERT INTO file_info VALUES ('114', '041F3435E39CFA5D6CE5D76CDF45DDF6', '448AC560C8CDB255B59BF49882C1E58D9FFDC06C', '44131', 'pix_edg.jpg', '.jpg', '2', '/download-center/upload/user/photos/20140319054205892_0.jpg', '0', '2014-03-19 05:42:05', '1', '2014-03-19 17:42:05');
+INSERT INTO file_info VALUES ('115', '0F0E4312886BB0BFB95794B28A144354', '93D42FDB7D3692DA63B3158AEEEEC1DE07D94F3F', '77168', 'ad.gif', '.gif', '2', '/download-center/upload/user/photos/20140319054235571_0.gif', '0', '2014-03-19 05:42:35', '1', '2014-03-19 17:42:35');
 
 -- ----------------------------
 -- Table structure for `role_info`
@@ -96,7 +103,7 @@ CREATE TABLE `role_info` (
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` int(10) NOT NULL DEFAULT '1',
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of role_info
@@ -109,6 +116,9 @@ INSERT INTO role_info VALUES ('13', 'test', '2014-03-05 13:10:16', '1');
 INSERT INTO role_info VALUES ('14', '发到', '2014-03-05 13:27:49', '0');
 INSERT INTO role_info VALUES ('15', '个地方撒', '2014-03-05 13:27:46', '0');
 INSERT INTO role_info VALUES ('16', '范德萨发安定发到啊', '2014-03-05 13:27:43', '0');
+INSERT INTO role_info VALUES ('17', 'abc', '2014-03-18 17:40:46', '1');
+INSERT INTO role_info VALUES ('18', 'karl', '2014-03-18 18:17:46', '1');
+INSERT INTO role_info VALUES ('21', '852', '2014-03-18 18:18:47', '0');
 
 -- ----------------------------
 -- Table structure for `ruler_info`
@@ -157,7 +167,7 @@ CREATE TABLE `ruler_role` (
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` int(10) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=165 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ruler_role
@@ -184,6 +194,18 @@ INSERT INTO ruler_role VALUES ('143', '1', '5', 'uvid', '2014-03-05 14:42:58', '
 INSERT INTO ruler_role VALUES ('144', '1', '6', 'uvid', '2014-03-05 14:42:58', '1');
 INSERT INTO ruler_role VALUES ('145', '1', '15', 'uvid', '2014-03-05 14:42:58', '1');
 INSERT INTO ruler_role VALUES ('146', '1', '16', 'iuvd', '2014-03-05 14:42:58', '1');
+INSERT INTO ruler_role VALUES ('147', '17', '5', 'uivd', '2014-03-18 17:40:46', '1');
+INSERT INTO ruler_role VALUES ('148', '17', '6', 'uivd', '2014-03-18 17:40:46', '1');
+INSERT INTO ruler_role VALUES ('155', '21', '1', 'uivd', '2014-03-18 18:14:03', '1');
+INSERT INTO ruler_role VALUES ('156', '21', '2', null, '2014-03-18 18:14:03', '1');
+INSERT INTO ruler_role VALUES ('157', '21', '3', 'uivd', '2014-03-18 18:14:03', '1');
+INSERT INTO ruler_role VALUES ('158', '21', '4', 'uivd', '2014-03-18 18:14:03', '1');
+INSERT INTO ruler_role VALUES ('159', '18', '1', 'uvid', '2014-03-18 18:17:46', '1');
+INSERT INTO ruler_role VALUES ('160', '18', '2', 'idu', '2014-03-18 18:17:46', '1');
+INSERT INTO ruler_role VALUES ('161', '18', '3', 'idv', '2014-03-18 18:17:46', '1');
+INSERT INTO ruler_role VALUES ('162', '18', '4', 'iuv', '2014-03-18 18:17:46', '1');
+INSERT INTO ruler_role VALUES ('163', '18', '5', 'uivd', '2014-03-18 18:17:46', '1');
+INSERT INTO ruler_role VALUES ('164', '18', '6', 'duv', '2014-03-18 18:17:46', '1');
 
 -- ----------------------------
 -- Table structure for `user_info`
@@ -192,7 +214,7 @@ DROP TABLE IF EXISTS `user_info`;
 CREATE TABLE `user_info` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
-  `user_passwd` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `user_passwd` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '21232F297A57A5A743894A0E4A801FC3' COMMENT 'admin',
   `user_role` int(11) DEFAULT NULL,
   `user_birth` timestamp NULL DEFAULT NULL,
   `user_photo` varchar(255) DEFAULT '',
@@ -200,18 +222,17 @@ CREATE TABLE `user_info` (
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` int(11) DEFAULT '1',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
-INSERT INTO user_info VALUES ('1', 'admin', 'admin', '1', '2014-03-05 16:40:47', null, '44', '2014-02-12 12:41:45', '1');
-INSERT INTO user_info VALUES ('6', '测试', '23156', '8', '1999-01-28 00:00:00', null, '46', '2014-03-05 19:18:57', '1');
-INSERT INTO user_info VALUES ('16', '李建', '123456', '9', '2014-03-03 00:00:00', null, '71', '2014-03-05 14:35:53', '1');
-INSERT INTO user_info VALUES ('19', 'dafsf', '123456', '9', '2014-03-05 19:28:23', null, '48', '2014-03-05 19:28:45', '0');
-INSERT INTO user_info VALUES ('20', '123', 'E10ADC3949BA59ABBE56E057F20F883E', '1', '2014-03-19 00:00:00', null, '46', '2014-03-05 19:28:14', '1');
-INSERT INTO user_info VALUES ('21', '456', 'E10ADC3949BA59ABBE56E057F20F883E', '9', '2014-03-05 00:00:00', null, '48', '2014-03-05 19:28:46', '1');
-INSERT INTO user_info VALUES ('22', 'ewr', 'B37C8DD8B83FCE9B7239550976117D7B', '0', '2014-03-20 00:00:00', null, '0', '2014-03-13 19:33:18', '1');
+INSERT INTO user_info VALUES ('1', 'admin', '21232F297A57A5A743894A0E4A801FC3', '1', '2009-07-20 00:00:00', '/download-center/upload/user/photos/20140319054235571_0.gif', '84', '2014-03-19 17:44:01', '1');
+INSERT INTO user_info VALUES ('2', 'karl李建', '46529B040A31EAB2245464B7C9950B5C', '1', '1990-07-30 00:00:00', '/download-center/upload/user/photos/20140319054109855_0.jpg', '44', '2014-03-19 17:41:11', '1');
+INSERT INTO user_info VALUES ('3', 'karl.li', '46529B040A31EAB2245464B7C9950B5C', '1', '2013-12-30 00:00:00', '/download-center/upload/user/photos/20140319054205892_0.jpg', '50', '2014-03-19 17:42:08', '1');
+INSERT INTO user_info VALUES ('5', '李建12', '46529B040A31EAB2245464B7C9950B5C', '0', null, '/download-center/upload/user/photos/20140319051957746_0.jpg', '0', '2014-03-19 17:42:02', '0');
+INSERT INTO user_info VALUES ('6', '李建', '46529B040A31EAB2245464B7C9950B5C', '1', '1990-07-30 00:00:00', '/download-center/upload/user/photos/20140319054037760_0.png', '84', '2014-03-19 17:41:40', '1');
+INSERT INTO user_info VALUES ('7', 'test', 'E10ADC3949BA59ABBE56E057F20F883E', '0', null, '/download-center/upload/user/photos/20140319054037760_0.png', '0', '2014-03-19 17:41:59', '0');
 
 -- ----------------------------
 -- Table structure for `user_login`
@@ -223,7 +244,7 @@ CREATE TABLE `user_login` (
   `login_ip` varchar(150) COLLATE utf8_unicode_ci DEFAULT '',
   `login_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1380 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1526 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of user_login
@@ -1606,3 +1627,149 @@ INSERT INTO user_login VALUES ('1376', '1', '127.0.0.1', '2014-03-17 18:03:48');
 INSERT INTO user_login VALUES ('1377', '1', '127.0.0.1', '2014-03-17 18:09:26');
 INSERT INTO user_login VALUES ('1378', '1', '127.0.0.1', '2014-03-17 18:16:24');
 INSERT INTO user_login VALUES ('1379', '1', '127.0.0.1', '2014-03-17 18:17:20');
+INSERT INTO user_login VALUES ('1380', '1', '127.0.0.1', '2014-03-18 16:04:09');
+INSERT INTO user_login VALUES ('1381', '1', '127.0.0.1', '2014-03-18 16:42:35');
+INSERT INTO user_login VALUES ('1382', '1', '127.0.0.1', '2014-03-18 16:46:42');
+INSERT INTO user_login VALUES ('1383', '1', '127.0.0.1', '2014-03-18 16:48:28');
+INSERT INTO user_login VALUES ('1384', '1', '127.0.0.1', '2014-03-18 16:59:12');
+INSERT INTO user_login VALUES ('1385', '1', '127.0.0.1', '2014-03-18 17:04:23');
+INSERT INTO user_login VALUES ('1386', '1', '127.0.0.1', '2014-03-18 17:10:16');
+INSERT INTO user_login VALUES ('1387', '1', '127.0.0.1', '2014-03-18 17:12:31');
+INSERT INTO user_login VALUES ('1388', '1', '127.0.0.1', '2014-03-18 17:40:00');
+INSERT INTO user_login VALUES ('1389', '1', '127.0.0.1', '2014-03-18 17:47:11');
+INSERT INTO user_login VALUES ('1390', '1', '127.0.0.1', '2014-03-18 17:47:16');
+INSERT INTO user_login VALUES ('1391', '1', '127.0.0.1', '2014-03-18 17:48:26');
+INSERT INTO user_login VALUES ('1392', '1', '127.0.0.1', '2014-03-18 17:48:50');
+INSERT INTO user_login VALUES ('1393', '1', '127.0.0.1', '2014-03-18 17:51:20');
+INSERT INTO user_login VALUES ('1394', '1', '127.0.0.1', '2014-03-18 17:56:50');
+INSERT INTO user_login VALUES ('1395', '1', '127.0.0.1', '2014-03-18 18:02:00');
+INSERT INTO user_login VALUES ('1396', '1', '127.0.0.1', '2014-03-18 18:12:29');
+INSERT INTO user_login VALUES ('1397', '1', '127.0.0.1', '2014-03-18 18:13:50');
+INSERT INTO user_login VALUES ('1398', '1', '127.0.0.1', '2014-03-18 18:28:59');
+INSERT INTO user_login VALUES ('1399', '1', '127.0.0.1', '2014-03-18 18:31:46');
+INSERT INTO user_login VALUES ('1400', '1', '127.0.0.1', '2014-03-18 18:34:45');
+INSERT INTO user_login VALUES ('1401', '1', '127.0.0.1', '2014-03-18 18:35:21');
+INSERT INTO user_login VALUES ('1402', '1', '127.0.0.1', '2014-03-18 18:36:58');
+INSERT INTO user_login VALUES ('1403', '1', '127.0.0.1', '2014-03-18 18:37:51');
+INSERT INTO user_login VALUES ('1404', '1', '127.0.0.1', '2014-03-18 18:38:30');
+INSERT INTO user_login VALUES ('1405', '1', '127.0.0.1', '2014-03-18 18:41:46');
+INSERT INTO user_login VALUES ('1406', '1', '127.0.0.1', '2014-03-18 18:42:55');
+INSERT INTO user_login VALUES ('1407', '1', '127.0.0.1', '2014-03-18 18:45:22');
+INSERT INTO user_login VALUES ('1408', '1', '127.0.0.1', '2014-03-18 18:51:27');
+INSERT INTO user_login VALUES ('1409', '1', '127.0.0.1', '2014-03-18 18:55:55');
+INSERT INTO user_login VALUES ('1410', '1', '127.0.0.1', '2014-03-18 19:31:03');
+INSERT INTO user_login VALUES ('1411', '1', '127.0.0.1', '2014-03-18 19:31:57');
+INSERT INTO user_login VALUES ('1412', '1', '127.0.0.1', '2014-03-18 19:32:28');
+INSERT INTO user_login VALUES ('1413', '1', '127.0.0.1', '2014-03-18 19:36:10');
+INSERT INTO user_login VALUES ('1414', '1', '127.0.0.1', '2014-03-18 19:38:25');
+INSERT INTO user_login VALUES ('1415', '1', '127.0.0.1', '2014-03-19 09:10:30');
+INSERT INTO user_login VALUES ('1416', '1', '127.0.0.1', '2014-03-19 09:11:22');
+INSERT INTO user_login VALUES ('1417', '1', '127.0.0.1', '2014-03-19 09:12:07');
+INSERT INTO user_login VALUES ('1418', '1', '127.0.0.1', '2014-03-19 09:25:00');
+INSERT INTO user_login VALUES ('1419', '1', '127.0.0.1', '2014-03-19 09:25:05');
+INSERT INTO user_login VALUES ('1420', '1', '127.0.0.1', '2014-03-19 09:25:17');
+INSERT INTO user_login VALUES ('1421', '1', '127.0.0.1', '2014-03-19 09:27:58');
+INSERT INTO user_login VALUES ('1422', '1', '127.0.0.1', '2014-03-19 09:44:49');
+INSERT INTO user_login VALUES ('1423', '1', '127.0.0.1', '2014-03-19 09:49:20');
+INSERT INTO user_login VALUES ('1424', '1', '127.0.0.1', '2014-03-19 09:52:15');
+INSERT INTO user_login VALUES ('1425', '1', '127.0.0.1', '2014-03-19 09:53:29');
+INSERT INTO user_login VALUES ('1426', '1', '127.0.0.1', '2014-03-19 10:21:08');
+INSERT INTO user_login VALUES ('1427', '1', '127.0.0.1', '2014-03-19 10:26:23');
+INSERT INTO user_login VALUES ('1428', '1', '127.0.0.1', '2014-03-19 10:30:49');
+INSERT INTO user_login VALUES ('1429', '1', '127.0.0.1', '2014-03-19 10:39:40');
+INSERT INTO user_login VALUES ('1430', '1', '127.0.0.1', '2014-03-19 10:40:13');
+INSERT INTO user_login VALUES ('1431', '1', '127.0.0.1', '2014-03-19 10:41:48');
+INSERT INTO user_login VALUES ('1432', '1', '127.0.0.1', '2014-03-19 10:42:32');
+INSERT INTO user_login VALUES ('1433', '1', '127.0.0.1', '2014-03-19 10:42:41');
+INSERT INTO user_login VALUES ('1434', '1', '127.0.0.1', '2014-03-19 10:43:58');
+INSERT INTO user_login VALUES ('1435', '1', '127.0.0.1', '2014-03-19 10:47:50');
+INSERT INTO user_login VALUES ('1436', '1', '127.0.0.1', '2014-03-19 10:51:24');
+INSERT INTO user_login VALUES ('1437', '1', '127.0.0.1', '2014-03-19 10:52:00');
+INSERT INTO user_login VALUES ('1438', '1', '127.0.0.1', '2014-03-19 10:55:57');
+INSERT INTO user_login VALUES ('1439', '1', '127.0.0.1', '2014-03-19 10:58:16');
+INSERT INTO user_login VALUES ('1440', '1', '127.0.0.1', '2014-03-19 10:59:00');
+INSERT INTO user_login VALUES ('1441', '1', '127.0.0.1', '2014-03-19 11:00:08');
+INSERT INTO user_login VALUES ('1442', '1', '127.0.0.1', '2014-03-19 11:00:30');
+INSERT INTO user_login VALUES ('1443', '1', '127.0.0.1', '2014-03-19 11:03:45');
+INSERT INTO user_login VALUES ('1444', '1', '127.0.0.1', '2014-03-19 11:05:13');
+INSERT INTO user_login VALUES ('1445', '1', '127.0.0.1', '2014-03-19 11:07:52');
+INSERT INTO user_login VALUES ('1446', '1', '127.0.0.1', '2014-03-19 11:09:12');
+INSERT INTO user_login VALUES ('1447', '1', '127.0.0.1', '2014-03-19 11:12:04');
+INSERT INTO user_login VALUES ('1448', '1', '127.0.0.1', '2014-03-19 11:12:19');
+INSERT INTO user_login VALUES ('1449', '1', '127.0.0.1', '2014-03-19 11:12:50');
+INSERT INTO user_login VALUES ('1450', '1', '127.0.0.1', '2014-03-19 11:13:50');
+INSERT INTO user_login VALUES ('1451', '1', '127.0.0.1', '2014-03-19 11:19:27');
+INSERT INTO user_login VALUES ('1452', '1', '127.0.0.1', '2014-03-19 11:21:37');
+INSERT INTO user_login VALUES ('1453', '1', '127.0.0.1', '2014-03-19 11:24:08');
+INSERT INTO user_login VALUES ('1454', '1', '127.0.0.1', '2014-03-19 11:24:50');
+INSERT INTO user_login VALUES ('1455', '1', '127.0.0.1', '2014-03-19 11:28:33');
+INSERT INTO user_login VALUES ('1456', '1', '127.0.0.1', '2014-03-19 11:29:29');
+INSERT INTO user_login VALUES ('1457', '1', '127.0.0.1', '2014-03-19 11:30:00');
+INSERT INTO user_login VALUES ('1458', '1', '127.0.0.1', '2014-03-19 11:34:58');
+INSERT INTO user_login VALUES ('1459', '1', '127.0.0.1', '2014-03-19 11:35:24');
+INSERT INTO user_login VALUES ('1460', '1', '127.0.0.1', '2014-03-19 11:41:22');
+INSERT INTO user_login VALUES ('1461', '1', '127.0.0.1', '2014-03-19 11:44:20');
+INSERT INTO user_login VALUES ('1462', '1', '10.168.1.23', '2014-03-19 11:46:05');
+INSERT INTO user_login VALUES ('1463', '1', '10.168.1.23', '2014-03-19 11:55:34');
+INSERT INTO user_login VALUES ('1464', '1', '10.168.1.23', '2014-03-19 11:57:38');
+INSERT INTO user_login VALUES ('1465', '1', '127.0.0.1', '2014-03-19 11:57:55');
+INSERT INTO user_login VALUES ('1466', '1', '127.0.0.1', '2014-03-19 11:58:01');
+INSERT INTO user_login VALUES ('1467', '1', '127.0.0.1', '2014-03-19 12:02:31');
+INSERT INTO user_login VALUES ('1468', '1', '127.0.0.1', '2014-03-19 12:06:09');
+INSERT INTO user_login VALUES ('1469', '1', '127.0.0.1', '2014-03-19 12:07:14');
+INSERT INTO user_login VALUES ('1470', '1', '127.0.0.1', '2014-03-19 12:09:57');
+INSERT INTO user_login VALUES ('1471', '1', '127.0.0.1', '2014-03-19 12:13:52');
+INSERT INTO user_login VALUES ('1472', '1', '127.0.0.1', '2014-03-19 12:18:52');
+INSERT INTO user_login VALUES ('1473', '1', '127.0.0.1', '2014-03-19 12:32:42');
+INSERT INTO user_login VALUES ('1474', '1', '127.0.0.1', '2014-03-19 12:40:27');
+INSERT INTO user_login VALUES ('1475', '1', '127.0.0.1', '2014-03-19 12:42:19');
+INSERT INTO user_login VALUES ('1476', '1', '127.0.0.1', '2014-03-19 12:47:34');
+INSERT INTO user_login VALUES ('1477', '1', '127.0.0.1', '2014-03-19 12:51:11');
+INSERT INTO user_login VALUES ('1478', '1', '127.0.0.1', '2014-03-19 13:02:41');
+INSERT INTO user_login VALUES ('1479', '1', '127.0.0.1', '2014-03-19 13:09:04');
+INSERT INTO user_login VALUES ('1480', '1', '127.0.0.1', '2014-03-19 13:09:56');
+INSERT INTO user_login VALUES ('1481', '1', '127.0.0.1', '2014-03-19 13:28:06');
+INSERT INTO user_login VALUES ('1482', '1', '127.0.0.1', '2014-03-19 14:05:16');
+INSERT INTO user_login VALUES ('1483', '1', '127.0.0.1', '2014-03-19 14:15:31');
+INSERT INTO user_login VALUES ('1484', '1', '127.0.0.1', '2014-03-19 14:19:18');
+INSERT INTO user_login VALUES ('1485', '1', '127.0.0.1', '2014-03-19 14:43:47');
+INSERT INTO user_login VALUES ('1486', '1', '127.0.0.1', '2014-03-19 14:48:03');
+INSERT INTO user_login VALUES ('1487', '1', '127.0.0.1', '2014-03-19 14:52:13');
+INSERT INTO user_login VALUES ('1488', '1', '127.0.0.1', '2014-03-19 14:54:15');
+INSERT INTO user_login VALUES ('1489', '1', '127.0.0.1', '2014-03-19 15:02:31');
+INSERT INTO user_login VALUES ('1490', '1', '127.0.0.1', '2014-03-19 15:06:02');
+INSERT INTO user_login VALUES ('1491', '1', '127.0.0.1', '2014-03-19 15:07:57');
+INSERT INTO user_login VALUES ('1492', '1', '127.0.0.1', '2014-03-19 15:17:12');
+INSERT INTO user_login VALUES ('1493', '1', '127.0.0.1', '2014-03-19 15:27:58');
+INSERT INTO user_login VALUES ('1494', '1', '127.0.0.1', '2014-03-19 15:31:34');
+INSERT INTO user_login VALUES ('1495', '1', '127.0.0.1', '2014-03-19 15:32:16');
+INSERT INTO user_login VALUES ('1496', '1', '127.0.0.1', '2014-03-19 15:33:55');
+INSERT INTO user_login VALUES ('1497', '1', '127.0.0.1', '2014-03-19 15:35:34');
+INSERT INTO user_login VALUES ('1498', '1', '127.0.0.1', '2014-03-19 15:43:54');
+INSERT INTO user_login VALUES ('1499', '1', '127.0.0.1', '2014-03-19 15:44:53');
+INSERT INTO user_login VALUES ('1500', '1', '127.0.0.1', '2014-03-19 15:49:56');
+INSERT INTO user_login VALUES ('1501', '1', '127.0.0.1', '2014-03-19 15:55:49');
+INSERT INTO user_login VALUES ('1502', '1', '127.0.0.1', '2014-03-19 15:58:17');
+INSERT INTO user_login VALUES ('1503', '1', '127.0.0.1', '2014-03-19 15:59:42');
+INSERT INTO user_login VALUES ('1504', '1', '127.0.0.1', '2014-03-19 16:02:27');
+INSERT INTO user_login VALUES ('1505', '1', '127.0.0.1', '2014-03-19 16:06:50');
+INSERT INTO user_login VALUES ('1506', '1', '127.0.0.1', '2014-03-19 16:07:03');
+INSERT INTO user_login VALUES ('1507', '1', '127.0.0.1', '2014-03-19 16:38:47');
+INSERT INTO user_login VALUES ('1508', '1', '127.0.0.1', '2014-03-19 16:39:36');
+INSERT INTO user_login VALUES ('1509', '1', '127.0.0.1', '2014-03-19 16:40:17');
+INSERT INTO user_login VALUES ('1510', '1', '127.0.0.1', '2014-03-19 16:40:23');
+INSERT INTO user_login VALUES ('1511', '1', '127.0.0.1', '2014-03-19 16:40:36');
+INSERT INTO user_login VALUES ('1512', '1', '127.0.0.1', '2014-03-19 16:40:55');
+INSERT INTO user_login VALUES ('1513', '1', '127.0.0.1', '2014-03-19 16:41:09');
+INSERT INTO user_login VALUES ('1514', '1', '127.0.0.1', '2014-03-19 16:56:08');
+INSERT INTO user_login VALUES ('1515', '1', '127.0.0.1', '2014-03-19 16:57:31');
+INSERT INTO user_login VALUES ('1516', '1', '127.0.0.1', '2014-03-19 16:58:41');
+INSERT INTO user_login VALUES ('1517', '1', '127.0.0.1', '2014-03-19 17:10:20');
+INSERT INTO user_login VALUES ('1518', '1', '127.0.0.1', '2014-03-19 17:15:18');
+INSERT INTO user_login VALUES ('1519', '1', '127.0.0.1', '2014-03-19 17:17:26');
+INSERT INTO user_login VALUES ('1520', '1', '127.0.0.1', '2014-03-19 17:18:23');
+INSERT INTO user_login VALUES ('1521', '1', '127.0.0.1', '2014-03-19 17:38:07');
+INSERT INTO user_login VALUES ('1522', '1', '127.0.0.1', '2014-03-19 17:39:44');
+INSERT INTO user_login VALUES ('1523', '1', '127.0.0.1', '2014-03-19 17:42:40');
+INSERT INTO user_login VALUES ('1524', '1', '127.0.0.1', '2014-03-19 17:43:10');
+INSERT INTO user_login VALUES ('1525', '1', '127.0.0.1', '2014-03-19 17:43:35');

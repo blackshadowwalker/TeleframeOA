@@ -78,6 +78,7 @@ public class DeptAction extends BaseAction {
 		deptInfo = deptService.deptBeforUpdate(id);
 		if(deptInfo!=null){
 			msg = "";
+			id = deptInfo.getDeptId();
 			if((deptInfo.getManager()!=null && deptInfo.getManager()>0))
 			{
 				DeptInfo pDept = deptService.get(deptInfo.getManager());
@@ -92,6 +93,8 @@ public class DeptAction extends BaseAction {
 	}
 	@Override
 	public String update() throws Exception {
+		if(id==null)
+			id = deptInfo.getDeptId();
 		System.out.println("update @ id="+id);
 		String str=deptService.deptUpdate(id, deptInfo);
 		if(str.equals(Util.SUCCESS)){
@@ -211,6 +214,12 @@ public class DeptAction extends BaseAction {
 
 	public void setDeptInfo(DeptInfo deptInfo) {
 		this.deptInfo = deptInfo;
+	}
+
+	@Override
+	public boolean validate(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

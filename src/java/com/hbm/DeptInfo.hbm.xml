@@ -6,7 +6,7 @@
 -->
 <hibernate-mapping>
     <class name="com.bean.DeptInfo" table="dept_info" catalog="ssh2">
-        <id name="id" type="java.lang.Integer">
+        <id name="deptId" type="java.lang.Integer">
             <column name="dept_id" />
             <generator class="native" />
         </id>

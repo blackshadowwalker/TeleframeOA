@@ -10,10 +10,10 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <property name="roleid" type="java.lang.Integer">
+        <property name="roleId" type="java.lang.Integer">
             <column name="role_id" />
         </property>
-        <property name="rulerid" type="java.lang.Integer">
+        <property name="rulerId" type="java.lang.Integer">
             <column name="ruler_id" />
         </property>
         <property name="rulerWord" type="java.lang.String">

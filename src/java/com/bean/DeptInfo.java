@@ -12,7 +12,7 @@ public class DeptInfo implements java.io.Serializable {
 
 	// Fields
 
-	private Integer 	id;
+	private Integer 	deptId;
 	private String 		deptName;
 	private Integer 	manager;
 	private String 		managerName;
@@ -47,9 +47,6 @@ public class DeptInfo implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public Integer getId() {
-		return id;
-	}
 
 	public Integer getManager() {
 		if(manager==null)
@@ -63,10 +60,6 @@ public class DeptInfo implements java.io.Serializable {
 
 	public Timestamp getLastUpdate() {
 		return lastUpdate;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public void setManager(Integer manager) {
@@ -83,7 +76,6 @@ public class DeptInfo implements java.io.Serializable {
 		this.lastUpdate = lastUpdate;
 	}
 
-
 	public String getLastUpdateString() {
 		this.setLastUpdateString(df.format(this.lastUpdate));
 		return lastUpdateString;
@@ -94,5 +86,13 @@ public class DeptInfo implements java.io.Serializable {
 		this.lastUpdateString = lastUpdateString;
 	}
 
+
+	public Integer getDeptId() {
+		return deptId;
+	}
+
+	public void setDeptId(Integer deptId) {
+		this.deptId = deptId;
+	}
 
 }

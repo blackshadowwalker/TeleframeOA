@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 		function del(userId){
 			if(confirm("确定删除吗？"))
-			location.href="<%= basePath%>/UserAction?method=delete&userInfo.userId="+userId;
+			location.href="<%= basePath%>/UserAction?method=delete&id="+userId;
 		}
 	</script>
 
@@ -67,7 +67,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								用户名称：
 									<input type="text" name="userInfo.userName" id="userName" value="${userInfo.userName}" />
 									<input  type="submit" value="查询" class="btns_mouseout" onmouseover="this.className='btns_mouseover'" 
-									onmouseout="this.className='btns_mouseout'" />                              
+									onmouseout="this.className='btns_mouseout'" />       
+									<span style="color:#f00;">${msg}</span>                       
 								</td>
 								<td align="right">
 									<s:property value='#request.insert'/>
@@ -75,6 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<input id="button1"  type="button" value="添加" class="btns_mouseout" onmouseover="this.className='btns_mouseover'" 
 											onmouseout="this.className='btns_mouseout'" onclick="add();"/>
 									</s:if>
+									
 								</td>									
 							</tr>
 						</table>
@@ -85,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div id="car_use">
 						<table id="table-view" cellpadding="0" cellspacing="1">
 							<tr class="row-header">
-								<td width="">序号</td>
+								<td width="">头像</td>
 								<td ondblclick="return sortQuery('carNumber')" style="cursor:pointer;" >用户名称</td>
 								<td ondblclick="return sortQuery('carName')" style="cursor:pointer;" >用户密码</td>
 								<td ondblclick="return sortQuery('carName')" style="cursor:pointer;" >用户角色</td>
@@ -104,15 +106,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								
 								<tr class="<s:property value='var_class' />" onmouseover="this.className='row-over'" 
 									onmouseout="this.className='<s:property value='var_class' />'">
-									<td align="center"><s:property value="#l.userId" /></td>
+									<td align="center">
+										<img src="${l.userPhoto}" style="width:30;height:30px;" />
+									</td>
 									<td align="center"><s:property value="#l.userName" /></td>
 									<td align="center"><s:property value="#l.userPasswd" /></td>
-									<td align="center"><s:property value="#l.userRole" /></td>
-									<td align="center"><s:property value="#l.userBirth" /></td>
-									<td align="center"><s:property value="#l.userDepartment" /></td>
+									<td align="center"><s:property value="#l.userRoleName" /></td>
+									<td align="center"><s:date name="#l.userBirth" format="yyyy-MM-dd" /></td>
+									<td align="center"><s:property value="#l.userDepartmentName" /></td>
 									<td align="center"><s:date name="#l.lastUpdate" format="yyyy-MM-dd hh:mm:ss" /></td>
 									<td align="center">
-	                                   	<s:if test="#request.u>=0"><a onclick="javaScript:upd(<s:property value='#l.userId' />);"><img src="images/button/pen.png" title="修改" border="0" style="cursor:pointer "></img></a></s:if>	
+	                                   	<s:if test="#request.u>=0"><a href="UserAction?method=beforeUpdate&id=${l.userId}"><img src="images/button/pen.png" title="修改" border="0" style="cursor:pointer "></img></a></s:if>	
 										<s:if test="#request.d>=0"><a onclick="javaScript:del(<s:property value='#l.userId' />);"><img src="images/button/delete.png" title="删除" style="cursor:pointer "></img></a></s:if>
 	                                </td>
 	                            </tr>
@@ -146,5 +150,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</table>		
 		</form>
 	</div>
+	
+	
   </body>
 </html>

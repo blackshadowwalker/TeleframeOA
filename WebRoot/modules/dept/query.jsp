@@ -137,11 +137,11 @@ $(function() {
 
 	<div id="treegrid1" class="mini-treegrid" style="width:900px;height:500px;"     
 	   url="<%=basePath %>/DeptAction?method=listTree" ondrawcell="onDrawCell" showTreeIcon="true"  
-	    treeColumn="deptName" idField="id" parentField="manager" resultAsTree="false"
+	    treeColumn="deptName" idField="deptId" parentField="manager" resultAsTree="false"
 	    allowResize="true" expandOnLoad="true" allowCellEdit="false" allowCellSelect="true">
 	    
 	    <div property="columns">
-	        <div  field="id" width="30">ID</div>
+	        <div  field="deptId" width="30">ID</div>
 	        <div name="deptName" field="deptName" width="200">部门名称
 	        <input property="editor" class="mini-textbox" style="width:100%;"  /> 
 	    </div> 
@@ -173,11 +173,11 @@ $(function() {
 
             //超链接任务
             if (field == "operator") {
-                e.cellHtml = "<s:if test="#request.i>=0"><a class=opeate href=\"<%= basePath%>/DeptAction?method=beforeAdd&pid="+node.id+"&pname="+ node.deptName+"\" >"+
+                e.cellHtml = "<s:if test="#request.i>=0"><a class=opeate href=\"<%= basePath%>/DeptAction?method=beforeAdd&pid="+node.deptId+"&pname="+ node.deptName+"\" >"+
                 				"<img src=\"images/button/addnew.gif\" title=\"添加\" style=\"cursor:pointer \"></img></a></s:if> "+
-                			"<s:if test="#request.u>=0"><a class=opeate href=\"DeptAction?method=beforeUpdate&id="+node.id+ "\">"+
+                			"<s:if test="#request.u>=0"><a class=opeate href=\"DeptAction?method=beforeUpdate&id="+node.deptId+ "\">"+
                 				"<img src=\"images/button/pen.png\" title=\"修改\" border=0 style=\"cursor:pointer\"></img></a></s:if>"+
-                			" <s:if test="#request.d>=0"><a class=opeate href=\"javascript:del("+ node.id +")\">"+
+                			" <s:if test="#request.d>=0"><a class=opeate href=\"javascript:del("+ node.deptId +")\">"+
                 				"<img src=\"images/button/delete.png\" title=\"删除\" style=\"cursor:pointer \"></img></a></s:if>";
             }
             //格式化日期

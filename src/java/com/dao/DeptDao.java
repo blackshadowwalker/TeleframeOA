@@ -36,7 +36,7 @@ public class DeptDao extends BaseDao {
         for(int i=0;i<list.size();i++){
         	dept=new DeptInfo();
         	Object[] object = (Object[])list.get(i);
-        	dept.setId((Integer)object[0]);
+        	dept.setDeptId((Integer)object[0]);
         	dept.setDeptName((String)object[1]);
         	dept.setManager((Integer)object[2]);
         	dept.setManagerName((String)object[3]);
@@ -75,7 +75,7 @@ public class DeptDao extends BaseDao {
         for(int i=0;i<list.size();i++){
         	dept=new DeptInfo();
         	Object[] object = (Object[])list.get(i);
-        	dept.setId((Integer)object[0]);
+        	dept.setDeptId((Integer)object[0]);
         	dept.setDeptName((String)object[1]);
         	dept.setManager((Integer)object[2]);
         	dept.setManagerName((String)object[3]);
@@ -163,7 +163,7 @@ public class DeptDao extends BaseDao {
 		dept.setLastUpdate(new Timestamp(System.currentTimeMillis()));
 	
 		session.clear();
-		dept.setId(id);
+		dept.setDeptId(id);
 		session.update(dept);
 		
 		return Util.SUCCESS;
@@ -180,14 +180,14 @@ public class DeptDao extends BaseDao {
 		
 		//当删除的部门有成员时提示  不允许删除
 		for(int j=0;j<listUser.size();j++){
-			if(dept.getId()==listUser.get(j).getUserDepartment()){
+			if(dept.getDeptId()==listUser.get(j).getUserDepartment()){
 				return false;
 			}
 		}
 		
 		//当删除的部门有子部门时修改子部门的上级部门
 		for(int i=0;i<list.size();i++){
-			if(dept.getId()==list.get(i).getManager()){
+			if(dept.getDeptId()==list.get(i).getManager()){
 				list.get(i).setManager(dept.getManager());
 				session.update(list.get(i));
 			}

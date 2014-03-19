@@ -10,5 +10,5 @@ public interface UserService {
 	public String add(UserInfo userInfo) throws Exception;
 	public UserInfo beforeUpdate(int id) throws Exception;
 	public String update(UserInfo userInfo) throws Exception;
-	public String delete(UserInfo userInfo) throws Exception;
+	public String delete(Integer id) throws Exception;
 }

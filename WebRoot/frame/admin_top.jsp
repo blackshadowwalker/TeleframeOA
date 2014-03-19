@@ -59,8 +59,7 @@ function showsubmenu(sid) {
 		    <table width="100%" border="0" cellspacing="0" cellpadding="0">
 			      <tr>
 			        <td width="74%" height="38" class="admin_txt">
-			        		您好,<s:property value="#session.user.userName" />(<s:property value="#session.user.userRoleName" />)：
-			        		 ,欢迎使用！</td> 
+			        		您好,<s:property value="#session.user.userName" />(<s:property value="#session.user.userRoleName" />),欢迎使用！</td> 
 			        <td width="22%"><a href="#" target="_self" onClick="logout();"><img src="images/out.gif" alt="安全退出" width="46" height="20" border="0"></a></td>
 			        <td width="4%">&nbsp;</td>
 			      </tr>

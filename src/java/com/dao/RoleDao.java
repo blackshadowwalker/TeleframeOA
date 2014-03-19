@@ -40,8 +40,8 @@ public class RoleDao extends BaseDao {
 		list2=session.createQuery("From RulerRole rr Where rr.roleId="+id).list();
 		for(int i=0;i<list.size();i++){
 			if(list.get(i).getLevel()==1){
-				sb.append("{id:'").append(list.get(i).getRulerid()).append("',");
-				sb.append("pId:'").append(0).append("',");
+				sb.append("{id:").append(list.get(i).getRulerid()).append(",");
+				sb.append("pId:").append(0).append(",");
 				sb.append("name:'").append(list.get(i).getRulerName()).append("',");
 				sb.append("rulerWord:'").append("uvid").append("',");
 				sb.append("open:").append("true");
@@ -54,9 +54,9 @@ public class RoleDao extends BaseDao {
 				}
 				sb.append("}");
 				for(int k=0;k<list.size();k++){
-					if(list.get(k).getLevel()==2 && list.get(i).getManager().equals(list.get(k).getManager())){
-						sb.append(",{id:'").append(list.get(k).getRulerid()).append("',");
-						sb.append("pId:'").append(list.get(i).getRulerid()).append("',");
+					if(list.get(k).getLevel()==2 &&  list.get(k).getManager() == list.get(i).getRulerid()){
+						sb.append(",{id:").append(list.get(k).getRulerid()).append(",");
+						sb.append("pId:").append(list.get(i).getRulerid()).append(",");
 						sb.append("name:'").append(list.get(k).getRulerName()).append("'");
 						for(int j=0;j<list2.size();j++){
 							if(list.get(k).getRulerid()==list2.get(j).getRulerId()){
@@ -115,19 +115,18 @@ public class RoleDao extends BaseDao {
 		list=session.createQuery("From RulerInfo").list();
 		for(int i=0;i<list.size();i++){
 			if(list.get(i).getLevel()==1){
-				sb.append("{id:'").append(list.get(i).getRulerid()).append("',");
-				sb.append("pId:'").append(0).append("',");
+				sb.append("{id:").append(list.get(i).getRulerid()).append(",");
+				sb.append("pId:").append(0).append(",");
 				sb.append("name:'").append(list.get(i).getRulerName()).append("',");
 				sb.append("rulerWord:'").append("uvid").append("',");
 				sb.append("open:").append("true");
 
 				sb.append("}");
 				for(int k=0;k<list.size();k++){
-					if(list.get(k).getLevel()==2 && list.get(i).getManager().equals(list.get(k).getManager())){
-						sb.append(",{id:'").append(list.get(k).getRulerid()).append("',");
-						sb.append("pId:'").append(list.get(i).getRulerid()).append("',");
+					if(list.get(k).getLevel()==2 && list.get(k).getManager() == list.get(i).getRulerid()){
+						sb.append(",{id:").append(list.get(k).getRulerid()).append(",");
+						sb.append("pId:" ).append(list.get(k).getManager()).append(",");
 						sb.append("name:'").append(list.get(k).getRulerName()).append("'");
-
 						sb.append("}");
 					}	
 				}
@@ -154,7 +153,8 @@ public class RoleDao extends BaseDao {
 				rulerRole = new RulerRole();
 				rulerRole.setRoleId(roleInfo.getRoleId());
 				rulerRole.setRulerId(Integer.parseInt(array[i].split(",")[0]));
-				rulerRole.setRulerWord(array[i].split(",")[1]);
+				if(array[i].split(",").length>=2)
+					rulerRole.setRulerWord(array[i].split(",")[1]);
 				rulerRole.setLastUpdate(lastUpdate);
 				rulerRole.setStatus(1);
 				session.save(rulerRole);

@@ -10,6 +10,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
   <title>用户登录</title>
+  
+  	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1";/>
+    
+	<link rel=”shortcut icon” href=”images/logo.ico”>
 
  	 <script src="scripts/jquery/jquery-1.7.min.js" type="text/javascript"></script>
 	<script src="scripts/jquery/jquery-ui/js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
@@ -46,8 +51,8 @@ tr{
 #loginpannel{
 	border:1px solid #fa0;
 	background: url(images/login.png) no-repeat;
-	position:absolute;
-	left: 30%;
+	margin-left:auto;
+	margin-right:auto;
 	top: 25%;
 	z-index:100;
 	
@@ -77,7 +82,7 @@ tr{
 
 
 <body topmargin="0" leftmargin="0" rightmargin="0"  onload="document.forms[0].usercode.focus()" >
-	<div style="width:100%;height:100%;position:absolute;z-index:-1;top:0px;border:0px #f00 solid;">
+	<div style="display:none;width:100%;height:100%;position:absolute;z-index:-1;top:0px;border:0px #f00 solid;">
 		<!-- img id="backgroundimage" src="modules/logon/image/loginbg.png" width="100%" height="100%" -->
 	</div> 
 	
@@ -85,7 +90,7 @@ tr{
 		<br/>
 		
 		<div style="position: relative; left:30px; top:10px;float:left;" >
-			<img src="images/jc.png"  width=70 height=70/>
+			<img src="images/logo.png"  width=70 height=70/>
 		</div>
 		<div class=titlebar style="position: relative; left:0px; width:100%; height:50px;">
 			<p class=titlelabel  >  OA  </p>

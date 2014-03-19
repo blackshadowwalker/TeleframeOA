@@ -13,10 +13,6 @@ import com.util.EncoderHandler;
 
 public class LoginDao extends BaseDao {
 	
-	private String MD5(String str){
-		return str;
-//		return EncoderHandler.MD5(str);
-	}
 	
 	public UserInfo login(UserInfo user,String ip) throws Exception{
 		
@@ -24,9 +20,9 @@ public class LoginDao extends BaseDao {
 		UserLogin userLogin = new UserLogin();
 		Query query = session.createQuery("from UserInfo u where u.userName=:name and u.userPasswd=:pwd");
 		query.setParameter("name", user.getUserName());
-		query.setParameter("pwd", MD5(user.getUserPasswd()));
+		query.setParameter("pwd", EncoderHandler.MD5(user.getUserPasswd()));
 		
-		UserInfo user2=(UserInfo)query.uniqueResult();
+		UserInfo user2= (UserInfo)query.uniqueResult();
 		
 		if(user2!=null){
 			query = session.createQuery("from RoleInfo r where r.roleId= "+user2.getUserRole());

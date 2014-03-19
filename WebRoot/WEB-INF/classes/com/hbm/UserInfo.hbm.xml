@@ -19,7 +19,7 @@
         <property name="userRole" type="java.lang.Integer">
             <column name="user_role" />
         </property>
-        <property name="userBirth" type="java.lang.String">
+        <property name="userBirth" type="java.sql.Timestamp">
             <column name="user_birth" />
         </property>
         <property name="userPhoto" type="java.lang.String">

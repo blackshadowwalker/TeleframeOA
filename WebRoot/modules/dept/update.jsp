@@ -39,13 +39,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 当前位置:&nbsp;部门管理 &gt; 部门信息修改
 		</div>
 		
-		<form action="DeptAction?method=update&id=${deptInfo.id}"  method="post" >
+		<form action="DeptAction?method=update"  method="post" >
 			<table id="table-data-outter">
 				<tr>
 					<td>
 						<table id="table-data-inner" cellspacing="0">
 							<tr>
 								<td> 部门名称：
+									<input type="hidden" name="deptInfo.deptId" value="${deptInfo.deptId }"  /> 		
 									<input type="text" name="deptInfo.deptName" value="${deptInfo.deptName }"  /> 		
 								</td>
 							</tr>

@@ -101,4 +101,10 @@ public class TestAction extends BaseAction {
 		return null;
 	}
 
+	@Override
+	public boolean validate(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

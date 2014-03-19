@@ -25,25 +25,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="scripts/validateForm.js" type="text/javascript"></script>
 	<script src="scripts/Calendar.js" type="text/javascript"></script>
 	<script type="text/javascript" src="scripts/prompt/ymPrompt.js"></script>
-	<script type="text/javascript" src="scripts/frame/main.js"></script>
-	<script type="text/javascript">
 
-		var array=eval("(${rightString})");
+
+	<script type="text/javascript">
+	
+	var IDMark_Switch = "_switch",
+		IDMark_Icon = "_ico",
+		IDMark_Span = "_span",
+		IDMark_Input = "_input",
+		IDMark_Check = "_check",
+		IDMark_Edit = "_edit",
+		IDMark_Remove = "_remove",
+		IDMark_Ul = "_ul",
+		IDMark_A = "_a";
 		
-		var setting = {
-			check: {
-				enable: true
-			},
-			data: {
-				simpleData: {
-					enable: true
-				}
-			},
-			callback: {
-				onClick: zTreeOnClick,
-				onCheck: zTreeOnCheck
-			}
-		};
 		function zTreeOnCheck(event, treeId, treeNode){
 			if(treeNode.checked)
 				zTreeOnClick(event, treeId, treeNode);
@@ -65,6 +60,82 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    treeObj.setting.callback.onClick=zTreeOnClick; 
 			treeObj.setting.callback.onCheck=zTreeOnCheck; 
 		};
+		
+		
+		
+		var setting = {
+			check: {
+				enable: true
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			view: {
+				addDiyDom: addDiyDom
+			},
+			callback: {
+				onClick: zTreeOnClick2,
+				onCheck: zTreeOnCheck2
+			}
+		};
+		
+		function zTreeOnCheck2(event, treeId, treeNode){
+			var treeObj = $.fn.zTree.getZTreeObj("rulerTree");
+			if(true){
+				var uivd = "uivd_node_"+treeNode.id;
+				$("#"+uivd).children('input:checkbox').attr("checked",  treeNode.checked);
+				if(treeNode.checked)
+					treeNode.rulerWord = "uivd";
+				else
+					treeNode.rulerWord = "";
+				
+				if(treeNode.pId<1){
+					var nodes = treeObj.getNodesByParam("pId", treeNode.id, null);
+			    	for(var i=0;i<nodes.length;i++){
+			    		uivd = "uivd_node_"+nodes[i].id;
+						$("#"+uivd).children('input:checkbox').attr("checked",  treeNode.checked);
+						if(treeNode.checked)
+				    		nodes[i].rulerWord = "uivd";
+				    	else
+				    		nodes[i].rulerWord = "";
+			    	}
+				}
+			}
+		}
+		
+		function zTreeOnClick2(event, treeId, treeNode){
+			var uivd = "uivd_node_"+treeNode.id;
+			var word="";
+			var v= $("#"+uivd).children('input:checkbox:checked');
+	  		for(var i=0;i<v.length;i++){
+	  			word += v[i].value;
+	  		}
+	  		treeNode.rulerWord = word;
+		}
+		
+		function addDiyDom(treeId, treeNode) {
+			if( treeNode.pId == undefined)
+				return;
+			var aObj = $("#" + treeNode.tId + IDMark_A);
+			var editStr = "<span id=uivd_node_"+treeNode.id+" >";
+			editStr +="<input type=checkbox value='i' />增加 &nbsp;";
+			editStr +="<input type=checkbox value='d' />删除 &nbsp;";
+			editStr +="<input type=checkbox value='u' />修改 &nbsp;";
+			editStr +="<input type=checkbox value='v' />查看详情&nbsp;";
+			editStr +="</span>";
+			aObj.append(editStr);
+
+			if( treeNode.rulerWord != undefined && treeNode.rulerWord!="null"){
+				var word = treeNode.rulerWord.split("");
+				for(var j=0; j<word.length; j++)
+					$("#uivd_node_"+treeNode.id).children("input:checkbox[value='"+word[j]+"']").attr("checked",  true);
+			}
+			  
+		}
+		
+		var array=eval("(${rightString})");
 		
 		var zNodes =array.array;
 		
@@ -95,17 +166,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  
+  	<!-- 返回 -->
+	<div class="menu-path">
+		<a href="${goBackUrl }">
+		<img class="goback" src="images/button/back.png" title="返回" style="cursor:pointer "></img></a>
+		当前位置:&nbsp;组织管理 &gt; 角色管理
+	</div>
+  
   	<s:form action="RoleAction?method=update" method="post" theme="simple">
-		<div id="con" style="width:500px;">
-			<input type="hidden" id="rulerid" name="rulerid"  value="${r_id}"/>
+		<div id="con" style="width:600px;">
 			
 			<input type="hidden" id="rid" name="roleInfo.roleId"  value="${r_id}"/>
+			
 			<input type="hidden" id="rightString" name="rightString" />
 			<table id="table-data-outter">
 				<tr>
 					<td>
 						<table id="table-data-inner" cellspacing="1">
-							<tr id="tr-menu-path"><td colspan="2">当前位置:&nbsp;组织管理 &gt; 角色管理</td></tr>
 							<tr id="tr-title"><td colspan="2">修改角色</td></tr>
 							<tr>
 								<td width="10%" class="field-title">角色名称:</td>
@@ -115,7 +193,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td colspan="2">
 									<div class="content_wrap">
 										<div class="zTreeDemoBackground right">
-											<ul id="rulerTree" class="ztree"></ul>
+											<ul id="rulerTree" class="ztree" style="width:400px;" ></ul>
 										</div>
 									</div>
 									<br/>

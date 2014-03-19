@@ -20,34 +20,11 @@ public class RoleAction extends BaseAction {
 	@Override
 	public String handle() throws Exception {
 		
-		if(method==null || method.equals("query")){
+		if(method==null  ){
 			return query();
-		}else{
-			//reflect
-			Method function = this.getClass().getDeclaredMethod(method);
-			if(function!=null)
-				function.invoke(this);
-			else{
-				// user add for process
-			}
 		}
+		
 		return Util.NONE;
-		/*
-		if(super.method.equals("query")){
-			return query();
-		}else if(super.method.equals("beforeUpdate")){
-			return beforeUpdate();
-		}else if(super.method.equals("update")){
-			return update();
-		}else if(super.method.equals("delete")){
-			return delete();
-		}else if(super.method.equals("beforeAdd")){
-			return beforeAdd();
-		}else if(super.method.equals("add")){
-			return add();
-		}
-		return null;
-		*/
 	}
 
 	public String add() throws Exception{
@@ -101,7 +78,7 @@ public class RoleAction extends BaseAction {
 		int id = roleInfo.getRoleId();
 		rightString =roleService.beforeUpdate(id);
 		request.setAttribute("rightString", rightString);
-		return "Update";
+		return Util.UPDATE;
 	}
 
 	public String query() throws Exception {
@@ -146,6 +123,12 @@ public class RoleAction extends BaseAction {
 	public String view() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean validate(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	

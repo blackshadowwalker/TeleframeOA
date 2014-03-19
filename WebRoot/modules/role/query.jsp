@@ -19,7 +19,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="scripts/validateForm.js" type="text/javascript"></script>
 	<script src="scripts/Calendar.js" type="text/javascript"></script>
 	<script type="text/javascript" src="scripts/prompt/ymPrompt.js"></script>
-	<script type="text/javascript" src="scripts/frame/main.js"></script>
+
+
 	<script type="text/javascript">
 		function query(id,val,text){
 			if(val==text){
@@ -34,14 +35,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 		}
 		function upd(id){
-			location.href="<%= basePath%>/RoleAction?method=beforeUpdate&rulerid=${r_id}&roleInfo.roleId="+id;
+			location.href="<%= basePath%>/RoleAction?method=beforeUpdate&roleInfo.roleId="+id;
 		}
 		function del(id){
 			if(confirm("确定删除吗？"))
-				location.href="<%= basePath%>/RoleAction?method=delete&rulerid=${r_id}&roleInfo.roleId="+id;
+				location.href="<%= basePath%>/RoleAction?method=delete&roleInfo.roleId="+id;
 		}
 		function add(){
-			location.href="<%= basePath%>/RoleAction?method=beforeAdd&rulerid=${r_id}";
+			location.href="<%= basePath%>/RoleAction?method=beforeAdd";
 		}
 	</script>
   </head>
@@ -57,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td>
 						<table id="table-data-inner" cellspacing="0">
 							<tr id="tr-menu-path">
-								<td colspan="2" nowrap="nowrap">
+								<td colspan="3" nowrap="nowrap">
 									<fieldset id="f-menu-path">当前位置:&nbsp;组织管理 &gt; 角色管理</fieldset>
 									<fieldset id="f-condition-display">
 										<img src="images/main/display_on.gif" onclick="displayCondition(this,'tr-menu-path')" 

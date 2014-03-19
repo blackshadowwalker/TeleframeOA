@@ -18,6 +18,7 @@ import com.base.BaseAction;
 import com.bean.FileInfo;
 import com.service.FileService;
 import com.util.EncoderHandler;
+import com.util.G;
 import com.util.Util;
 
 /**
@@ -47,8 +48,6 @@ public class UploadAction extends BaseAction {
 	private String md5;
 	private String sha1;
 	private FileInfo fileInfo;
-	
-	private String wabappUploadDir = "/download-center/upload";
 	
 	private DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 	private DateFormat dfFile = new SimpleDateFormat("yyyyMMddhhmmssSSS");
@@ -94,7 +93,9 @@ public class UploadAction extends BaseAction {
 
 	private JSONObject upload(){
 
-		String path = ServletActionContext.getServletContext().getRealPath("/../");  
+		String path = ServletActionContext.getServletContext().getRealPath("/../"); 
+		
+		String wabappUploadDir = G.wabappUploadDir; 
 		
 		if(dir!=null && dir.length()>0 && !dir.startsWith(".") ){
 			File dirFile = new File(path,dir);
@@ -150,14 +151,30 @@ public class UploadAction extends BaseAction {
 				try {
 					fileInfo = fileService.query(md5, sha1);
 					if(fileInfo!=null){
-						json.put("id", fileInfo.getId());
-						json.put("fileName", fileFileName[i]);
-						json.put("fileSize", fileInfo.getFileSize());
-						json.put("pathFlag", fileInfo.getPathFlag());
-						json.put("path", fileInfo.getPath());
-						jsonEmployeeArray.add(json);
-						uploadedSum ++;
-						continue;
+						// 检测文件是否存在
+						String testFilePath =null;
+						if(fileInfo.getPathFlag()==0)
+							testFilePath = fileInfo.getPath();
+						else if(fileInfo.getPathFlag()==1)
+							testFilePath = ServletActionContext.getServletContext().getRealPath("/") + fileInfo.getPath();
+						else if(fileInfo.getPathFlag()==2)
+							testFilePath = ServletActionContext.getServletContext().getRealPath("/../") + fileInfo.getPath();
+						File testFile =new File (testFilePath);
+						if(testFile.exists())
+						{
+							//文件已经存在
+							json.put("id", fileInfo.getId());
+							json.put("fileName", fileFileName[i]);
+							json.put("fileSize", fileInfo.getFileSize());
+							json.put("pathFlag", fileInfo.getPathFlag());
+							json.put("path", fileInfo.getPath());
+							jsonEmployeeArray.add(json);
+							uploadedSum ++;
+							continue;
+						}else{
+							//文件不存在，但在数据库中有记录，此时需要清除记录
+							fileService.delete(fileInfo.getId());
+						}
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -319,6 +336,12 @@ public class UploadAction extends BaseAction {
 	public String view() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean validate(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

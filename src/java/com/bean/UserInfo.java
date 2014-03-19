@@ -1,6 +1,9 @@
 package com.bean;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  * UserInfo entity. @author MyEclipse Persistence Tools
@@ -15,7 +18,8 @@ public class UserInfo implements java.io.Serializable {
 	private String userPasswd;
 	private Integer userRole;
 	private String userRoleName;
-	private String userBirth;
+	private Timestamp userBirth;
+	private String userBirthString;
 	private String userPhoto;
 	private Integer userDepartment;
 	private String userDepartmentName;
@@ -36,7 +40,7 @@ public class UserInfo implements java.io.Serializable {
 
 	/** full constructor */
 	public UserInfo(String userName, String userPasswd, Integer userRole,
-			String userBirth, String userPhoto, Integer userDepartment,
+			Timestamp userBirth, String userPhoto, Integer userDepartment,
 			Timestamp lastUpdate, Integer status) {
 		this.userName = userName;
 		this.userPasswd = userPasswd;
@@ -56,6 +60,9 @@ public class UserInfo implements java.io.Serializable {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = Integer.parseInt(userId);
 	}
 
 	public String getUserName() {
@@ -81,13 +88,8 @@ public class UserInfo implements java.io.Serializable {
 	public void setUserRole(Integer userRole) {
 		this.userRole = userRole;
 	}
-
-	public String getUserBirth() {
-		return this.userBirth;
-	}
-
-	public void setUserBirth(String userBirth) {
-		this.userBirth = userBirth;
+	public void setUserRole(String userRole) {
+		this.userRole = Integer.parseInt( userRole);
 	}
 
 	public String getUserPhoto() {
@@ -136,6 +138,44 @@ public class UserInfo implements java.io.Serializable {
 
 	public void setUserDepartmentName(String userDepartmentName) {
 		this.userDepartmentName = userDepartmentName;
+	}
+	
+	public Timestamp getUserBirth() {
+		return this.userBirth;
+	}
+
+	
+	public void setUserBirth(Timestamp userBirth) {
+		System.out.println("setUserBirth Timestamp = "+userBirth);
+		this.userBirth = userBirth;
+	}
+	
+	public void setUserBirth(String userBirth) {
+		System.out.println("setUserBirth String = "+userBirth);  
+	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");  
+	    try {  
+	        this.setUserBirth( new Timestamp(df.parse(userBirth).getTime()) );  
+	    } catch (ParseException e) {  
+	        e.printStackTrace();  
+	    }  
+		
+	}
+
+	public String getUserBirthString() {
+		return userBirthString;
+	}
+
+	public void setUserBirthString(String userBirthString) {
+		System.out.println("setUserBirthString String = "+userBirth);  
+		this.userBirthString = userBirthString;
+		if(userBirthString==null || userBirthString.trim().length()<10)
+			return;
+	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");  
+	    try {  
+	        this.setUserBirth( new Timestamp(df.parse(userBirthString).getTime()) );  
+	    } catch (ParseException e) {  
+	        e.printStackTrace();  
+	    }  
 	}
 
 }

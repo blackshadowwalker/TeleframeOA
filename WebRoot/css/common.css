@@ -7,6 +7,15 @@ body {
 	vertical-align: middle;
 	margin-left:10px;
 }
+
+input[type=button]{
+	cursor:pointer;
+}
+
+.requied{
+	color:#FF0000;
+}
+
 .locationLable{
 	margin-left: 10px;
 	height:20px;
@@ -220,6 +229,7 @@ select#param_unit {
 	color: #ee6666
 }
 .btns_mouseout {
+	cursor:pointer;
 	padding-top:2px;
 	padding-bottom:1px;
 	margin-left:2px;

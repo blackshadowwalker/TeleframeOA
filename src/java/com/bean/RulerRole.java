@@ -11,8 +11,8 @@ public class RulerRole implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
-	private Integer roleid;
-	private Integer rulerid;
+	private Integer roleId;
+	private Integer rulerId;
 	private String rulerWord;
 	private Timestamp lastUpdate;
 	private Integer status;
@@ -26,8 +26,8 @@ public class RulerRole implements java.io.Serializable {
 	/** full constructor */
 	public RulerRole(Integer roleId, Integer rulerid, String rulerWord,
 			Timestamp lastUpdate, Integer status) {
-		this.roleid = roleId;
-		this.rulerid = rulerid;
+		this.roleId = roleId;
+		this.rulerId = rulerid;
 		this.rulerWord = rulerWord;
 		this.lastUpdate = lastUpdate;
 		this.status = status;
@@ -43,21 +43,6 @@ public class RulerRole implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Integer getRoleId() {
-		return this.roleid;
-	}
-
-	public void setRoleId(Integer roleId) {
-		this.roleid = roleId;
-	}
-
-	public Integer getRulerId() {
-		return this.rulerid;
-	}
-
-	public void setRulerId(Integer rulerid) {
-		this.rulerid = rulerid;
-	}
 
 	public String getRulerWord() {
 		return this.rulerWord;
@@ -83,20 +68,29 @@ public class RulerRole implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public Integer getRoleid() {
-		return roleid;
+	public Integer getRoleId() {
+		return roleId;
 	}
 
-	public Integer getRulerid() {
-		return rulerid;
+	public Integer getRulerId() {
+		return rulerId;
 	}
 
-	public void setRoleid(Integer roleid) {
-		this.roleid = roleid;
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
 	}
 
-	public void setRulerid(Integer rulerid) {
-		this.rulerid = rulerid;
+	public void setRulerId(Integer rulerId) {
+		this.rulerId = rulerId;
 	}
+	public void setRoleId(String roleId) {
+		this.roleId = Integer.parseInt(roleId);
+	}
+
+	public void setRulerId(String rulerId) {
+		this.rulerId = Integer.parseInt(rulerId); ;
+	}
+
+
 
 }

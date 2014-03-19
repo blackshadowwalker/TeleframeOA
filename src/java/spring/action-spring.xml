@@ -33,6 +33,7 @@
 	 
 	 <bean name="UserAction" class="com.action.UserAction" scope="prototype">
 	 	<property name="userService" ref="UserService"></property>
+	 	<property name="fileService" ref="FileService"></property>
 	 	<property name="rightService" ref="RightService" />
 	 </bean>
 	 

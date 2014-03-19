@@ -14,9 +14,9 @@
 		
 		<!-- 车辆管理 -->
 		<action name="RoleAction" class="RoleAction">
-			<result name="list">/modules/role/roleQuery.jsp</result>
-			<result name="update">/modules/role/roleUpdate.jsp</result>
-			<result name="add">/modules/role/roleAdd.jsp</result>
+			<result name="list">/modules/role/query.jsp</result>
+			<result name="update">/modules/role/update.jsp</result>
+			<result name="add">/modules/role/add.jsp</result>
 		</action>
 		
 		<action name="RulerAction" class="RulerAction">
@@ -46,9 +46,9 @@
 		</action>
 		
 		<action name="UserAction" class="UserAction">
-			<result name="list">/modules/user/userQuery.jsp</result>
-			<result name="add">/modules/user/userAdd.jsp</result>
-			<result name="update">/modules/user/userUpdate.jsp</result>
+			<result name="list">/modules/user/query.jsp</result>
+			<result name="add">/modules/user/add.jsp</result>
+			<result name="update">/modules/user/update.jsp</result>
 		</action>
 		
 		<!-- karl file manager-->

@@ -87,8 +87,8 @@ public class RulerDao extends BaseDao {
 	public List<RulerRole> rulerRole(int roleid){
 		List< RulerRole> list = null;
 		Session session =this.getSession();
-		Query query = session.createQuery(" from RulerRole r where r.roleid=:roleid  and r.status=1");
-		query.setInteger("roleid", roleid);
+		Query query = session.createQuery(" from RulerRole r where r.roleId=:roleId  and r.status=1");
+		query.setInteger("roleId", roleid);
 		list=(List< RulerRole>)query.list();
 		if(list!=null && list.size()>0){
 			return list;
