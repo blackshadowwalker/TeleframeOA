@@ -17,7 +17,7 @@
 		<property name="rulerDao" ref="RulerDao" />
 	</bean>
 	
-	<!-- 车辆管理  -->
+	<!-- 角色-->
 	 
 	<bean id="RoleService" class="com.service.impl.RoleServiceImpl" >
 		<property name="roleDao" ref="RoleDao" />
@@ -27,7 +27,7 @@
 		<property name="testDao" ref="TestDao" />
 	</bean>
 	
-		<!-- 部门管理  唐梦岚-->
+	<!-- 部门管理  唐梦岚-->
 	<bean id="DeptService" class="com.service.impl.DeptServiceImpl" >
 		<property name="deptDao" ref="DeptDao" />
 	</bean>
@@ -36,8 +36,17 @@
 		<property name="userDao" ref="UserDao"></property>
 	</bean>
 	
-	
 	<bean id="FileService" class="com.service.impl.FileServiceImpl">
 		<property name="fileDao" ref="FileDao"></property>
 	</bean>
+	<bean id="CategoryService" class="com.service.impl.CategoryServiceImpl">
+		<property name="categoryDao" ref="CategoryDao"></property>
+	</bean>
+	<bean id="ArticleService" class="com.service.impl.ArticleServiceImpl">
+		<property name="articleDao" ref="ArticleDao"></property>
+	</bean>
+	<bean id="SyslogService" class="com.service.impl.SyslogServiceImpl">
+		<property name="syslogDao" ref="SyslogDao"></property>
+	</bean>
+	
 </beans>

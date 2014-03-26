@@ -17,12 +17,14 @@ public class Util {
 	public  static String FALSE 		= "false";
 
 	public  static String LIST 			= "list";
+	public  static String EDIT 			= "edit";
 	public  static String ADD 			= "add";
 	public  static String BEFORE_ADD 	= "beforeAdd";
 	public  static String UPDATE 		= "update";
 	public  static String BEFORE_UPDATE = "beforeUpdate";
 	public  static String DELETE 		= "delete";
 	public  static String VIEW 			= "view";
+	public  static String PERSON 		= "person";
 
 	public  static String SHOWFILE 		= "showfile";
 	

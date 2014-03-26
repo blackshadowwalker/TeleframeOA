@@ -89,8 +89,11 @@ public class RoleDao extends BaseDao {
 		for(int i=0;i<array.length;i++){
 			rulerRole = new RulerRole();
 			rulerRole.setRoleId(roleInfo.getRoleId());
-			rulerRole.setRulerId(Integer.parseInt(array[i].split(",")[0]));
-			rulerRole.setRulerWord(array[i].split(",")[1]);
+			String rulerWord[] = array[i].split(",");
+			if(rulerWord.length>0)
+				rulerRole.setRulerId(Integer.parseInt(rulerWord[0]));
+			if(rulerWord.length>1)
+				rulerRole.setRulerWord(rulerWord[1]);
 			rulerRole.setLastUpdate(lastUpdate);
 			rulerRole.setStatus(1);
 			session.save(rulerRole);

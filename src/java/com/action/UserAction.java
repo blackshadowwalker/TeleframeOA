@@ -32,10 +32,43 @@ public class UserAction extends BaseAction {
 
 		return Util.NONE;
 	}
+	public String person() throws Exception{
+		if(request.getParameter("save")==null){
+		//	userInfo= user;//userService.beforeUpdate(id);
+			userInfo = userService.get(user.getUserId());
+			userInfo.setUserPasswd("");
+			return Util.PERSON;
+		}else{
+			UserInfo userTemp = userInfo;
+			userInfo = userService.get(user.getUserId());
+			if( userTemp.getUserPasswd()!=null && !userTemp.getUserPasswd().trim().isEmpty()) 
+			{
+				userTemp.setUserPasswd(userTemp.getUserPasswd().trim());
+				if(userTemp.getUserPasswd().length()<5){
+					this.addFieldError("userInfo.userPasswd", "密码至少6位");
+					return Util.PERSON;
+				}else{
+					userInfo.setUserPasswd(userTemp.getUserPasswd());
+				}
+			}
+			if(userTemp.getUserBirth()!=null)
+				userInfo.setUserBirth(userTemp.getUserBirth());
+			if(userTemp.getUserPhoto()!=null && userTemp.getUserPhoto().trim().length()>3)
+				userInfo.setUserPhoto(userTemp.getUserPhoto());
+			String result = userService.update(userInfo);
+			if(result!=null && result.endsWith(Util.SUCCESS))
+				this.setMsg("修改成功");
+			else
+				this.setMsg("修改失败 ");
+			return Util.PERSON;
+		}
+	}
 
 	public String delete() throws Exception {
-		userService.delete(id);
-		userInfo=null;
+		userInfo = userService.get(id);
+		if(userInfo!=null && userService.delete(id)==Util.SUCCESS)
+			this.setMsg("删除用户["+userInfo.getUserName()+"@id="+id+"]成功");
+		userInfo = null;
 		return query();
 	}
 
@@ -62,13 +95,15 @@ public class UserAction extends BaseAction {
 			fileInfo!=null){
 				userInfo.setUserPhoto(fileInfo.getPath());
 			}else{
-				
-			}
-				
-		}*/
-		
-		System.out.println("用户头像:"+userInfo.getUserPhoto());
 
+			}
+
+		}*/
+
+		System.out.println("用户头像:"+userInfo.getUserPhoto());
+		userInfo.setUserId(id);
+		if(userInfo.getUserId()==null || userInfo.getUserId()<0)
+			return Util.ERROR;
 		String result = userService.update(userInfo);
 		if(result.endsWith(Util.SUCCESS)){
 			msg = "修改成功";
@@ -92,8 +127,10 @@ public class UserAction extends BaseAction {
 		userInfo.setUserPasswd("");
 		if(userInfo==null)
 			return Util.ERROR;
-		else 
+		else {
+			session.put("userId", id);
 			return Util.UPDATE;
+		}
 	}
 
 	public static void main(String args[]){

@@ -2,10 +2,11 @@ package com.service;
 
 import java.util.List;
 
+import com.base.BaseService;
 import com.bean.FileInfo;
 import com.bean.UserInfo;
 
-public interface FileService {
+public interface FileService extends BaseService  {
 	
 	public FileInfo query(int id) throws Exception;
 	public List<FileInfo> query(FileInfo fileInfo) throws Exception;

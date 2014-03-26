@@ -25,7 +25,7 @@ public class RightDao extends BaseDao {
 	//检查数据库中是否拥有该actionName
 	public String checkAction(String actionName, String methodName, int roleId){
 		Session session = super.getSession();
-		String sql = "From RulerInfo where ruler_url like :action ";
+		String sql = "From RulerInfo where url like :action ";
 		Query query = session.createQuery(sql);
 		query.setString("action", "/"+actionName+"%");
 		

@@ -14,7 +14,6 @@ import com.util.Util;
 public class RulerAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
 
-	RulerService rulerService;
 	List<RulerInfo> list;
 	RulerInfo rulerInfo;
 	
@@ -123,15 +122,6 @@ public class RulerAction extends BaseAction {
 			return Util.UPDATE;
 		}
 	}
-	
-	
-	public RulerService getRulerService() {
-		return rulerService;
-	}
-
-	public void setRulerService(RulerService rulerService) {
-		this.rulerService = rulerService;
-	}
 
 	public List<RulerInfo> getList() {
 		return list;
@@ -151,6 +141,7 @@ public class RulerAction extends BaseAction {
 
 	@Override
 	public String beforeAdd() throws Exception {
+		System.out.println("action pname="+pname);
 		return Util.ADD;
 	}
 

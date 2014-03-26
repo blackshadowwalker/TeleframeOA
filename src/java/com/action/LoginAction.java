@@ -9,11 +9,13 @@ import com.bean.RulerRole;
 import com.bean.UserInfo;
 import com.service.LoginService;
 import com.service.RulerService;
+import com.service.UserService;
 import com.util.Util;
 
 public class LoginAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
+	protected UserService userService;
 
 	@Override
 	public String handle() throws Exception {
@@ -77,7 +79,8 @@ public class LoginAction extends BaseAction {
 			System.out.println(msg);
 			return Util.LOGIN;
 		} else {
-			user = userCheck;
+			user = userService.get(userCheck.getUserId());
+			user.setIp(ip);
 			Integer roleId = user.getUserRole();//获取角色id
 			rulerRoleList = rulerService.rulerRole(roleId);//获取所有权限
 			if(rulerRoleList==null ){
@@ -182,6 +185,14 @@ public class LoginAction extends BaseAction {
 	public boolean validate(Object obj) throws Exception {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 
 }

@@ -56,7 +56,7 @@ public class UploadAction extends BaseAction {
 	public String handle() throws Exception {
 		JSONObject jsonmsg = upload();
 		if(jsonmsg==null){
-			
+			return Util.NONE;
 		}
 		else{
 			msg = "";
@@ -132,6 +132,8 @@ public class UploadAction extends BaseAction {
 		JSONObject jsonmsg = new JSONObject();
 		int index = -1;
 		int uploadedSum = 0 ;
+		if(file==null)
+			return null;
 		try {  
 			for(int i = 0;i<file.length;i++){  
 				JSONObject json = new JSONObject();

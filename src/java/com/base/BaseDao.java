@@ -3,17 +3,23 @@ package com.base;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.dao.SyslogDao;
+
 public class BaseDao{
-    Session session=null;
+    protected Session session=null;
+    
+    public BaseDao()
+    {
+    	
+    }
     
 	private SessionFactory sessionFactory; 
 	
+	/*
+	private static Configuration configuration = null;
+    private static ServiceRegistry serviceRegistry = null;
+    */
 	
-	/*private static Configuration configuration = null;
-    private static ServiceRegistry serviceRegistry = null;*/
-	
-	
-
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
@@ -46,4 +52,5 @@ public class BaseDao{
     	}
     	return session;
     }
+
 }

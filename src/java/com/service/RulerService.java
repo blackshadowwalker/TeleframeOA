@@ -2,11 +2,12 @@ package com.service;
 
 import java.util.List;
 
+import com.base.BaseService;
 import com.bean.RulerInfo;
 import com.bean.RulerRole;
 
-public interface RulerService {
-
+public interface RulerService extends BaseService {
+	
 	public String add(RulerInfo rulerInfo);//曾
 	
 	public String delete(int id);//删

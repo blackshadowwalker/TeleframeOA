@@ -49,6 +49,7 @@
 			<result name="list">/modules/user/query.jsp</result>
 			<result name="add">/modules/user/add.jsp</result>
 			<result name="update">/modules/user/update.jsp</result>
+			<result name="person">/modules/user/person.jsp</result>
 		</action>
 		
 		<!-- karl file manager-->
@@ -70,5 +71,27 @@
 			<result name="list">/vehicle.jsp</result>
 		</action>
 		
+		<action name="CategoryAction" class="CategoryAction">
+			<result name="list">/modules/category/query.jsp</result>
+			<result name="add">/modules/category/add.jsp</result>
+			<result name="update">/modules/category/update.jsp</result>
+		</action>
+		
+		<action name="ArticleAction" class="ArticleAction">
+			<result name="list">/modules/article/query.jsp</result>
+			<result name="view">/modules/article/view.jsp</result>
+			<result name="edit">/modules/article/edit.jsp</result>
+		</action>
+					  
+		<action name="CkeditorUpload" class="CkeditorUpload">
+			<result name="list">/modules/ckeditor/list.jsp</result>
+		</action>
+
+		<action name="FinanceAction" class="FinanceAction">
+			<result name="list">/modules/article/query.jsp</result>
+			<result name="view">/modules/article/view.jsp</result>
+			<result name="edit">/modules/article/edit.jsp</result>
+		</action>
+
 	</package>
 </struts>

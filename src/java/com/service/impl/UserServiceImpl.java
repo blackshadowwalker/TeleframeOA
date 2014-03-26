@@ -49,4 +49,12 @@ public class UserServiceImpl implements UserService {
 		this.userDao = userDao;
 	}
 
+	@Override
+	public UserInfo get(Integer id) throws Exception {
+		UserInfo user =  this.userDao.get(id);
+		if(user!=null)
+			user.setUserPasswd("");
+		return user;
+	}
+
 }

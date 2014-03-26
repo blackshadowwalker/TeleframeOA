@@ -3,9 +3,10 @@ package com.service;
 import java.util.List;
 import net.sf.json.JSONArray;
 
+import com.base.BaseService;
 import com.bean.DeptInfo;
 
-public interface DeptService {
+public interface DeptService extends BaseService {
 	//public abstract List<DeptInfo> queryDept();
 	
 	public abstract DeptInfo get(Integer id);

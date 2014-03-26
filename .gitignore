@@ -8,6 +8,7 @@
 bin/
 *.svn*
 tmp/
+*.class
 *.tmp
 *.bak
 *.swp

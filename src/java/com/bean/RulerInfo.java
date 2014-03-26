@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import net.sf.json.JSONObject;
+
 /**
  * RulerInfo entity. @author MyEclipse Persistence Tools
  */
@@ -154,6 +156,13 @@ public class RulerInfo implements java.io.Serializable {
 
 	public Timestamp getLastUpdate() {
 		return lastUpdate;
+	}
+
+	@Override
+	public String toString() {
+		String str="";
+		str += JSONObject.fromObject(this);
+		return str;
 	}
 
 

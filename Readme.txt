@@ -1,15 +1,15 @@
-SSH2Frame
+ï»¿SSH2Frame
 
-¿ò¼Ü
+æ¡†æž¶
 struts2 + spring3 +hibernate4 + maven3
 
-×Ü½á£º
-ÖÁ´ËÍê³ÉÁËÒÔÏÂµÄÔöÉ¾¸Ä²é
-1.²Ëµ¥¹ÜÀí (Ê÷ÐÎ²Ëµ¥¹ÜÀí)
-2.½ÇÉ«¹ÜÀí (°üº¬Ê÷ÐÎÈ¨ÏÞ¹ÜÀí)
-3.²¿ÃÅ¹ÜÀí (Ê÷ÐÎ¹ÜÀí²¿ÃÅ)
-4.ÈËÔ±¹ÜÀí (°üº¬ÓÃ»§Í·Ïñ¹ÜÀí£¬Ê¹ÓÃUploadActionÉÏ´«)
-5.ÎÄ¼þ¹ÜÀí (¼¯³ÉÁË UploadAction.java£¬ md5 sha1 )
+æ€»ç»“ï¼š
+è‡³æ­¤å®Œæˆäº†ä»¥ä¸‹çš„å¢žåˆ æ”¹æŸ¥
+1.èœå•ç®¡ç† (æ ‘å½¢èœå•ç®¡ç†)
+2.è§’è‰²ç®¡ç† (åŒ…å«æ ‘å½¢æƒé™ç®¡ç†)
+3.éƒ¨é—¨ç®¡ç† (æ ‘å½¢ç®¡ç†éƒ¨é—¨)
+4.äººå‘˜ç®¡ç† (åŒ…å«ç”¨æˆ·å¤´åƒç®¡ç†ï¼Œä½¿ç”¨UploadActionä¸Šä¼ )
+5.æ–‡ä»¶ç®¡ç† (é›†æˆäº† UploadAction.javaï¼Œ md5 sha1 )
 
 
 

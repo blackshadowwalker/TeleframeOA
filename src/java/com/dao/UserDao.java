@@ -23,10 +23,36 @@ public class UserDao extends BaseDao{
 	}
 	
 	public UserInfo get(Integer id)throws Exception{
+		if(id==null)
+			return null;
 		Session session = getSession();
-		Query query = session.createQuery("from UserInfo where userId=:userId");
+		String hql =" select u.userId, u.userName, u.userPasswd, u.userRole, (select r.roleName from RoleInfo r where r.roleId=u.userRole), u.userBirth, " +
+			"u.userDepartment, (select deptName from DeptInfo d where d.deptId=u.userDepartment), u.lastUpdate, u.userPhoto, u.status " +
+			"from UserInfo u where u.userId=:userId and u.status=1";
+
+//		Query query = session.createQuery("from UserInfo where userId=:userId");
+		Query query = session.createQuery(hql);
 		query.setString("userId", id.toString());
-		return (UserInfo)query.uniqueResult();
+
+		List<Object> list = query.list();
+		UserInfo user=null;
+		if(list.size()==1){
+			int k = 0;
+			user = new UserInfo();
+			Object[] object = (Object[])list.get(0);
+			user.setUserId((Integer)object[k++]);
+			user.setUserName((String)object[k++]);
+			user.setUserPasswd((String)object[k++]);
+			user.setUserRole((Integer)object[k++]);
+			user.setUserRoleName((String)object[k++]);
+			user.setUserBirth((Timestamp)object[k++]);
+			user.setUserDepartment((Integer)object[k++]);
+			user.setUserDepartmentName((String)object[k++]);
+			user.setLastUpdate((Timestamp)object[k++]);
+			user.setUserPhoto((String)object[k++]);
+			user.setStatus((Integer)object[k++]);
+		}
+		return user;
 		
 	}
 	
@@ -123,7 +149,7 @@ public class UserDao extends BaseDao{
 		UserInfo user = this.get(userInfo.getUserId());
 		if(user==null)
 			return Util.FAILE;
-		if( userInfo.getUserPasswd().trim().length()>=6)
+		if( userInfo.getUserPasswd().trim().length()>=1)
 			userInfo.setUserPasswd(EncoderHandler.MD5(userInfo.getUserPasswd()));//修改密码
 		else
 			userInfo.setUserPasswd(user.getUserPasswd());//不修改密码

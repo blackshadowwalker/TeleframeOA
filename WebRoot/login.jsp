@@ -53,7 +53,7 @@ tr{
 	background: url(images/login.png) no-repeat;
 	margin-left:auto;
 	margin-right:auto;
-	top: 25%;
+	margin-top: 10%;
 	z-index:100;
 	
 }

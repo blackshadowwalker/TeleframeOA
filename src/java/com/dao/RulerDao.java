@@ -99,8 +99,11 @@ public class RulerDao extends BaseDao {
 	public List<RulerInfo> query(RulerInfo rulerInfo) {
 		Session session = this.getSession();
 		String hql="from RulerInfo where status=1 ";
-		if(rulerInfo!=null && rulerInfo.getRulerName()!=null && !rulerInfo.getRulerName().trim().equals("")){
-			hql+="and rulerName like '%"+rulerInfo.getRulerName().trim()+"%' ";
+		if(rulerInfo!=null ){
+			if( rulerInfo.getRulerName()!=null && !rulerInfo.getRulerName().trim().isEmpty())
+				hql += " and rulerName like '%"+rulerInfo.getRulerName().trim()+"%' ";
+			if( rulerInfo.getUrl()!=null && !rulerInfo.getUrl().trim().isEmpty() )
+				hql += " and url like '%"+rulerInfo.getUrl()+"%' "; 
 		}
 		Query query = session.createQuery(hql);
 		List<RulerInfo> list = (List<RulerInfo>)query.list();

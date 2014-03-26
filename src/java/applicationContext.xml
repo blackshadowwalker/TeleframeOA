@@ -30,7 +30,7 @@
 		<!-- connection -->          
 		<property name="dataSource">             
 			<ref local="dataSource"/>         
-		</property>                   
+		</property>               
 		<!-- hibernate自身属性  -->          
 		<property name="hibernateProperties">             
 			<props>               

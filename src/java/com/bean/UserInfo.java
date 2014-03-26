@@ -25,6 +25,7 @@ public class UserInfo implements java.io.Serializable {
 	private String userDepartmentName;
 	private Timestamp lastUpdate;
 	private Integer status;
+	private String	ip;
 
 	// Constructors
 
@@ -176,6 +177,14 @@ public class UserInfo implements java.io.Serializable {
 	    } catch (ParseException e) {  
 	        e.printStackTrace();  
 	    }  
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 
 }

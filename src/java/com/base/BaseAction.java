@@ -1,6 +1,7 @@
 package com.base;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,20 +14,26 @@ import org.apache.struts2.ServletActionContext;
 
 import com.bean.RulerInfo;
 import com.bean.RulerRole;
+import com.bean.Syslog;
 import com.bean.UserInfo;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.RightService;
+import com.service.RulerService;
+import com.service.SyslogService;
 import com.util.Util;
 
 public abstract class BaseAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 
+	protected RightService rightService = null;
+	protected SyslogService syslogService = null;
+	protected RulerService  rulerService = null;
+
 	protected HttpServletRequest request;
 	protected HttpServletResponse  response;
 	protected String method = null;
-	protected RightService rightService = null;
 	protected String msg="";
 	protected Map<String, Object> session = null;
 	protected UserInfo user = null;
@@ -44,6 +51,9 @@ public abstract class BaseAction extends ActionSupport {
 	List<RulerRole> rulerRoleList = null;
 	List<RulerInfo> rulerInfolist = null;
 	String rightWord = null;
+	
+	protected Syslog syslog = new Syslog();
+	private Map<String, Integer> actionMap = null;
 
 	String action =null;
 
@@ -73,32 +83,41 @@ public abstract class BaseAction extends ActionSupport {
 
 		user = (UserInfo) session.get("user");
 
+		//获取访问的方法名称
 		method = request.getParameter("method");
 
+		//获取访问的action名称
 		Object actionClass = (Object) ActionContext.getContext().get("action");
 		if(actionClass!=null)
 			action = actionClass.getClass().getSimpleName();
 
 		System.out.println("action="+  action+"?method="+method);
-		if(action.endsWith("LoginAction") || action.endsWith("UploadAction") 
-				||  action.endsWith("VehicleAction")){//LoginAction 或其他公共访问的权限
-			return handle();
+		//LoginAction 或其无需权限访问的Action，可以直接进行处理handle()
+		actionMap = (Map<String, Integer>) ServletActionContext.getServletContext().getAttribute("actionMap");
+		if(actionMap!=null){
+			if(actionMap.get(action)!=null)
+				return handle();
 		}
-		//----- 截至以上代码是 登录、退出等操作 -------------
+		
+		//用户session失效，需要重新登录
 		if(user==null)
 			return LOGIN;
 		
-		this.setGoBackUrl(action);
+		this.setGoBackUrl(action);//设置页面返回按钮地址
 
 		//------- 下面的代码是检测用户是否拥有该操作权限和输出操作权限iudv----------
 		rulerInfolist = (List<RulerInfo>) session.get("rulerInfolist");//菜单
 		rulerRoleList = (List<RulerRole>) session.get("rulerRoleList");//所以权限
 
 		//检查权限和输出操作权限iudv
+		
+		syslog.setUser(user);
 		String checkRet = this.checkRights(action, method);
 		if(checkRet==Util.FAILE)
 		{
 			msg = "警告：非法操作，请重新登录系统或联系管理员";
+			syslog.setContent(action+"?method="+method+","+msg);
+			syslogService.log(syslog);
 			System.out.println(msg);
 			return Util.FAILE;
 		}else if(checkRet==Util.NULL){
@@ -108,7 +127,7 @@ public abstract class BaseAction extends ActionSupport {
 		if(method==null)
 			return handle();
 
-		//reflect
+		//reflect 调用Action中的方法
 		Method function = null;
 		try{
 			function = this.getClass().getDeclaredMethod(method);
@@ -121,14 +140,23 @@ public abstract class BaseAction extends ActionSupport {
 		}
 		if(function==null){
 			System.out.println("function==null  "+this+".handle()");
-			return handle();
+			return handle();//action.method不存在，交给action去处理
 		}
 		
 		if(function.getModifiers() == Modifier.PUBLIC || function.getModifiers() == Modifier.PROTECTED){
 			if(function.getReturnType()==String.class){
 				System.out.println(function.getName()+".invoke("+this+")");
+				RulerInfo rulerInfo = new RulerInfo();
+				rulerInfo.setUrl(action);
+				List<RulerInfo> rulerList = rulerService.query(rulerInfo);
+				if(rulerList!=null && rulerList.size()>0)
+					rulerInfo = rulerList.get(0);
 				Object obj = function.invoke(this);
-				System.out.println(obj);
+//				syslog.setContent(this.getMsg()+","+obj+","+this.getMethod()+","+action+"?method="+method+","+function.getName()+".invoke("+this+")"+","+rulerInfo.toString());
+				syslog.setContent("rulerId="+rulerInfo.getRulerid()+",rulerName="+rulerInfo.getRulerName()+","+this.getMsg()+","+
+						obj+","+this.getMethod()+","+action+"?method="+method+","+function.getName()+".invoke("+this+")"+","+
+						",url="+""+rulerInfo.getUrl());
+				syslogService.log(syslog);
 				return  (String) obj;
 			}else{
 				function.invoke(this.getClass());
@@ -149,9 +177,6 @@ public abstract class BaseAction extends ActionSupport {
 		if(actionID <1 )
 			return null;
 
-		request.setAttribute("r_id", actionID);
-		request.getSession().setAttribute("r_id", actionID);
-
 		//根据actionID获取rightWord
 		String rightWord = null;
 		for(int i=0; i<rulerRoleList.size(); i++){
@@ -163,6 +188,7 @@ public abstract class BaseAction extends ActionSupport {
 		return rightWord;
 	}
 
+	//通过页面id获取当前用户对当前页面的权限
 	String checkRights(String actionName, String methodName)
 	{
 		if(rulerRoleList==null || rulerInfolist==null){
@@ -172,7 +198,8 @@ public abstract class BaseAction extends ActionSupport {
 		if(rightWord==null){
 			//权限中不存在此action
 			try {
-				//如果数据库中存在此Action，则用户没有该权限，否则表面有该权限，如LoginAction存在但没有在数据库中，任何用户用户该权限
+				//如果数据库中存在此Action，则用户没有该权限，否则表面有该权限，
+				//如LoginAction存在但没有在数据库中，任何用户用户该权限
 				if(rightService.checkAction(actionName, methodName, user.getUserRole())==Util.SUCCESS)
 					return Util.FAILE;
 				else
@@ -297,13 +324,28 @@ public abstract class BaseAction extends ActionSupport {
 		this.id = id;
 	}
 	public void setId(String id) {
-		this.id = Integer.parseInt(id);
+		if(id==null || id.trim().isEmpty())
+			this.id = (null);
+		else
+			this.id = Integer.parseInt(id);
 	}
 	public String getTarget() {
 		return target;
 	}
 	public void setTarget(String target) {
 		this.target = target;
+	}
+	public SyslogService getSyslogService() {
+		return syslogService;
+	}
+	public void setSyslogService(SyslogService syslogService) {
+		this.syslogService = syslogService;
+	}
+	public RulerService getRulerService() {
+		return rulerService;
+	}
+	public void setRulerService(RulerService rulerService) {
+		this.rulerService = rulerService;
 	}
 
 

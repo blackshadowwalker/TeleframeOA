@@ -9,6 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<base target="main"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>管理页面</title>
 
@@ -142,15 +143,30 @@ H1 a {
 	width: 182px;
 	text-decoration: none;
 }
+.userFiled{
+	width:160px;
+	margin-left:-22px;
+}
 </style>
 </head>
 
 <body>
+
 <table width="100%" border="0" cellpadding="0" cellspacing="0" >
   <tr>
     <td width="182" valign="top">
     <div id="container">
-    
+    <h1 class=""><a href="javascript:void(0)">个人信息</a></h1>
+	<ul class="userFiled" >
+     	<img src="<s:property value="#session.user.userPhoto" />" style="width:150px;height:150px;" />
+        <center>
+	        <a href="UserAction?method=person" target="main">
+	        	<s:property value="#session.user.userName" />
+	        </a>
+	        (<s:property value="#session.user.userRoleName" />)
+       </center>
+     </ul>
+			            
     <s:iterator value="#session.rulerInfolist" id="lv1">
         <s:if test="level==1" >
 		     <h1 class="type"><a href="javascript:void(0)"><s:property value="rulerName" /></a></h1>
@@ -163,19 +179,14 @@ H1 a {
 		         <s:iterator value="#session.rulerInfolist" id="lv2">
 		         <s:if test="level==2 && #lv2.manager==#lv1.rulerid">
 			        <ul class="MM">
-			          <li><a href="<%=basePath %><s:property value="url"/>" target="<s:property value="target"/>">
+			          <li><a href="<s:property value="url"/>" target="<s:property value="target"/>">
 			          	<s:property  value="rulerName" /></a></li>
 			        </ul>
 			     </s:if>
 			     </s:iterator>
-		  		
-		  </s:if>
-		
-		 
 		  </div>
+		  </s:if>
 	   </s:iterator> 
-		   
-			  
 	      	
         <script type="text/javascript">
 		var contents = document.getElementsByClassName('content');

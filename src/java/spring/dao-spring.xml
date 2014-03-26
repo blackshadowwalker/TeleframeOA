@@ -23,10 +23,16 @@
 	</bean>
 	
 	<!-- 部门管理  唐梦岚-->
-	<bean id="DeptDao" class="com.dao.DeptDao" parent="BaseDao">
-	</bean>
-	
+	<bean id="DeptDao" class="com.dao.DeptDao" parent="BaseDao"></bean>
+
 	<bean id="UserDao" class="com.dao.UserDao" parent="BaseDao"></bean>
 	
+	<!-- written by karl -->
 	<bean id="FileDao" class="com.dao.FileDao" parent="BaseDao"></bean>
+	<bean id="ArticleDao" class="com.dao.ArticleDao" parent="BaseDao"></bean>
+	<bean id="CategoryDao" class="com.dao.CategoryDao" parent="BaseDao"></bean>
+	<bean id="SyslogDao" class="com.dao.SyslogDao" parent="BaseDao"></bean>
+	
+	
 </beans>
+

@@ -4,6 +4,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+	<context-param>
+		<param-name>IgnoreAction</param-name>
+		<param-value>LoginAction, UploadAction, CkeditorUpload, VehicleAction</param-value>
+	</context-param>
  
 	<!-- 初始化加载spring配置文件 -->
 	<context-param> 
@@ -20,6 +25,10 @@
 	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+		   <init-param>
+		    <param-name>struts.i18n.encoding</param-name>
+		    <param-value>UTF-8</param-value>
+		   </init-param>
 	</filter>
 
 	<filter-mapping>
@@ -30,7 +39,6 @@
 		<url-pattern>*.jsp</url-pattern>
 		<url-pattern>*.html</url-pattern> -->
 	</filter-mapping>
-	
 	<!-- 
 	<servlet>
 		<servlet-name>zip</servlet-name>
@@ -42,6 +50,11 @@
 		<url-pattern>*.zip</url-pattern>
 	</servlet-mapping>
 	 -->
+	 
+	 <listener>
+		<display-name>ContextListener</display-name>
+		<listener-class>com.listener.ContextListener</listener-class>
+	</listener> 
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

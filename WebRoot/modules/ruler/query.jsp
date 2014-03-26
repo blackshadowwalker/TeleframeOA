@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   	
 	<div >
-		<form id="opForm" name="opForm" method="post" action="<%= basePath%>/RulerAction?method=query">
+		<form method="post" action="<%= basePath%>/RulerAction?method=query">
 			<table id="table-data-outter" >
 				<tr>
 					<td>
@@ -107,7 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div id="div-message"></div>
 						
 					
-							<div id="treegrid1" class="mini-treegrid" style="width:900px;height:500px;"     
+							<div id="treegrid1" class="mini-treegrid" style="width:900px;height:350px;"     
 							   url="<%=basePath %>/RulerAction?method=listTree" ondrawcell="onDrawCell" showTreeIcon="true"  
 							    treeColumn="rulerName" idField="rulerid" parentField="manager" resultAsTree="false"
 							    allowResize="true" expandOnLoad="true" allowCellEdit="false" allowCellSelect="true"
