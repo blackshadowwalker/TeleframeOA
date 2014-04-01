@@ -6,12 +6,15 @@
 -->
 <hibernate-mapping>
     <class name="com.bean.UserInfo" table="user_info" catalog="ssh2">
-        <id name="userId" type="java.lang.Integer">
+    	<id name="userId" type="java.lang.Integer">
             <column name="user_id" />
             <generator class="native" />
         </id>
+         <property name="userCode" type="java.lang.String" update="false">
+            <column name="user_code" length="64" not-null="true" />
+        </property>
         <property name="userName" type="java.lang.String">
-            <column name="user_name" length="30" not-null="true" />
+            <column name="user_name" length="30"  />
         </property>
         <property name="userPasswd" type="java.lang.String">
             <column name="user_passwd" length="30" not-null="true" />

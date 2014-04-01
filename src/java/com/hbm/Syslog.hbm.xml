@@ -13,6 +13,9 @@
         <property name="userId" type="java.lang.Integer">
             <column name="user_id" />
         </property>
+        <property name="userCode" type="java.lang.String">
+            <column name="user_code" length="127" />
+        </property>
         <property name="ip" type="java.lang.String">
             <column name="ip" length="127" />
         </property>

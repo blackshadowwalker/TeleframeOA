@@ -14,6 +14,7 @@ public class UserInfo implements java.io.Serializable {
 	// Fields
 
 	private Integer userId;
+	private String userCode;
 	private String userName;
 	private String userPasswd;
 	private Integer userRole;
@@ -34,15 +35,16 @@ public class UserInfo implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public UserInfo(String userName, String userPasswd) {
-		this.userName = userName;
+	public UserInfo(String userCode, String userPasswd) {
+		this.userCode = userCode;
 		this.userPasswd = userPasswd;
 	}
 
 	/** full constructor */
-	public UserInfo(String userName, String userPasswd, Integer userRole,
+	public UserInfo(String userCode,  String userName, String userPasswd, Integer userRole,
 			Timestamp userBirth, String userPhoto, Integer userDepartment,
 			Timestamp lastUpdate, Integer status) {
+		this.userCode = userCode;
 		this.userName = userName;
 		this.userPasswd = userPasswd;
 		this.userRole = userRole;
@@ -185,6 +187,14 @@ public class UserInfo implements java.io.Serializable {
 
 	public void setIp(String ip) {
 		this.ip = ip;
+	}
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
 	}
 
 }

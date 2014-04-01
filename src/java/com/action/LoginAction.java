@@ -48,32 +48,23 @@ public class LoginAction extends BaseAction {
 		List<RulerRole> rulerRoleList = null;
 		List<RulerInfo> rulerInfolist = null;
 		 
-	    String ip = request.getHeader("x-forwarded-for");  
-	    if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-	        ip = request.getHeader("Proxy-Client-IP");  
-	    }  
-	    if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-	        ip = request.getHeader("WL-Proxy-Client-IP");  
-	    }  
-	    if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-	        ip = request.getRemoteAddr();  
-	    }  
+	    String ip = this.getIp();
 		
 	    if (user == null) {
 	    	System.out.println("来自 IP="+ip + " 的用户请求登录");
 			return LOGIN; // 浏览器输入 http://127.0.0.1/oa/LoginAction?method=login 返回空操作和空消息
 		}
 	    
-	    if(user.getUserName().trim().isEmpty()){
-	    	msg = "用户名不能为空";
+	    if(user.getUserCode()==null || user.getUserCode().trim().isEmpty()){
+	    	msg = "用户编号不能为空";
 	    	return Util.LOGIN;
 	    }
-	    if(user.getUserPasswd().trim().isEmpty()){
+	    if(user.getUserPasswd()==null || user.getUserPasswd().trim().isEmpty()){
 	    	msg = "密码不能为空";
 	    	return Util.LOGIN;
 	    }
 		
-		UserInfo userCheck = loginService.login(user,ip);
+		UserInfo userCheck = loginService.login(user, ip);
 		if (userCheck == null) {
 			msg = "用户名或密码错误";
 			System.out.println(msg);
@@ -88,18 +79,37 @@ public class LoginAction extends BaseAction {
 				System.out.println(msg);
 				return Util.LOGIN;
 			}
+			//获取所有权限
+			System.out.println("-----------获取所有权限----------------");
 			for(int i=0; i<rulerRoleList.size(); i++){
 				list.add(rulerRoleList.get(i).getRulerId());//ruler id
-//				System.out.println(rulerRoleList.get(i).getRulerId()+"="+rulerRoleList.get(i).getRulerWord());
+				System.out.println(rulerRoleList.get(i).getRulerId()+"="+rulerRoleList.get(i).getRulerWord());
 			}
 			rulerInfolist = (List<RulerInfo>) rulerService.queryRulerList(list);//根据权限ID(ruler id)获取对应的菜单
 			session.put("user", user);
 			session.put("rulerRoleList", rulerRoleList);//所有权限
 			session.put("rulerInfolist", rulerInfolist);//菜单
-//			for(int i=0; i<rulerInfolist.size(); i++)
-//				System.out.println(rulerInfolist.get(i).getRulerName()+"="+rulerInfolist.get(i).getUrl());
+			//获取所有显示的菜单
+			System.out.println("-----------获取所有显示的菜单----------------");
+			for(int i=0; i<rulerInfolist.size(); i++)
+				System.out.println(rulerInfolist.get(i).getRulerid()+": "+rulerInfolist.get(i).getRulerName()+"="+rulerInfolist.get(i).getUrl());
+			System.out.println("-----------END----------------");
 			return Util.SUCCESS;
 		}
+	}
+	
+	public String getIp(){
+		String ip = request.getHeader("x-forwarded-for");  
+	    if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+	        ip = request.getHeader("Proxy-Client-IP");  
+	    }  
+	    if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+	        ip = request.getHeader("WL-Proxy-Client-IP");  
+	    }  
+	    if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+	        ip = request.getRemoteAddr();  
+	    } 
+	    return ip;
 	}
 
 	LoginService loginService;

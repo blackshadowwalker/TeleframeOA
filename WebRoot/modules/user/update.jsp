@@ -71,10 +71,17 @@ String[] role=str.split("#")[1].split(";");
 								</td>
 							</tr>
 							<tr>
-								<td width="10%" class="field-title">用户名称:</td>
+								<td width="10%" class="field-title">用户编号:</td>
 								<td width="30%" class="field-content">
 									<input type="hidden" name="userInfo.userId" value="${userInfo.userId }" />
-									<input type="text"  value="${userInfo.userName }"  disabled/>
+									<input type="text"  value="${userInfo.userCode }"  disabled/>
+									(登录帐号)
+								</td>
+							</tr>
+							<tr>
+								<td width="10%" class="field-title">用户名称:</td>
+								<td width="30%" class="field-content">
+									<input type="text"  value="${userInfo.userName }"  />
 									<span class="requied" >*</span>
 									<span class=errorMessage >
 										<s:property value="errors['userInfo.userName'][0]" /> 

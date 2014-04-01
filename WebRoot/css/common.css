@@ -7,6 +7,14 @@ body {
 	vertical-align: middle;
 	margin-left:10px;
 }
+
+a.operate{
+	text-decoration:none;
+}
+a.operate img{
+	margin-left:10px;
+}
+
 .errorMessage{
 	color:#ff0000;
 }

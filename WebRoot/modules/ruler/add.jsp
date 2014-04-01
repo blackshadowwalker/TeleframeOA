@@ -78,6 +78,9 @@ System.out.println("pname="+request.getAttribute("pname"));
 									</select>
 									<span style="color:#f00">*</span>
 									<script>
+										if( $("input[name='rulerInfo.manager']").val()!="" ){
+											$("select[name='rulerInfo.level']").find("option[value='2']").attr("selected","selected");
+										}
 										function LevelChanged(obj){
 											if($(obj).val()==1)
 												$("select[name='rulerInfo.target']").find("option[value='_self']").attr("selected","selected");

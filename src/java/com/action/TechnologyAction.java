@@ -1,6 +1,6 @@
 /*
 * @author : karl
-* @creation : 2014-3-26 上午01:16:40
+* @creation : 2014-3-26 下午04:36:12
 * @description : 
 *
 */
@@ -13,7 +13,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import com.base.BaseAction;
 import com.bean.ArticleInfo;
 import com.bean.CategoryInfo;
 import com.opensymphony.xwork2.inject.Container;
@@ -23,9 +22,8 @@ import com.service.CategoryService;
 import com.service.RightService;
 import com.service.RulerService;
 import com.service.SyslogService;
-import com.util.Util;
 
-public class FinanceAction extends ArticleAction {
+public class TechnologyAction extends ArticleAction  {
 
 	/* (non-Javadoc)
 	 * @see com.action.ArticleAction#add()
@@ -186,5 +184,6 @@ public class FinanceAction extends ArticleAction {
 	public String view() throws Exception {
 		return super.view();
 	}
+
 
 }

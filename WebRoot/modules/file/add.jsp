@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td width="10%" class="field-title">文件:</td>
 									<td>
 										存储路径:
-										<input type="text" name="dir"  value="teleframe" /><br>
+										<input type="text" name="dir"  value="teleframe/行政" /><br>
 										<div id="uploadFiles">
 											<div style="width:500xp;" class="uploadFileClass">
 												<input name="file" style="width:75px;display:none;"  class="btn btn-info" type="file" onchange="filechanged(this);">

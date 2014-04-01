@@ -1,31 +1,20 @@
 /*
 * @author : karl
-* @creation : 2014-3-26 上午01:16:40
+* @creation : 2014-3-26 下午07:23:54
 * @description : 
 *
 */
 
 package com.action;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
 
-import com.base.BaseAction;
 import com.bean.ArticleInfo;
 import com.bean.CategoryInfo;
-import com.opensymphony.xwork2.inject.Container;
-import com.opensymphony.xwork2.util.ValueStack;
 import com.service.ArticleService;
 import com.service.CategoryService;
-import com.service.RightService;
-import com.service.RulerService;
-import com.service.SyslogService;
-import com.util.Util;
 
-public class FinanceAction extends ArticleAction {
+public class RegulationAction extends ArticleAction {
 
 	/* (non-Javadoc)
 	 * @see com.action.ArticleAction#add()

@@ -88,6 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<table id="table-view" cellpadding="0" cellspacing="1">
 							<tr class="row-header">
 								<td width="">头像</td>
+								<td ondblclick="return sortQuery('carNumber')" style="cursor:pointer;" >用户编号</td>
 								<td ondblclick="return sortQuery('carNumber')" style="cursor:pointer;" >用户名称</td>
 								<td ondblclick="return sortQuery('carName')" style="cursor:pointer;" >用户密码</td>
 								<td ondblclick="return sortQuery('carName')" style="cursor:pointer;" >用户角色</td>
@@ -109,6 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td align="center">
 										<img src="${l.userPhoto}" style="width:30;height:30px;" />
 									</td>
+									<td align="center"><s:property value="#l.userCode" /></td>
 									<td align="center"><s:property value="#l.userName" /></td>
 									<td align="center"><s:property value="#l.userPasswd" /></td>
 									<td align="center"><s:property value="#l.userRoleName" /></td>

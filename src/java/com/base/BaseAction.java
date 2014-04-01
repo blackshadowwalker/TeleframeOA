@@ -35,6 +35,7 @@ public abstract class BaseAction extends ActionSupport {
 	protected HttpServletResponse  response;
 	protected String method = null;
 	protected String msg="";
+	protected String logmsg = "";
 	protected Map<String, Object> session = null;
 	protected UserInfo user = null;
 	protected Integer	page = 0;
@@ -51,7 +52,7 @@ public abstract class BaseAction extends ActionSupport {
 	List<RulerRole> rulerRoleList = null;
 	List<RulerInfo> rulerInfolist = null;
 	String rightWord = null;
-	
+
 	protected Syslog syslog = new Syslog();
 	private Map<String, Integer> actionMap = null;
 
@@ -79,7 +80,7 @@ public abstract class BaseAction extends ActionSupport {
 		request.setAttribute("faile", "");
 		session = ActionContext.getContext().getSession();
 
-	//	this.setGoBackUrl(request.getHeader("Referer"));
+		//	this.setGoBackUrl(request.getHeader("Referer"));
 
 		user = (UserInfo) session.get("user");
 
@@ -98,11 +99,11 @@ public abstract class BaseAction extends ActionSupport {
 			if(actionMap.get(action)!=null)
 				return handle();
 		}
-		
+
 		//用户session失效，需要重新登录
 		if(user==null)
 			return LOGIN;
-		
+
 		this.setGoBackUrl(action);//设置页面返回按钮地址
 
 		//------- 下面的代码是检测用户是否拥有该操作权限和输出操作权限iudv----------
@@ -110,8 +111,9 @@ public abstract class BaseAction extends ActionSupport {
 		rulerRoleList = (List<RulerRole>) session.get("rulerRoleList");//所以权限
 
 		//检查权限和输出操作权限iudv
-		
+
 		syslog.setUser(user);
+
 		String checkRet = this.checkRights(action, method);
 		if(checkRet==Util.FAILE)
 		{
@@ -138,25 +140,42 @@ public abstract class BaseAction extends ActionSupport {
 		}catch(Exception e){
 			function = null;
 		}
+
+		RulerInfo rulerInfo = new RulerInfo();
+		rulerInfo.setUrl(action);
+		List<RulerInfo> rulerList = rulerService.query(rulerInfo);
+		if(rulerList!=null && rulerList.size()>0)
+			rulerInfo = rulerList.get(0);
+
 		if(function==null){
 			System.out.println("function==null  "+this+".handle()");
-			return handle();//action.method不存在，交给action去处理
+			String result = handle();//action.method不存在，交给action去处理
+			syslog.setContent("["+rulerInfo.getRulerName()+"]"+this.getLogmsg()+":"+this.getMsg()+",[rulerId="+rulerInfo.getRulerid()+",rulerName="+rulerInfo.getRulerName()+","+
+					","+this.getMethod()+","+action+"?method="+method+",url="+""+rulerInfo.getUrl()+"]");
+			syslogService.log(syslog);
+			return result;
 		}
-		
+
 		if(function.getModifiers() == Modifier.PUBLIC || function.getModifiers() == Modifier.PROTECTED){
 			if(function.getReturnType()==String.class){
 				System.out.println(function.getName()+".invoke("+this+")");
-				RulerInfo rulerInfo = new RulerInfo();
-				rulerInfo.setUrl(action);
-				List<RulerInfo> rulerList = rulerService.query(rulerInfo);
-				if(rulerList!=null && rulerList.size()>0)
-					rulerInfo = rulerList.get(0);
+				if(function.getName().endsWith("query")){
+					this.setLogmsg("查询");
+				}else if(function.getName().endsWith("delete")){
+					this.setLogmsg("删除");
+				}else if(function.getName().endsWith("add")){
+					this.setLogmsg("增加");
+				}else if(function.getName().endsWith("update")){
+					this.setLogmsg("修改");
+				}else if(function.getName().endsWith("view")){
+					this.setLogmsg("查看详情");
+				}
 				Object obj = function.invoke(this);
-//				syslog.setContent(this.getMsg()+","+obj+","+this.getMethod()+","+action+"?method="+method+","+function.getName()+".invoke("+this+")"+","+rulerInfo.toString());
-				syslog.setContent("rulerId="+rulerInfo.getRulerid()+",rulerName="+rulerInfo.getRulerName()+","+this.getMsg()+","+
-						obj+","+this.getMethod()+","+action+"?method="+method+","+function.getName()+".invoke("+this+")"+","+
-						",url="+""+rulerInfo.getUrl());
-				syslogService.log(syslog);
+				//syslog.setContent(this.getMsg()+","+obj+","+this.getMethod()+","+action+"?method="+method+","+function.getName()+".invoke("+this+")"+","+rulerInfo.toString());
+				syslog.setContent("["+rulerInfo.getRulerName()+"]"+this.getLogmsg()+":"+this.getMsg()+",[rulerId="+rulerInfo.getRulerid()+",rulerName="+rulerInfo.getRulerName()+","+
+						","+this.getMethod()+","+action+"?method="+method+",url="+""+rulerInfo.getUrl()+"]");
+				if( ! ( rulerInfo.getUrl().startsWith("SyslogAction") || rulerInfo.getUrl().startsWith("/SyslogAction")) )
+					syslogService.log(syslog);
 				return  (String) obj;
 			}else{
 				function.invoke(this.getClass());
@@ -171,8 +190,10 @@ public abstract class BaseAction extends ActionSupport {
 		//根据actionName获取actionID
 		int actionID = 0;
 		for(int i=0; i<rulerInfolist.size(); i++){
-			if(rulerInfolist.get(i).getUrl().startsWith("/"+actionName))
+			if(rulerInfolist.get(i).getUrl().startsWith(actionName) || rulerInfolist.get(i).getUrl().startsWith("/"+actionName)){
 				actionID = rulerInfolist.get(i).getRulerid();
+				break;
+			}
 		}
 		if(actionID <1 )
 			return null;
@@ -214,7 +235,7 @@ public abstract class BaseAction extends ActionSupport {
 		if(methodName==null || methodName.endsWith("query")){ // 菜单权限
 			for(int i=0; i<rulerInfolist.size(); i++){
 				//判断权限是否运行执行(存在)此action
-				if(rulerInfolist.get(i).getUrl().startsWith("/"+actionName)){
+				if(rulerInfolist.get(i).getUrl().startsWith(actionName) || rulerInfolist.get(i).getUrl().startsWith("/"+actionName)){
 					request.setAttribute("u", rightWord.indexOf("u"));
 					request.setAttribute("v", rightWord.indexOf("v"));
 					request.setAttribute("i", rightWord.indexOf("i"));
@@ -226,22 +247,23 @@ public abstract class BaseAction extends ActionSupport {
 
 			return Util.FAILE;
 		}
+		else{
+			//对于非query操作(update/delete/add)进行检查是否音乐次全新
+			char ch = 'v';
+			if(methodName.endsWith("beforeAdd") || methodName.endsWith("add"))
+				ch = 'i';
+			else if(methodName.endsWith("beforeUpdate") || methodName.endsWith("update") )
+				ch = 'u';
+			else  if(methodName.endsWith("delete") )
+				ch = 'd';
+			else  if(methodName.endsWith("view") )
+				ch = 'v';
 
-		//对于非query操作(update/delete/add)进行检查是否音乐次全新
-		char ch = 'v';
-		if(methodName.endsWith("beforeAdd") || methodName.endsWith("add"))
-			ch = 'i';
-		else if(methodName.endsWith("beforeUpdate") || methodName.endsWith("update") )
-			ch = 'u';
-		else  if(methodName.endsWith("delete") )
-			ch = 'd';
-		else  if(methodName.endsWith("view") )
-			ch = 'v';
-
-		if(rightWord.indexOf(ch)>=0)
-			return Util.SUCCESS;
-		else
-			return Util.FAILE;
+			if(rightWord.indexOf(ch)>=0)
+				return Util.SUCCESS;
+			else
+				return Util.FAILE;
+		}
 	}
 
 
@@ -346,6 +368,15 @@ public abstract class BaseAction extends ActionSupport {
 	}
 	public void setRulerService(RulerService rulerService) {
 		this.rulerService = rulerService;
+	}
+	public String getLogmsg() {
+		return logmsg;
+	}
+	public void addLogmsg(String logmsg) {
+		this.logmsg += logmsg;
+	}
+	public void setLogmsg(String logmsg) {
+		this.logmsg = logmsg;
 	}
 
 

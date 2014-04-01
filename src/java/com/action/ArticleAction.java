@@ -68,8 +68,10 @@ public class ArticleAction extends BaseAction {
 
 		String result = "";
 		if(articleInfo.getId()==null || articleInfo.getId()<1){
+			this.setLogmsg("添加文章 ["+articleInfo.getTitle()+"]");
 			result = articleService.add(articleInfo);
 		}else{
+			this.setLogmsg("修改文章 ["+articleInfo.getTitle()+"]");
 			result = articleService.update(articleInfo);
 		}
 
@@ -132,6 +134,7 @@ public class ArticleAction extends BaseAction {
 
 	@Override
 	public String query() throws Exception {
+		this.setLogmsg("查询");
 		if(articleInfo!=null)
 			request.setAttribute("category", articleInfo.getCategory());
 		list = articleService.query(articleInfo);

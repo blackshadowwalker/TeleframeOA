@@ -46,7 +46,7 @@ public class RulerDao extends BaseDao {
 	public List<RulerInfo> rulerList(List<Integer> list2){
 		//System.out.println("list2="+list2);
 		Session session =this.getSession();
-		Query query = session.createQuery(" from RulerInfo p where p.rulerid in (:list2) and p.status=1 ");
+		Query query = session.createQuery(" from RulerInfo p where p.rulerid in (:list2) and p.status=1 order by id ");
 		query.setParameterList("list2", list2);
 		List<RulerInfo> list = (List<RulerInfo>)query.list();
 		
@@ -87,7 +87,7 @@ public class RulerDao extends BaseDao {
 	public List<RulerRole> rulerRole(int roleid){
 		List< RulerRole> list = null;
 		Session session =this.getSession();
-		Query query = session.createQuery(" from RulerRole r where r.roleId=:roleId  and r.status=1");
+		Query query = session.createQuery(" from RulerRole r where r.roleId=:roleId  and r.status=1 order by id");
 		query.setInteger("roleId", roleid);
 		list=(List< RulerRole>)query.list();
 		if(list!=null && list.size()>0){

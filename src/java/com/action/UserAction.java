@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import net.sf.json.JSONObject;
+
 import org.apache.struts2.ServletActionContext;
 
 import com.base.BaseAction;
@@ -51,15 +53,23 @@ public class UserAction extends BaseAction {
 					userInfo.setUserPasswd(userTemp.getUserPasswd());
 				}
 			}
-			if(userTemp.getUserBirth()!=null)
-				userInfo.setUserBirth(userTemp.getUserBirth());
+			if(userTemp.getUserName()!=null && !userTemp.getUserName().trim().isEmpty())
+				userInfo.setUserName(userTemp.getUserName());//用户名
+			if(userTemp.getUserBirth()!=null )
+				userInfo.setUserBirth(userTemp.getUserBirth());//用户生日
 			if(userTemp.getUserPhoto()!=null && userTemp.getUserPhoto().trim().length()>3)
-				userInfo.setUserPhoto(userTemp.getUserPhoto());
+				userInfo.setUserPhoto(userTemp.getUserPhoto());//用户头像
 			String result = userService.update(userInfo);
-			if(result!=null && result.endsWith(Util.SUCCESS))
+			if(result!=null && result.endsWith(Util.SUCCESS)){
 				this.setMsg("修改成功");
-			else
+				this.setLogmsg("修改个人信息["+ userInfo.getUserCode()+"="+userInfo.getUserName()+"]成功");
+				this.request.setAttribute("error", 1);
+				user = userInfo;
+				session.put("user", user);
+			}else{
 				this.setMsg("修改失败 ");
+				this.setLogmsg("修改个人信息["+ userInfo.getUserCode()+"="+userInfo.getUserName()+"]失败");
+			}
 			return Util.PERSON;
 		}
 	}
@@ -67,7 +77,7 @@ public class UserAction extends BaseAction {
 	public String delete() throws Exception {
 		userInfo = userService.get(id);
 		if(userInfo!=null && userService.delete(id)==Util.SUCCESS)
-			this.setMsg("删除用户["+userInfo.getUserName()+"@id="+id+"]成功");
+			this.setLogmsg("删除用户["+ userInfo.getUserCode()+"="+userInfo.getUserName()+"]成功");
 		userInfo = null;
 		return query();
 	}
@@ -79,35 +89,22 @@ public class UserAction extends BaseAction {
 		boolean bChangePassword =  ! userInfo.getUserPasswd().trim().isEmpty();
 		if( !bChangePassword)
 			userInfo.setUserPasswd("123456");
-		userInfo.setUserName("123456");
 		if( !this.validate(null))
 			return Util.UPDATE;
 		if( !bChangePassword)
 			userInfo.setUserPasswd("");
-		userInfo.setUserName(null);
 
-		/*
-		//保存用户头像
-		if(photoFile!=null){
-			String md5  = EncoderHandler.FileMD5(photoFile);
-			String sha1 = EncoderHandler.FileSHA1(photoFile);
-			FileInfo fileInfo = fileService.query(md5, sha1);
-			fileInfo!=null){
-				userInfo.setUserPhoto(fileInfo.getPath());
-			}else{
-
-			}
-
-		}*/
-
-		System.out.println("用户头像:"+userInfo.getUserPhoto());
+		this.setLogmsg("修改用户信息：["+ userInfo.getUserCode()+"="+userInfo.getUserName()+"]");
+		
 		userInfo.setUserId(id);
 		if(userInfo.getUserId()==null || userInfo.getUserId()<0)
 			return Util.ERROR;
+		
 		String result = userService.update(userInfo);
 		if(result.endsWith(Util.SUCCESS)){
 			msg = "修改成功";
 			userInfo=null;
+			this.addLogmsg("->["+JSONObject.fromObject(userInfo)+"]"+this.getMsg());
 			return query();
 		}else{
 			msg = "修改失败";
@@ -156,6 +153,11 @@ public class UserAction extends BaseAction {
 		Pattern p = Pattern.compile(regx, Pattern.CASE_INSENSITIVE);
 		//java正则表达式大全   : http://jingyan.baidu.com/article/54b6b9c038b84f2d583b47f7.html
 
+		//验证用户编号
+		if(userInfo.getUserCode()==null || userInfo.getUserCode().trim().isEmpty()){
+			this.addFieldError("userInfo.userCode", "用户编号不能为空");
+			ret = false;
+		}
 		//验证用户名
 		if(userInfo.getUserName()==null || userInfo.getUserName().trim().isEmpty()){
 			this.addFieldError("userInfo.userName", "用户名不能为空");
@@ -202,6 +204,7 @@ public class UserAction extends BaseAction {
 			userInfo.setUserName("");
 		}else if(result.endsWith(Util.EXIST)){
 			msg = "添加失败，用户已存在";
+			this.addFieldError("userInfo.userCode", msg);
 		}else
 			msg = "添加失败";
 		return Util.ADD;

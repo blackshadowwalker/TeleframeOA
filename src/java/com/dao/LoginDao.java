@@ -18,8 +18,8 @@ public class LoginDao extends BaseDao {
 		
 		Session session = this.getSession();
 		UserLogin userLogin = new UserLogin();
-		Query query = session.createQuery("from UserInfo u where u.userName=:name and u.userPasswd=:pwd");
-		query.setParameter("name", user.getUserName());
+		Query query = session.createQuery("from UserInfo u where u.userCode=:code and u.userPasswd=:pwd");
+		query.setParameter("code", user.getUserCode());
 		query.setParameter("pwd", EncoderHandler.MD5(user.getUserPasswd()));
 		
 		UserInfo user2= (UserInfo)query.uniqueResult();

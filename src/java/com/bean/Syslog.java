@@ -11,6 +11,7 @@ public class Syslog  implements java.io.Serializable {
 
 	private Integer id;
 	private Integer userId;
+	private String userCode;
 	private String ip;
 	private String userName;
 	private String content;
@@ -23,8 +24,9 @@ public class Syslog  implements java.io.Serializable {
 		if(user==null)
 			return ;
 		this.setUserId(user.getUserId());
-		this.setIp(user.getIp());
+		this.setUserCode(user.getUserCode());
 		this.setUserName(user.getUserName());
+		this.setIp(user.getIp());
 		this.user = user;
 	}
 
@@ -104,6 +106,14 @@ public class Syslog  implements java.io.Serializable {
 
 	public UserInfo getUser() {
 		return user;
+	}
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
 	}
 
 

@@ -23,9 +23,7 @@ public class RulerAction extends BaseAction {
 	@Override
 	public String handle() throws Exception {
 		
-		System.out.println(this+".handle()");
-		if(method==null || method.equals("query")){
-			System.out.println("ruler action query");
+		if(method==null){
 			return query();
 		}
 		return Util.NONE;
@@ -89,6 +87,7 @@ public class RulerAction extends BaseAction {
 	}
  
 	public String query() throws Exception {
+		this.setLogmsg("查询菜单");
 		list = rulerService.query(rulerInfo);
 		return Util.LIST;
 	}

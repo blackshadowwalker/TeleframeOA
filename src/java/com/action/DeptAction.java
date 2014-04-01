@@ -10,6 +10,7 @@ import com.service.DeptService;
 import com.util.Util;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 
 /**
@@ -32,7 +33,8 @@ public class DeptAction extends BaseAction {
 	public String handle() throws Exception {
 		StackTraceElement traceElement = ((new Exception()).getStackTrace())[1]; 
 		System.out.println(this.getClass().getName()+"."+traceElement.getMethodName()+":"+traceElement.getLineNumber());
-		if(method==null || method.equals("query")){
+		
+		if(method==null) {
 			return query();
 		}else{
 			//reflect
@@ -57,17 +59,17 @@ public class DeptAction extends BaseAction {
 		String res=deptService.add(deptInfo);
 		this.pid = deptInfo.getManager();
 		this.pname = deptInfo.getManagerName();
+		this.setLogmsg("添加部门["+JSONObject.fromObject(deptInfo)+"]");
 		if(res.equals(Util.SUCCESS)){
 			msg =  "添加成功" ;
 		}else{
 			msg =  "已经存在" ;
 		}
-		System.out.println(msg);
+		this.addLogmsg(this.msg);
 		return Util.ADD;
 	}
 	@Override
 	public String beforeAdd() throws Exception {
-		
 		return Util.ADD;
 	}
 	@Override
@@ -96,9 +98,11 @@ public class DeptAction extends BaseAction {
 		if(id==null)
 			id = deptInfo.getDeptId();
 		System.out.println("update @ id="+id);
+		this.setLogmsg("修改部门["+JSONObject.fromObject(deptInfo)+"]");
 		String str=deptService.deptUpdate(id, deptInfo);
 		if(str.equals(Util.SUCCESS)){
 			msg = "修改成功";
+			this.setLogmsg(msg);
 			return query();
 		}else if(str.equals("managerError")){
 			request.setAttribute("managerError", "managerError");
@@ -113,10 +117,13 @@ public class DeptAction extends BaseAction {
 
 	@Override
 	public String delete() throws Exception {
+		deptInfo = deptService.get(id);
+		if(deptInfo==null)
+			return Util.ERROR;
 		boolean flag=deptService.delete(id);
-
 		if(flag==true){
 			msg = "删除成功";
+			this.setLogmsg("删除部门["+JSONObject.fromObject(deptInfo)+"]"+msg);
 			return query();
 		}if(flag==false){
 			request.setAttribute("HaveUsers","HaveUsers");
@@ -137,6 +144,7 @@ public class DeptAction extends BaseAction {
 
 	private void listTree(){
 
+		this.setLogmsg("查询部门信息");
 		list = deptService.getList();
 		JSONArray json = JSONArray.fromObject(list);
 		String jsonstr=json.toString();

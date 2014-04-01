@@ -53,12 +53,12 @@
 				<tr>
 					<td>
 						<table id="table-data-inner" cellspacing="1">
-							<tr id="tr-title"><td colspan="2">用户修改  
+							<tr id="tr-title"><td colspan="2">修改个人信息
 								<span class=errorMessage style="margin-left:20px;" >${msg}</span>
 								</td>
 							</tr>
 							<tr >
-								<td width="10%" class="field-title">用户头像:</td>
+								<td width="10%" class="field-title">个人头像:</td>
 								<td >
 									<input type="hidden" name="userInfo.userPhoto" value="${userInfo.userPhoto}" style="width:200px;"/>
 									<img src="${userInfo.userPhoto }" for="userInfo.userPhoto" alt="用户头像"  
@@ -68,9 +68,15 @@
 								</td>
 							</tr>
 							<tr>
-								<td width="10%" class="field-title">用户名称:</td>
+								<td width="10%" class="field-title">编号:</td>
 								<td width="30%" class="field-content">
-									<input type="text"  value="${userInfo.userName }"  disabled/>
+									<input type="text"  value="${userInfo.userCode }"  disabled />
+								</td>
+							</tr>
+							<tr>
+								<td width="10%" class="field-title">名称:</td>
+								<td width="30%" class="field-content">
+									<input type="text" name="userInfo.userName"  value="${userInfo.userName }"  />
 									<span class="requied" >*</span>
 									<span class=errorMessage >
 										<s:property value="errors['userInfo.userName'][0]" /> 
@@ -79,7 +85,7 @@
 									</td>
 							</tr>
 							<tr>
-								<td width="10%" class="field-title">用户密码:</td>
+								<td width="10%" class="field-title">密码:</td>
 								<td width="30%" class="field-content">
 									<input type="password"  name="userInfo.userPasswd" value="" />
 									<span class="requied" >*</span>
@@ -89,7 +95,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td width="10%" class="field-title">用户生日:  </td>
+								<td width="10%" class="field-title">生日:  </td>
 								<td width="30%" class="field-content">
 								
 								<input type="text" name="userInfo.userBirthString" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" 
@@ -98,21 +104,21 @@
 								</td>
 							</tr>
 							<tr>
-								<td width="10%" class="field-title">用户角色:</td>
+								<td width="10%" class="field-title">角色:</td>
 								<td width="30%" class="field-content">
 									${userInfo.userRoleName }
 								</td>
 							</tr>
 							<tr>
-								<td width="10%" class="field-title">用户部门:</td>
+								<td width="10%" class="field-title">部门:</td>
 								<td width="30%" class="field-content">
 									${userInfo.userDepartmentName }
 								</td>
 							</tr>
 							<tr>
 								<td colspan="2" >
-									<input type="button" class="btns_mouseout" value="修改" onclick="sub();" />
-									<input type="button" class="btns_mouseout" value="取消" onclick="javascript:history.back();" />
+									<input type="button" class="button" value="修改" onclick="sub();" />
+									<input type="button" class="button" value="取消" onclick="javascript:history.back();" />
 								</td>
 							</tr>
 						</table>		
@@ -135,6 +141,13 @@
   <script type="text/javascript">
   		$("#userRole").val("${userInfo.userRole}");
   		$("#userDept").val("${userInfo.userDepartment}");
+  		
+  		var error = "${error}";
+  		if(error=="1")
+  		{
+  			window.parent.leftFrame.location.reload();
+  			window.parent.topFrame.location.reload();
+  		}	
   		
   		function uploadPhoto(obj){
   			$(obj).parent().submit();

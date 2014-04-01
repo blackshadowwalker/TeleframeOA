@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-  <title>用户登录</title>
+  <title><s:property value="#application.config.title" />用户登录</title>
   
   	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1";/>
@@ -93,7 +93,7 @@ tr{
 			<img src="images/logo.png"  width=70 height=70/>
 		</div>
 		<div class=titlebar style="position: relative; left:0px; width:100%; height:50px;">
-			<p class=titlelabel  >  OA  </p>
+			<p class=titlelabel  > <s:property value="#application.config.title" /> </p>
 		</div>
 		<br/>
 		<form action="LoginAction?method=login"  method="post" target="_parent">
@@ -102,7 +102,7 @@ tr{
 					  <tr>
 						<td colspan="2">
 							<span class=rightLabel>用户名:</span>
-							<input type="text" name="user.userName" id="i_username" value="<s:property value="user.userName" />" style="width:180px; background:none;"  onKeyDown="javascript:if (event.keyCode==13) event.keyCode=9;" />
+							<input type="text" name="user.userCode" id="i_username" value="<s:property value="user.userCode" />" style="width:180px; background:none;"  onKeyDown="javascript:if (event.keyCode==13) event.keyCode=9;" />
 						</td>
 					  </tr>
 					  <tr>

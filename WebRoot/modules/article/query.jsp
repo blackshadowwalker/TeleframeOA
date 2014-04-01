@@ -32,11 +32,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 	<script type="text/javascript">
 		function add(){
-			location.href="<%= basePath%>/ArticleAction?method=beforeAdd&articleInfo.category=${category}";
+			location.href="<%= basePath%>/${action}?method=beforeAdd&articleInfo.category=${category}";
 		}
 		function del(id){
 			if(confirm("确定删除吗？"))
-			location.href="<%= basePath%>/ArticleAction?method=delete&id="+id;
+			location.href="<%= basePath%>/${action}?method=delete&id="+id;
 		}
 	</script>
 
@@ -45,14 +45,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   	
 	<div>
-		<form method="post" action="<%= basePath%>/ArticleAction?method=query">
+		<form method="post" action="<%= basePath%>/${action}?method=query&articleInfo.category=${category}">
 			<table id="table-data-outter">
 				<tr>
 					<td>
 						<table id="table-data-inner" cellspacing="0">
 							<tr id="tr-menu-path">
 								<td colspan="2" nowrap="nowrap">
-									<fieldset id="f-menu-path">当前位置:&nbsp;行政管理   &gt; 行政管理</fieldset>
+									<fieldset id="f-menu-path">当前位置:&nbsp; &gt; 文章管理</fieldset>
 									<fieldset id="f-condition-display">
 										<img src="images/main/display_on.gif" onclick="displayCondition(this,'tr-menu-path')" 
 											align="bottom" width="17" height="15" alt="隐藏查询条件" />
@@ -113,7 +113,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td align="center"><s:date name="#l.lastUpdate" format="yyyy-MM-dd hh:mm:ss" /></td>
 									<td align="center"><s:date name="#l.ctTime" format="yyyy-MM-dd hh:mm:ss" /></td>
 									<td align="center">
-	                                   	<s:if test="#request.u>=0"><a href="ArticleAction?method=beforeUpdate&id=${l.id}"><img src="images/button/pen.png" title="修改" border="0" style="cursor:pointer "></img></a></s:if>	
+	                                   	<s:if test="#request.u>=0"><a href="${action}?method=beforeUpdate&id=${l.id}"><img src="images/button/pen.png" title="修改" border="0" style="cursor:pointer "></img></a></s:if>	
 										<s:if test="#request.d>=0"><a onclick="javaScript:del(<s:property value='#l.id' />);"><img src="images/button/delete.png" title="删除" style="cursor:pointer "></img></a></s:if>
 	                                </td>
 	                            </tr>

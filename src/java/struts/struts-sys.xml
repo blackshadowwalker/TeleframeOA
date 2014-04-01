@@ -92,6 +92,22 @@
 			<result name="view">/modules/article/view.jsp</result>
 			<result name="edit">/modules/article/edit.jsp</result>
 		</action>
+		<action name="TechnologyAction" class="TechnologyAction">
+			<result name="list">/modules/article/query.jsp</result>
+			<result name="view">/modules/article/view.jsp</result>
+			<result name="edit">/modules/article/edit.jsp</result>
+		</action>
+		<action name="RegulationAction" class="RegulationAction">
+			<result name="list">/modules/article/query.jsp</result>
+			<result name="view">/modules/article/view.jsp</result>
+			<result name="edit">/modules/article/edit.jsp</result>
+		</action>
+		
+		<action name="SyslogAction" class="SyslogAction">
+			<result name="success">/modules/syslog/query.jsp</result>
+			<result name="list">/modules/syslog/query.jsp</result>
+			<result name="view">/modules/syslog/view.jsp</result>
+		</action>
 
 	</package>
 </struts>

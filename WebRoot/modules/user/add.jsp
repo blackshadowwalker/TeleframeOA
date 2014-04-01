@@ -76,7 +76,17 @@ String[] role=str.split("#")[1].split(";");
 									
 								</td>
 							</tr>
-							
+							<tr>
+								<td width="10%" class="field-title">用户编号:  </td>
+								<td width="30%" class="field-content">
+									<input type="text" placeholder="用户编号" name="userInfo.userCode" maxlength=16 value="${userInfo.userCode }" />
+									<span class="requied" >*(登录帐号)</span>
+									<span class=errorMessage >
+										<s:property value="errors['userInfo.userCode'][0]" /> 
+									</span>
+													
+								</td>
+							</tr>
 							<tr>
 								<td width="10%" class="field-title">用户名称:  </td>
 								<td width="30%" class="field-content">

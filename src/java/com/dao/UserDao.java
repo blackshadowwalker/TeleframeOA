@@ -26,7 +26,7 @@ public class UserDao extends BaseDao{
 		if(id==null)
 			return null;
 		Session session = getSession();
-		String hql =" select u.userId, u.userName, u.userPasswd, u.userRole, (select r.roleName from RoleInfo r where r.roleId=u.userRole), u.userBirth, " +
+		String hql =" select u.userId, u.userCode, u.userName, u.userPasswd, u.userRole, (select r.roleName from RoleInfo r where r.roleId=u.userRole), u.userBirth, " +
 			"u.userDepartment, (select deptName from DeptInfo d where d.deptId=u.userDepartment), u.lastUpdate, u.userPhoto, u.status " +
 			"from UserInfo u where u.userId=:userId and u.status=1";
 
@@ -41,6 +41,7 @@ public class UserDao extends BaseDao{
 			user = new UserInfo();
 			Object[] object = (Object[])list.get(0);
 			user.setUserId((Integer)object[k++]);
+			user.setUserCode((String)object[k++]);
 			user.setUserName((String)object[k++]);
 			user.setUserPasswd((String)object[k++]);
 			user.setUserRole((Integer)object[k++]);
@@ -70,9 +71,11 @@ public class UserDao extends BaseDao{
 	@SuppressWarnings("unchecked")
 	public List<UserInfo> query(UserInfo userInfo) throws Exception{
 		Session session = this.getSession();
-//		String hql="select u.userId,u.userName,u.userPasswd,r.roleName,u.userBirth,d.deptName,u.lastUpdate from UserInfo u,RoleInfo r,DeptInfo d " +
+		
+//		String hql="select u.userId, u.userCode, u.userName,u.userPasswd,r.roleName,u.userBirth,d.deptName,u.lastUpdate from UserInfo u,RoleInfo r,DeptInfo d " +
 //				"where (1=1 or u.userRole=r.roleId or u.userDepartment=d.deptId) and u.status=1";
-		String hql =" select u.userId, u.userName, u.userPasswd, (select r.roleName from RoleInfo r where r.roleId=u.userRole), u.userBirth, " +
+		
+		String hql =" select u.userId, u.userCode, u.userName, u.userPasswd, (select r.roleName from RoleInfo r where r.roleId=u.userRole), u.userBirth, " +
 				"(select deptName from DeptInfo d where d.deptId=u.userDepartment), u.lastUpdate, u.userPhoto from UserInfo u where u.status=1";
 		if(userInfo!=null && userInfo.getUserName()!=null && !userInfo.getUserName().equals("")){
 			System.out.println(userInfo.getUserName());
@@ -83,16 +86,18 @@ public class UserDao extends BaseDao{
 		UserInfo user;
 		for(int i=0;i<list.size();i++){
 			user = new UserInfo();
+			int k = 0;
 			Object[] object = (Object[])list.get(i);
-			user.setUserId((Integer)object[0]);
-			user.setUserName((String)object[1]);
-			user.setUserPasswd((String)object[2]);
+			user.setUserId((Integer)object[k++]);
+			user.setUserCode((String)object[k++]);
+			user.setUserName((String)object[k++]);
+			user.setUserPasswd((String)object[k++]);
 			user.setUserPasswd("******");
-			user.setUserRoleName((String)object[3]);
-			user.setUserBirth((Timestamp)object[4]);
-			user.setUserDepartmentName((String)object[5]);
-			user.setLastUpdate((Timestamp)object[6]);
-			user.setUserPhoto((String)object[7]);
+			user.setUserRoleName((String)object[k++]);
+			user.setUserBirth((Timestamp)object[k++]);
+			user.setUserDepartmentName((String)object[k++]);
+			user.setLastUpdate((Timestamp)object[k++]);
+			user.setUserPhoto((String)object[k++]);
 			list2.add(user);
 		}
 		return list2;
@@ -119,8 +124,8 @@ public class UserDao extends BaseDao{
 	public String add(UserInfo userInfo) throws Exception{
 		Session session = getSession();
 		
-		Query query =session.createQuery("from UserInfo where userName=:userName");
-		query.setString("userName", userInfo.getUserName() );
+		Query query =session.createQuery("from UserInfo where userCode=:userCode");
+		query.setString("userCode", userInfo.getUserCode() );
 		List<UserInfo> list = (List<UserInfo>) query.list();
 		if(list!=null && list.size()>0)
 			return Util.EXIST;
@@ -153,8 +158,7 @@ public class UserDao extends BaseDao{
 			userInfo.setUserPasswd(EncoderHandler.MD5(userInfo.getUserPasswd()));//修改密码
 		else
 			userInfo.setUserPasswd(user.getUserPasswd());//不修改密码
-		if(userInfo.getUserName()==null || userInfo.getUserName().isEmpty())
-			userInfo.setUserName(user.getUserName());
+		
 		session.clear();
 		session.update(userInfo);
 		return Util.SUCCESS;

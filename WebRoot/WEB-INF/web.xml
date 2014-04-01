@@ -6,6 +6,11 @@
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	
 	<context-param>
+		<param-name>title</param-name>
+		<param-value>OA办公系统</param-value>
+	</context-param>
+	
+	<context-param>
 		<param-name>IgnoreAction</param-name>
 		<param-value>LoginAction, UploadAction, CkeditorUpload, VehicleAction</param-value>
 	</context-param>

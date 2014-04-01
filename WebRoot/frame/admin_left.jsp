@@ -9,13 +9,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<base target="main"/>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>管理页面</title>
+	<base target="main"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>管理页面</title>
 
-<script src="js/prototype.lite.js" type="text/javascript"></script>
-<script src="js/moo.fx.js" type="text/javascript"></script>
-<script src="js/moo.fx.pack.js" type="text/javascript"></script>
+	<script src="js/prototype.lite.js" type="text/javascript"></script>
+	<script src="js/moo.fx.js" type="text/javascript"></script>
+	<script src="js/moo.fx.pack.js" type="text/javascript"></script>
 <style>
 body {
 	font:12px Arial, Helvetica, sans-serif;
@@ -160,7 +160,7 @@ H1 a {
 	<ul class="userFiled" >
      	<img src="<s:property value="#session.user.userPhoto" />" style="width:150px;height:150px;" />
         <center>
-	        <a href="UserAction?method=person" target="main">
+	        <a href="<%=path %>/UserAction?method=person" target="main">
 	        	<s:property value="#session.user.userName" />
 	        </a>
 	        (<s:property value="#session.user.userRoleName" />)
@@ -179,7 +179,7 @@ H1 a {
 		         <s:iterator value="#session.rulerInfolist" id="lv2">
 		         <s:if test="level==2 && #lv2.manager==#lv1.rulerid">
 			        <ul class="MM">
-			          <li><a href="<s:property value="url"/>" target="<s:property value="target"/>">
+			          <li><a href="<%=path %>/<s:property value="url"/>" target="<s:property value="target"/>">
 			          	<s:property  value="rulerName" /></a></li>
 			        </ul>
 			     </s:if>

@@ -92,16 +92,30 @@
 	 </bean>
 
 	 <bean name="SyslogAction" class="com.action.SyslogAction" scope="prototype">
-	 	<property name="syslogService" ref="SyslogService" />
     	<property name="rulerService" ref="RulerService" />
+	 	<property name="syslogService" ref="SyslogService" />
 	 </bean>
 	 
 	 <bean name="FinanceAction" class="com.action.FinanceAction" scope="prototype">
 	 	<property name="articleService" ref="ArticleService" />
 	 	<property name="categoryService" ref="CategoryService" />
 	 	<property name="rightService" ref="RightService" />
-	 	<property name="syslogService" ref="SyslogService" />
     	<property name="rulerService" ref="RulerService" />
+	 	<property name="syslogService" ref="SyslogService" />
+	 </bean>
+	 <bean name="TechnologyAction" class="com.action.TechnologyAction" scope="prototype">
+	 	<property name="articleService" ref="ArticleService" />
+	 	<property name="categoryService" ref="CategoryService" />
+	 	<property name="rightService" ref="RightService" />
+    	<property name="rulerService" ref="RulerService" />
+	 	<property name="syslogService" ref="SyslogService" />
+	 </bean>
+	 <bean name="RegulationAction" class="com.action.RegulationAction" scope="prototype">
+	 	<property name="articleService" ref="ArticleService" />
+	 	<property name="categoryService" ref="CategoryService" />
+	 	<property name="rightService" ref="RightService" />
+    	<property name="rulerService" ref="RulerService" />
+	 	<property name="syslogService" ref="SyslogService" />
 	 </bean>
 	 
 	 
