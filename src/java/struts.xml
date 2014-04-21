@@ -25,6 +25,6 @@
     </package> 
   	<!-- ========== include struts XML  ================================== -->
 
-	<include file="struts/struts-sys.xml" />
+	<include file="struts/struts-*.xml" />
 	
 </struts>

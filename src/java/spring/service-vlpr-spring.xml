@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<!-- ======== Vlpr SERVICE bean配置 ================= -->
+	
+	<!-- 设备管理 -->
+	<bean id="DeviceService" class="com.service.impl.DeviceServiceImpl">
+		<property name="deviceDao" ref="DeviceDao"></property>
+	</bean>
+	
+</beans>

@@ -44,6 +44,7 @@ public class ContextListener implements ServletContextListener {
 			actionMap.put(acs[i].trim(), 1);
 		}
 		sc.setAttribute("actionMap", actionMap);
+		
 
 		/*
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("../applicationContext.xml");  

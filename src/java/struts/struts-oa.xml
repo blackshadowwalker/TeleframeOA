@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- Struts 2的Action必须放在指定的包空间下定义 -->
+	<package name="oa-action" extends="common">
+
+		<!-- 财务文章管理 -->
+		<action name="FinanceAction" class="FinanceAction">
+			<result name="list">/modules/article/query.jsp</result>
+			<result name="view">/modules/article/view.jsp</result>
+			<result name="edit">/modules/article/edit.jsp</result>
+		</action>
+		<!-- 技术文章管理 -->
+		<action name="TechnologyAction" class="TechnologyAction">
+			<result name="list">/modules/article/query.jsp</result>
+			<result name="view">/modules/article/view.jsp</result>
+			<result name="edit">/modules/article/edit.jsp</result>
+		</action>
+		<!-- 行政文章管理 -->
+		<action name="RegulationAction" class="RegulationAction">
+			<result name="list">/modules/article/query.jsp</result>
+			<result name="view">/modules/article/view.jsp</result>
+			<result name="edit">/modules/article/edit.jsp</result>
+		</action>
+		
+	</package>
+</struts>

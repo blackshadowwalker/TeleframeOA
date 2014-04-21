@@ -9,6 +9,7 @@ package com.service.impl;
 
 import java.util.List;
 
+import com.base.PageBean;
 import com.bean.Syslog;
 import com.dao.SyslogDao;
 import com.service.SyslogService;
@@ -22,16 +23,14 @@ public class SyslogServiceImpl implements SyslogService {
 	}
 
 	@Override
-	public List<Syslog> list(Syslog syslog) {
-		return syslogDao.list(syslog);
+	public List<Syslog> query(Syslog syslog,PageBean page) {
+		return syslogDao.query(syslog, page);
 	}
 
 	@Override
 	public void log(Syslog syslog) {
 		syslogDao.log(syslog);
 	}
-	
-	
 
 	public SyslogDao getSyslogDao() {
 		return syslogDao;
@@ -39,6 +38,11 @@ public class SyslogServiceImpl implements SyslogService {
 
 	public void setSyslogDao(SyslogDao syslogDao) {
 		this.syslogDao = syslogDao;
+	}
+
+	@Override
+	public List<Syslog> list(Syslog syslog) {
+		return syslogDao.list(syslog);
 	}
 
 }

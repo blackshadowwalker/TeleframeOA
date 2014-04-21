@@ -13,7 +13,6 @@ import com.base.BaseDao;
 import com.bean.FileInfo;
 import com.bean.RoleInfo;
 import com.bean.RulerInfo;
-import com.bean.TSNvr;
 import com.util.Util;
 
 

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<!-- =========== OA SERVICE bean配置  =========== -->
+
+	<!-- 登录管理 -->
+	<bean id="LoginService" class="com.service.impl.LoginServiceImpl">
+		<property name="loginDao" ref="LoginDao" />
+	</bean>
+
+	<!-- 权限管理 -->
+	<bean id="RightService" class="com.service.impl.RightServiceImpl">
+		<property name="rightDao" ref="RightDao" />
+	</bean>
+
+	<!-- 菜单管理 -->
+	<bean id="RulerService" class="com.service.impl.RulerServiceImpl">
+		<property name="rulerDao" ref="RulerDao" />
+	</bean>
+
+	<!-- 角色管理 -->
+	<bean id="RoleService" class="com.service.impl.RoleServiceImpl">
+		<property name="roleDao" ref="RoleDao" />
+	</bean>
+
+	<!-- 部门管理  唐梦岚-->
+	<bean id="DeptService" class="com.service.impl.DeptServiceImpl">
+		<property name="deptDao" ref="DeptDao" />
+	</bean>
+
+	<!-- 用户管理 -->
+	<bean id="UserService" class="com.service.impl.UserServiceImpl">
+		<property name="userDao" ref="UserDao"></property>
+	</bean>
+
+	<!-- 文件管理 -->
+	<bean id="FileService" class="com.service.impl.FileServiceImpl">
+		<property name="fileDao" ref="FileDao"></property>
+	</bean>
+
+	<!-- 文章类别管理 -->
+	<bean id="CategoryService" class="com.service.impl.CategoryServiceImpl">
+		<property name="categoryDao" ref="CategoryDao"></property>
+	</bean>
+
+	<!-- 文章管理 -->
+	<bean id="ArticleService" class="com.service.impl.ArticleServiceImpl">
+		<property name="articleDao" ref="ArticleDao"></property>
+	</bean>
+
+	<!-- 日志管理 -->
+	<bean id="SyslogService" class="com.service.impl.SyslogServiceImpl">
+		<property name="syslogDao" ref="SyslogDao"></property>
+	</bean>
+
+	<!-- 帮助 -->	
+	<bean id="HelpService" class="com.service.impl.HelpServiceImpl">
+		<property name="helpDao" ref="HelpDao"></property>
+	</bean>
+	
+
+</beans>

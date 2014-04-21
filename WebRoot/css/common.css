@@ -1,11 +1,45 @@
 
+.hidden{
+	display:none;
+}
+
 body {
 	font-family: Times, TimesNR, 'New Century Schoolbook';
-	font-size: 13px;
+	font-size: 11px;
 	position: relative;
 	background-color: #FEFEFE;
 	vertical-align: middle;
 	margin-left:10px;
+}
+img{
+	border: 0px;
+}
+
+/* must set width  */
+.nowrap-ellipsis{
+	display:inline-block; 
+	text-overflow:ellipsis; 
+	overflow:hidden;
+	white-space:nowrap;
+}
+
+.progerssbar{
+	border:0px solid #A0A0A0;
+	width:145px;
+	height:15px;
+	background-color:#EAFFEA;
+}
+.progressbar-value-ui{
+	background: url(../images/progress/20121289225693.gif) no-repeat;
+	height:100%;
+}
+.progress-value{
+	width: 100%;
+	position: relative;
+	top: -18px;
+	margin-top: 0px;
+	display: inline-block;
+	text-align: center;
 }
 
 a.operate{

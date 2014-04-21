@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javassist.Modifier;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,21 +32,22 @@ public abstract class BaseAction extends ActionSupport {
 	protected SyslogService syslogService = null;
 	protected RulerService  rulerService = null;
 
+	protected PageBean page=null;
+
 	protected HttpServletRequest request;
 	protected HttpServletResponse  response;
+	protected ServletContext sc;
+
 	protected String method = null;
 	protected String msg="";
 	protected String logmsg = "";
 	protected Map<String, Object> session = null;
 	protected UserInfo user = null;
-	protected Integer	page = 0;
 	protected String str = null;
 	protected Integer  id;
 	protected String goBackUrl = null;
 	protected String target = null;
 
-	protected Integer pageIndex = 0;
-	protected Integer pageSize=0;
 	protected String sortOrder=null;
 	protected String sortField=null;
 
@@ -57,6 +59,7 @@ public abstract class BaseAction extends ActionSupport {
 	private Map<String, Integer> actionMap = null;
 
 	String action =null;
+	Boolean  log;
 
 	// override functions for standard
 	public abstract String handle() throws Exception;
@@ -74,11 +77,15 @@ public abstract class BaseAction extends ActionSupport {
 
 		request = ServletActionContext.getRequest();
 		response = ServletActionContext.getResponse();
+		sc = ServletActionContext.getServletContext();
+
 		request.setCharacterEncoding("utf-8");
 
 		msg = "";
 		request.setAttribute("faile", "");
 		session = ActionContext.getContext().getSession();
+		if(page==null)
+			page = new PageBean();
 
 		//	this.setGoBackUrl(request.getHeader("Referer"));
 
@@ -171,11 +178,14 @@ public abstract class BaseAction extends ActionSupport {
 					this.setLogmsg("查看详情");
 				}
 				Object obj = function.invoke(this);
-				//syslog.setContent(this.getMsg()+","+obj+","+this.getMethod()+","+action+"?method="+method+","+function.getName()+".invoke("+this+")"+","+rulerInfo.toString());
-				syslog.setContent("["+rulerInfo.getRulerName()+"]"+this.getLogmsg()+":"+this.getMsg()+",[rulerId="+rulerInfo.getRulerid()+",rulerName="+rulerInfo.getRulerName()+","+
-						","+this.getMethod()+","+action+"?method="+method+",url="+""+rulerInfo.getUrl()+"]");
-				if( ! ( rulerInfo.getUrl().startsWith("SyslogAction") || rulerInfo.getUrl().startsWith("/SyslogAction")) )
-					syslogService.log(syslog);
+				if(log!=null && log==false)
+				{
+					//syslog.setContent(this.getMsg()+","+obj+","+this.getMethod()+","+action+"?method="+method+","+function.getName()+".invoke("+this+")"+","+rulerInfo.toString());
+					syslog.setContent("["+rulerInfo.getRulerName()+"]"+this.getLogmsg()+":"+this.getMsg()+",[rulerId="+rulerInfo.getRulerid()+",rulerName="+rulerInfo.getRulerName()+","+
+							","+this.getMethod()+","+action+"?method="+method+",url="+""+rulerInfo.getUrl()+"]");
+					if( ! ( rulerInfo.getUrl().startsWith("SyslogAction") || rulerInfo.getUrl().startsWith("/SyslogAction")) )
+						syslogService.log(syslog);
+				}
 				return  (String) obj;
 			}else{
 				function.invoke(this.getClass());
@@ -303,18 +313,6 @@ public abstract class BaseAction extends ActionSupport {
 			this.goBackUrl = url;
 		System.out.println("goBackUrl="+goBackUrl);
 	}
-	public Integer getPageIndex() {
-		return pageIndex;
-	}
-	public Integer getPageSize() {
-		return pageSize;
-	}
-	public void setPageIndex(Integer pageIndex) {
-		this.pageIndex = pageIndex;
-	}
-	public void setPageSize(Integer pageSize) {
-		this.pageSize = pageSize;
-	}
 	public String getSortOrder() {
 		return sortOrder;
 	}
@@ -332,15 +330,6 @@ public abstract class BaseAction extends ActionSupport {
 	}
 	public void setAction(String action) {
 		this.action = action;
-	}
-	public Integer getPage() {
-		return page;
-	}
-	public Integer getId() {
-		return id;
-	}
-	public void setPage(Integer page) {
-		this.page = page;
 	}
 	public void setId(Integer id) {
 		this.id = id;
@@ -377,6 +366,24 @@ public abstract class BaseAction extends ActionSupport {
 	}
 	public void setLogmsg(String logmsg) {
 		this.logmsg = logmsg;
+	}
+	/**
+	 * @return the page
+	 */
+	public PageBean getPage() {
+		return page;
+	}
+	/**
+	 * @param page the page to set
+	 */
+	public void setPage(PageBean page) {
+		this.page = page;
+	}
+	public Boolean getLog() {
+		return log;
+	}
+	public void setLog(Boolean log) {
+		this.log = log;
 	}
 
 

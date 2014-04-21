@@ -25,6 +25,14 @@ public class DeptDao extends BaseDao {
 		return (DeptInfo)session.get(DeptInfo.class, id);
 	}
 	
+	public String getPath(int id) {
+		return null;
+	}
+	
+	public List<DeptInfo> getPathList(int id) {
+		return null;
+	}
+	
 	public List<DeptInfo> getList(){
 		Session session = super.getSession();
 

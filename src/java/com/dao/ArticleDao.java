@@ -115,6 +115,7 @@ public class ArticleDao extends BaseDao {
 		article.setStatus(0);
 		article.setLastUpdate(new Timestamp(System.currentTimeMillis()));
 		session.update(article);
+	//	session.delete(article);
 		return Util.SUCCESS;
 	}
 

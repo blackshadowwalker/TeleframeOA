@@ -52,6 +52,14 @@ public class DeptServiceImpl implements DeptService{
 	public DeptInfo get(Integer id) {
 		return deptDao.get(id);
 	}
+	@Override
+	public String getPath(int id) {
+		return deptDao.getPath(id);
+	}
+	@Override
+	public List<DeptInfo> getPathList(int id) {
+		return deptDao.getPathList(id);
+	}
 	
 	
 }

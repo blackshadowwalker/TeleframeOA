@@ -17,4 +17,6 @@ public interface DeptService extends BaseService {
 	public abstract String deptUpdate(int id, DeptInfo dept);
 	public abstract boolean delete(int id);
 	
+	public abstract String getPath(int id);
+	public abstract List<DeptInfo> getPathList(int id);
 }

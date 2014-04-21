@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="BaseDao" class="com.base.BaseDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="RightDao" class="com.dao.RightDao" parent="BaseDao">
+	</bean>
+	
+	<bean id="RoleDao" class="com.dao.RoleDao" parent="BaseDao">
+	</bean>
+	 
+	<bean id="LoginDao" class="com.dao.LoginDao" parent="BaseDao">
+	</bean>
+	<bean id="RulerDao" class="com.dao.RulerDao" parent="BaseDao">
+	</bean>
+	
+	<!-- 部门管理  唐梦岚-->
+	<bean id="DeptDao" class="com.dao.DeptDao" parent="BaseDao"></bean>
+
+	<bean id="UserDao" class="com.dao.UserDao" parent="BaseDao"></bean>
+	
+	<!-- written by karl -->
+	<bean id="FileDao" class="com.dao.FileDao" parent="BaseDao"></bean>
+	<bean id="ArticleDao" class="com.dao.ArticleDao" parent="BaseDao"></bean>
+	<bean id="CategoryDao" class="com.dao.CategoryDao" parent="BaseDao"></bean>
+	<bean id="SyslogDao" class="com.dao.SyslogDao" parent="BaseDao"></bean>
+	
+	<!-- 帮助 -->
+	<bean id="HelpDao" class="com.dao.HelpDao" parent="BaseDao"></bean>
+	
+
+</beans>
+

@@ -7,7 +7,18 @@
 	
 	<context-param>
 		<param-name>title</param-name>
-		<param-value>OA办公系统</param-value>
+		<param-value>OA系统</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>version</param-name>
+		<param-value>0.9.0</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>gmapurl</param-name>
+		<param-value></param-value>
+		<!-- Default : http://127.0.0.1 -->
 	</context-param>
 	
 	<context-param>
@@ -56,10 +67,15 @@
 	</servlet-mapping>
 	 -->
 	 
-	 <listener>
+	<listener>
 		<display-name>ContextListener</display-name>
 		<listener-class>com.listener.ContextListener</listener-class>
 	</listener> 
+	
+	<!-- session timeout at xx minutes -->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

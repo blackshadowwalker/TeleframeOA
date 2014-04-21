@@ -11,11 +11,13 @@ package com.service;
 import java.util.List;
 
 import com.base.BaseService;
+import com.base.PageBean;
 import com.bean.Syslog;
 
 public interface SyslogService extends BaseService  {
 	
 	public Syslog get(Integer id);
+	public List<Syslog> query(Syslog syslog, PageBean page);
 	public List<Syslog> list(Syslog syslog);
 	
 	public void log(Syslog syslog);

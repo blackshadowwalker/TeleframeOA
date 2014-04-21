@@ -4,110 +4,100 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<!-- Struts 2的Action必须放在指定的包空间下定义 -->
-	<package name="/" extends="common" >
+	<package name="sys" extends="common" >
 	
-	    <!-- 登录 -->
+	    <!-- 登录  Login & Log off-->
 		<action name="LoginAction" class="LoginAction" >
 			<result name="success">/frame/index.jsp</result>
 			<result name="faile">/login.jsp</result>
 		</action>
 		
-		<!-- 车辆管理 -->
+		<!-- 角色/权限管理  Role Management  -->
 		<action name="RoleAction" class="RoleAction">
-			<result name="list">/modules/role/query.jsp</result>
-			<result name="update">/modules/role/update.jsp</result>
-			<result name="add">/modules/role/add.jsp</result>
+			<result name="list">/modules/system/role/query.jsp</result>
+			<result name="update">/modules/system/role/update.jsp</result>
+			<result name="add">/modules/system/role/add.jsp</result>
 		</action>
 		
+		<!-- 菜单管理  Menu Management -->
 		<action name="RulerAction" class="RulerAction">
-			<result name="list">/modules/ruler/query.jsp</result>
-			<result name="add">/modules/ruler/add.jsp</result>
-			<result name="update">/modules/ruler/update.jsp</result>
+			<result name="list">/modules/system/ruler/query.jsp</result>
+			<result name="add">/modules/system/ruler/add.jsp</result>
+			<result name="update">/modules/system/ruler/update.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
 		
-		<action name="TestAction" class="TestAction">
-			<result name="list">/test1.jsp</result>
-			<result name="getById">/test2.jsp</result>
-			<result name="edit">/test3.jsp</result>
-
-		</action>
-		
-			<!-- 部门管理  唐梦岚-->
+		<!-- 部门管理  唐梦岚  Department Management-->
 		<action name="DeptAction" class="DeptAction">
-			<result name="list">/modules/dept/query.jsp</result>
-			<result name="add">/modules/dept/add.jsp</result>
-			<result name="update">/modules/dept/update.jsp</result>
+			<result name="list">/modules/system/dept/query.jsp</result>
+			<result name="add">/modules/system/dept/add.jsp</result>
+			<result name="update">/modules/system/dept/update.jsp</result>
 			
-			<result name="view">/modules/dept/deptViewTree.jsp</result>
-			<result name="updateNameError">/modules/dept/deptListTree.jsp</result>
-			<result name="updateManagerError">/modules/dept/deptListTree.jsp</result>
+			<result name="view">/modules/system/dept/deptViewTree.jsp</result>
+			<result name="updateNameError">/system/modules/dept/deptListTree.jsp</result>
+			<result name="updateManagerError">/modules/system/dept/deptListTree.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
 		
+		<!-- 用户管理 User Management -->
 		<action name="UserAction" class="UserAction">
-			<result name="list">/modules/user/query.jsp</result>
-			<result name="add">/modules/user/add.jsp</result>
-			<result name="update">/modules/user/update.jsp</result>
-			<result name="person">/modules/user/person.jsp</result>
+			<result name="list">/modules/system/user/query.jsp</result>
+			<result name="add">/modules/system/user/add.jsp</result>
+			<result name="update">/modules/system/user/update.jsp</result>
+			<result name="person">/modules/system/user/person.jsp</result>
 		</action>
 		
-		<!-- karl file manager-->
+		<!-- karl file manager  文件管理-->
 		<action name="FileAction" class="FileAction">
-			<result name="list">/modules/file/query.jsp</result>
-			<result name="add">/modules/file/add.jsp</result>
-			<result name="update">/modules/file/update.jsp</result>
+			<result name="list">/modules/system/file/query.jsp</result>
+			<result name="add">/modules/system/file/add.jsp</result>
+			<result name="update">/modules/system/file/update.jsp</result>
 		</action>
 		
 		
-		<!-- karl upload file action-->
+		<!-- karl upload file action 文件上传Action -->
 		<action name="UploadAction" class="UploadAction">
-			<result name="list">/modules/file/query.jsp</result>
-			<result name="add">/modules/file/add.jsp</result>
-			<result name="update">/modules/file/update.jsp</result>
+			<result name="list">/modules/system/file/query.jsp</result>
+			<result name="add">/modules/system/file/add.jsp</result>
+			<result name="update">/modules/system/file/update.jsp</result>
 		</action>
 		
-		<action name="VehicleAction" class="VehicleAction">
-			<result name="list">/vehicle.jsp</result>
-		</action>
-		
+		<!-- 文章类别管理 -->
 		<action name="CategoryAction" class="CategoryAction">
-			<result name="list">/modules/category/query.jsp</result>
-			<result name="add">/modules/category/add.jsp</result>
-			<result name="update">/modules/category/update.jsp</result>
+			<result name="list">/modules/system/category/query.jsp</result>
+			<result name="add">/modules/system/category/add.jsp</result>
+			<result name="update">/modules/system/category/update.jsp</result>
 		</action>
 		
-		<action name="ArticleAction" class="ArticleAction">
-			<result name="list">/modules/article/query.jsp</result>
-			<result name="view">/modules/article/view.jsp</result>
-			<result name="edit">/modules/article/edit.jsp</result>
-		</action>
-					  
+		<!-- Ckeditor 文件上传 -->
 		<action name="CkeditorUpload" class="CkeditorUpload">
-			<result name="list">/modules/ckeditor/list.jsp</result>
+			<result name="list">/modules/system/ckeditor/list.jsp</result>
 		</action>
 
-		<action name="FinanceAction" class="FinanceAction">
-			<result name="list">/modules/article/query.jsp</result>
-			<result name="view">/modules/article/view.jsp</result>
-			<result name="edit">/modules/article/edit.jsp</result>
-		</action>
-		<action name="TechnologyAction" class="TechnologyAction">
-			<result name="list">/modules/article/query.jsp</result>
-			<result name="view">/modules/article/view.jsp</result>
-			<result name="edit">/modules/article/edit.jsp</result>
-		</action>
-		<action name="RegulationAction" class="RegulationAction">
-			<result name="list">/modules/article/query.jsp</result>
-			<result name="view">/modules/article/view.jsp</result>
-			<result name="edit">/modules/article/edit.jsp</result>
+		<!-- 文章管理  -->
+		<action name="ArticleAction" class="ArticleAction">
+			<result name="list">/modules/system/article/query.jsp</result>
+			<result name="view">/modules/system/article/view.jsp</result>
+			<result name="edit">/modules/system/article/edit.jsp</result>
 		</action>
 		
+		
+		<!-- 日志管理 -->
 		<action name="SyslogAction" class="SyslogAction">
-			<result name="success">/modules/syslog/query.jsp</result>
-			<result name="list">/modules/syslog/query.jsp</result>
-			<result name="view">/modules/syslog/view.jsp</result>
+			<result name="success">/modules/system/syslog/query.jsp</result>
+			<result name="list">/modules/system/syslog/query.jsp</result>
+			<result name="view">/modules/system/syslog/view.jsp</result>
 		</action>
+		
+		<!-- 帮助 -->
+		<action name="HelpAction" class="HelpAction">
+			<result name="success">/modules/system/help/index.jsp</result>
+			<result name="list">/modules/system/help/query.jsp</result>
+			<result name="edit">/modules/system/help/edit.jsp</result>
+			<result name="view">/modules/system/help/view.jsp</result>
+		</action>
+		
 
+		
 	</package>
 </struts>

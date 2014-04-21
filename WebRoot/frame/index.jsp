@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <link rel="shortcut icon" href="<%=basePath%>images/logo.ico" type="image/x-icon" />
-    <title><s:property value="#application.config.title" /></title>
+    <title> <s:property value="#application.config.title" /></title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -22,14 +22,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   </head>
   
-  <frameset rows="60,*,50"  frameborder="yes" border="0" >
+  <frameset rows="58,*,50"  frameborder="yes" border="1" >
 	  <frame src="<%=path %>/frame/admin_top.jsp" noresize="noresize" frameborder="0" name="topFrame" scrolling="no" marginwidth="0" marginheight="0" />
 	  <frameset cols="182,10,*" name="second" id="second"  id="frame">
-		<frame src="<%=path %>/frame/admin_left.jsp" name="leftFrame" noresize="noresize" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" />
+		<frame src="<%=path %>/frame/admin_left.jsp" name="leftFrame" noresize="noresize" marginwidth="0" marginheight="0" frameborder="0" scrolling="auto" />
 		<frame src="<%=path %>/frame/span.jsp" name="span" noresize="noresize" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" />
-		<frame src="<%=path %>/frame/admin_right.jsp" name="main" marginwidth="0" marginheight="0" frameborder="0" scrolling="auto" />
+		<frame src="<%=path %>/frame/admin_main.jsp" name="main" marginwidth="0" marginheight="0" frameborder="0" scrolling="auto" />
 	  </frameset>
-	  <frame src="<%=path %>/frame/admin_bottom.jsp" frameborder="0" name="bottom" scrolling="no" marginwidth="0" marginheight="0" />
+	  <frame src="<%=path %>/frame/admin_bottom.jsp" frameborder="0" name="bottom" scrolling="auto" marginwidth="0" marginheight="0" />
   </frameset>
   <noframes>
   <body></body>

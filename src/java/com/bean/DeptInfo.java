@@ -77,6 +77,8 @@ public class DeptInfo implements java.io.Serializable {
 	}
 
 	public String getLastUpdateString() {
+		if(this.lastUpdate==null)
+			return null;
 		this.setLastUpdateString(df.format(this.lastUpdate));
 		return lastUpdateString;
 	}

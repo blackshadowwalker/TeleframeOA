@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * UserInfo entity. @author MyEclipse Persistence Tools
@@ -27,7 +29,7 @@ public class UserInfo implements java.io.Serializable {
 	private Timestamp lastUpdate;
 	private Integer status;
 	private String	ip;
-
+	
 	// Constructors
 
 	/** default constructor */

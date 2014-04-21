@@ -42,11 +42,15 @@ public class RulerDao extends BaseDao {
 		});
 		return list;
 	}
-
+	/**
+	 * 获取角色的菜单
+	 * @param list2
+	 * @return
+	 */
 	public List<RulerInfo> rulerList(List<Integer> list2){
 		//System.out.println("list2="+list2);
 		Session session =this.getSession();
-		Query query = session.createQuery(" from RulerInfo p where p.rulerid in (:list2) and p.status=1 order by id ");
+		Query query = session.createQuery(" from RulerInfo p where p.rulerid in (:list2) and p.status=1 and p.echo=1 order by id ");
 		query.setParameterList("list2", list2);
 		List<RulerInfo> list = (List<RulerInfo>)query.list();
 		

@@ -13,8 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1";/>
-    
-	<link rel=”shortcut icon” href=”images/logo.ico”>
+     <link rel="shortcut icon" href="<%=basePath%>images/logo.ico" type="image/x-icon" />
 
  	 <script src="scripts/jquery/jquery-1.7.min.js" type="text/javascript"></script>
 	<script src="scripts/jquery/jquery-ui/js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
@@ -81,7 +80,7 @@ tr{
 
 
 
-<body topmargin="0" leftmargin="0" rightmargin="0"  onload="document.forms[0].usercode.focus()" >
+<body topmargin="0" leftmargin="0" rightmargin="0"  onload="" >
 	<div style="display:none;width:100%;height:100%;position:absolute;z-index:-1;top:0px;border:0px #f00 solid;">
 		<!-- img id="backgroundimage" src="modules/logon/image/loginbg.png" width="100%" height="100%" -->
 	</div> 
@@ -96,7 +95,9 @@ tr{
 			<p class=titlelabel  > <s:property value="#application.config.title" /> </p>
 		</div>
 		<br/>
-		<form action="LoginAction?method=login"  method="post" target="_parent">
+		
+		
+		<form action="LoginAction?method=login"  method="post" target="_parent" style="height:100px;">
 			<div class="loginTable">
 				<table border =0  cellpadding="5" cellspacing="1" >
 					  <tr>
@@ -111,7 +112,8 @@ tr{
 						  <input type="password"  name="user.userPasswd" value="<s:property value="user.userPasswd" />" style="width:180px; background:none;" onKeyDown="javascript:if (event.keyCode==13) event.keyCode=9;" />
 						  </td>
 					  </tr>
-					  <%--<tr>
+					  <!--
+					  <tr>
 					  	<td colspan="2">
 					  		<span class=rightLabel>验证码:</span>
 					  	  <input type="text" id="i_captchacode" name="captchacode" value="" style="background:none;" size=6 maxlength=4 onKeyDown="javascript:if (event.keyCode==13) cus_login();" />
@@ -120,7 +122,8 @@ tr{
 					  	  </span>
 					  	 </td>						  	
 					  </tr>
-					  --%><tr>
+					  -->
+					  <tr>
 						<td height="52" colspan="2">
 							<span class=rightLabel>&nbsp;</span>
 							<input type="submit" style="width:80px;height:30px;cursor:pointer;background:none;" value="登录"/>
@@ -137,6 +140,14 @@ tr{
 				</table>
 			</div>
 		</form>
+		<br/>
+		<div style="position:absolute;width:550px;">
+			<a href="/download-center/vlpr/VLPR-Client-Release.zip" title="下载客户端">
+				<img src="images/button/download.png" style=" float:right;margin-top:60px;margin-right:20px;" />
+			</a>
+		</div>
+		
+		
 	</div>	
 	<script>
 	

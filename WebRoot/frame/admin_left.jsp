@@ -12,7 +12,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<base target="main"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>管理页面</title>
-
+ 	<script src="../scripts/jquery/jquery-1.7.min.js" type="text/javascript"></script>
+	
 	<script src="js/prototype.lite.js" type="text/javascript"></script>
 	<script src="js/moo.fx.js" type="text/javascript"></script>
 	<script src="js/moo.fx.pack.js" type="text/javascript"></script>
@@ -148,6 +149,7 @@ H1 a {
 	margin-left:-22px;
 }
 </style>
+
 </head>
 
 <body>
@@ -156,47 +158,64 @@ H1 a {
   <tr>
     <td width="182" valign="top">
     <div id="container">
-    <h1 class=""><a href="javascript:void(0)">个人信息</a></h1>
-	<ul class="userFiled" >
-     	<img src="<s:property value="#session.user.userPhoto" />" style="width:150px;height:150px;" />
-        <center>
-	        <a href="<%=path %>/UserAction?method=person" target="main">
-	        	<s:property value="#session.user.userName" />
-	        </a>
-	        (<s:property value="#session.user.userRoleName" />)
-       </center>
-     </ul>
+		    <h1 class=""><a href="javascript:void(0);">个人信息</a></h1>
+			<div class="">
+			        <center>
+				     	<img src="<s:property value="#session.user.userPhoto" />" 
+				     		style="margin-top:10px;width:100px;height:100px;" />
+				     	<br/>
+				        <div style="height:30px;">
+					        <a href="<%=path %>/UserAction?method=person" target="main">
+					        	<s:property value="#session.user.userName" />
+					        </a>
+					        (<s:property value="#session.user.userRoleName" />)
+				     	</div>
+			       </center>
+		    </div>
 			            
-    <s:iterator value="#session.rulerInfolist" id="lv1">
-        <s:if test="level==1" >
-		     <h1 class="type"><a href="javascript:void(0)"><s:property value="rulerName" /></a></h1>
-		      <div class="content">
-		        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-		          <tr>
-		            <td><img src="images/menu_topline.gif" width="182" height="5" /></td>
-		          </tr>
-		        </table>
-		         <s:iterator value="#session.rulerInfolist" id="lv2">
-		         <s:if test="level==2 && #lv2.manager==#lv1.rulerid">
-			        <ul class="MM">
-			          <li><a href="<%=path %>/<s:property value="url"/>" target="<s:property value="target"/>">
-			          	<s:property  value="rulerName" /></a></li>
-			        </ul>
-			     </s:if>
-			     </s:iterator>
-		  </div>
-		  </s:if>
-	   </s:iterator> 
+	    	<s:iterator value="#session.rulerInfolist" id="lv1">
+	       	 <s:if test="level==1" >
+			     <h1 class="type"><a href="javascript:void(0)"><s:property value="rulerName" /></a></h1>
+			      <div class="content">
+			        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td><img src="images/menu_topline.gif" width="182" height="5" /></td>
+			          </tr>
+			        </table>
+			         <s:iterator value="#session.rulerInfolist" id="lv2">
+			         <s:if test="level==2 && #lv2.manager==#lv1.rulerid">
+				        <ul class="MM">
+				          <li>
+				          		<a href="<%=path %>/<s:property value="url"/>" target="<s:property value="target"/>">
+				          			<s:property  value="rulerName" />
+				          		</a>
+				          </li>
+				        </ul>
+				     </s:if>
+				     </s:iterator>
+			 	 </div>
+			  </s:if>
+		   	</s:iterator> 
 	      	
         <script type="text/javascript">
-		var contents = document.getElementsByClassName('content');
-		var toggles = document.getElementsByClassName('type');
-	
-		var myAccordion = new fx.Accordion(
-			toggles, contents, {opacity: true, duration: 400}
-		);
-		myAccordion.showThisHideOpen(contents[0]);
+			var contents = document.getElementsByClassName('content');
+			var toggles = document.getElementsByClassName('type');
+		
+			var myAccordion = new fx.Accordion(
+				toggles, contents, {opacity: true, duration: 400}
+			);
+		//	myAccordion.showThisHideOpen(contents[0]);
+
+			function show(id){
+				obj = $("div[class='content']");
+				alert(obj);
+				if(obj.attr("display")!="none")
+					obj.attr("display", "none");
+				else
+					obj.attr("display", "block");
+			}
 		</script>
+
 		</div>
         </td>
   </tr>

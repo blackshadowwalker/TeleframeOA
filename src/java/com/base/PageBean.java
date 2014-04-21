@@ -4,142 +4,167 @@ package com.base;
 import java.util.List;
 
 public class PageBean {
+	
 	@SuppressWarnings("unchecked")
+	
 	private List list; // 要返回的某一页的记录列表
-	private int allRow; // 总记录数
-	public static int totalPage; // 总页数
-	public static int currentPage; // 当前页
-	public static int pageSize = 5; // 每页记录数
-	@SuppressWarnings("unused")
-	private boolean isFirstPage; // 是否为第一页
-	@SuppressWarnings("unused")
-	private boolean isLastPage; // 是否为最后一页
-	@SuppressWarnings("unused")
-	private boolean hasPreviousPage; // 是否有前一页
-	@SuppressWarnings("unused")
-	private boolean hasNextPage; // 是否有下一页
+	private Integer totalRow=1; // 总记录数
+	private Integer totalPage=1; // 总页数
+	private Integer currentPage=1; // 当前页
+	private Integer prePage=1;
+	private Integer nextPage=1;
+	private Integer pageSize = 15; // 每页记录数
+	private Boolean hasPrePage=false; // 是否有前一页
+	private Boolean hasNextPage=false; // 是否有下一页
+	
+	public PageBean(){
+		pageSize = 10;
+		currentPage = 1;
+	}
+	
+	public void setTotalRow(Integer totalRow) {
+		if(this.pageSize<1)
+			this.pageSize = 10;
+		this.totalRow = totalRow;
+		totalPage = totalRow % pageSize == 0 ? totalRow / pageSize : totalRow/ pageSize + 1;
+		
+		if(this.currentPage<=1){
+			prePage = 1;
+			hasPrePage = false;
+		}else{
+			prePage = currentPage - 1;
+			hasPrePage = true;
+		}
+		nextPage = currentPage + 1;
+		if(this.currentPage < this.totalPage)
+			hasNextPage = true;
+		else
+			hasNextPage = false;
+	}
+	
+	public PageBean(List objectList){
+		this.list = objectList;
+		this.totalRow = list.size();
+	}
+	public String toString(){
+		return super.toString();
+	}
 
-	@SuppressWarnings("unchecked")
+	public Integer getCurrentPage() {
+		if(currentPage==0)
+			currentPage = 1;
+		return currentPage;
+	}
+
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
+
+	/**
+	 * @return the list
+	 */
 	public List getList() {
 		return list;
 	}
 
-	@SuppressWarnings("unchecked")
+	/**
+	 * @param list the list to set
+	 */
 	public void setList(List list) {
 		this.list = list;
 	}
 
-	public int getAllRow() {
-		return allRow;
-	}
-
-	public void setAllRow(int allRow) {
-		this.allRow = allRow;
-	}
-
-	public int getTotalPage() {
+	/**
+	 * @return the totalPage
+	 */
+	public Integer getTotalPage() {
 		return totalPage;
 	}
 
-	@SuppressWarnings("static-access")
-	public void setTotalPage(int totalPage) {
+	/**
+	 * @param totalPage the totalPage to set
+	 */
+	public void setTotalPage(Integer totalPage) {
 		this.totalPage = totalPage;
 	}
 
-	public int getCurrentPage() {
-		return currentPage;
+	/**
+	 * @return the prePage
+	 */
+	public Integer getPrePage() {
+		return prePage;
 	}
 
-	@SuppressWarnings("static-access")
-	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage;
+	/**
+	 * @param prePage the prePage to set
+	 */
+	public void setPrePage(Integer prePage) {
+		this.prePage = prePage;
 	}
 
-	public int getPageSize() {
+	/**
+	 * @return the nextPage
+	 */
+	public Integer getNextPage() {
+		return nextPage;
+	}
+
+	/**
+	 * @param nextPage the nextPage to set
+	 */
+	public void setNextPage(Integer nextPage) {
+		this.nextPage = nextPage;
+	}
+
+	/**
+	 * @return the pageSize
+	 */
+	public Integer getPageSize() {
 		return pageSize;
 	}
 
-	@SuppressWarnings("static-access")
-	public void setPageSize(int pageSize) {
+	/**
+	 * @param pageSize the pageSize to set
+	 */
+	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
 	}
 
 	/**
-	 * 初始化分页信息
+	 * @return the hasPrePage
 	 */
-	public void init() {
-		this.isFirstPage = isFirstPage();
-		this.isLastPage = isLastPage();
-		this.hasPreviousPage = isHasPreviousPage();
-		this.hasNextPage = isHasNextPage();
+	public Boolean getHasPrePage() {
+		return hasPrePage;
 	}
+
+	/**
+	 * @param hasPrePage the hasPrePage to set
+	 */
+	public void setHasPrePage(Boolean hasPrePage) {
+		this.hasPrePage = hasPrePage;
+	}
+
+	/**
+	 * @return the hasNextPage
+	 */
+	public Boolean getHasNextPage() {
+		return hasNextPage;
+	}
+
+	/**
+	 * @param hasNextPage the hasNextPage to set
+	 */
+	public void setHasNextPage(Boolean hasNextPage) {
+		this.hasNextPage = hasNextPage;
+	}
+
+	/**
+	 * @return the totalRow
+	 */
+	public Integer getTotalRow() {
+		return totalRow;
+	}
+
+
 	
-	/**
-	 * 以下判断页的信息,只需getter方法(is方法)即可
-	 * 
-	 * @return
-	 */
-
-	public boolean isFirstPage() {
-		return currentPage == 1; // 如是当前页是第1页
-	}
-
-	public boolean isLastPage() {
-		return currentPage == totalPage;// 如果当前页是最后一页
-	}
-
-	public boolean isHasPreviousPage() {
-		return currentPage != 1;// 只要当前页不是第1页
-	}
-
-	public boolean isHasNextPage() {
-		return currentPage != totalPage;// 只要当前页不是最后1页
-	}
-	
-
-
-	/** */
-	/**
-	 * 计算总页数,静态方法,供外部直接通过类名调用
-	 * 
-	 * @param pageSize
-	 *            每页记录数
-	 * @param allRow
-	 *            总记录数
-	 * @return 总页数
-	 */
-	public static int countTotalPage(final int pageSize, final int allRow) {
-		int totalPage = allRow % pageSize == 0 ? allRow / pageSize : allRow
-				/ pageSize + 1;
-		return totalPage;
-	}
-
-	/** */
-	/**
-	 * 计算当前页开始记录
-	 * 
-	 * @param pageSize
-	 *            每页记录数
-	 * @param currentPage
-	 *            当前第几页
-	 * @return 当前页开始记录号
-	 */
-	public static int countOffset(final int pageSize, final int currentPage) {
-		final int offset = pageSize * (currentPage - 1);
-		return offset;
-	}
-
-	/** */
-	/**
-	 * 计算当前页,若为0或者请求的URL中没有"?page=",则用1代替
-	 * 
-	 * @param page
-	 *            传入的参数(可能为空,即0,则返回1)
-	 * @return 当前页
-	 */
-	public static int countCurrentPage(int page) {
-		final int curPage = (page == 0 ? 1 : page);
-		return curPage;
-	}
-
 }
