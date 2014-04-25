@@ -98,6 +98,11 @@ public abstract class BaseAction extends ActionSupport {
 		Object actionClass = (Object) ActionContext.getContext().get("action");
 		if(actionClass!=null)
 			action = actionClass.getClass().getSimpleName();
+		
+		request.setAttribute("u", -1);
+		request.setAttribute("v", -1);
+		request.setAttribute("i", -1);
+		request.setAttribute("d", -1);
 
 		System.out.println("action="+  action+"?method="+method);
 		//LoginAction 或其无需权限访问的Action，可以直接进行处理handle()
@@ -106,22 +111,27 @@ public abstract class BaseAction extends ActionSupport {
 			if(actionMap.get(action)!=null)
 				return handle();
 		}
+		
+		//检查权限
+		//------- 下面的代码是检测用户是否拥有该操作权限和输出操作权限iudv----------
+		rulerInfolist = (List<RulerInfo>) session.get("rulerInfolist");//菜单
+		rulerRoleList = (List<RulerRole>) session.get("rulerRoleList");//所以权限
+
+		//检查权限和输出操作权限iudv
+		String checkRet = this.checkRights(action, method);
+		
+		//应先检查权限在进行默认处理
+		if(method==null){
+			return handle();
+		}
 
 		//用户session失效，需要重新登录
 		if(user==null)
 			return LOGIN;
 
 		this.setGoBackUrl(action);//设置页面返回按钮地址
-
-		//------- 下面的代码是检测用户是否拥有该操作权限和输出操作权限iudv----------
-		rulerInfolist = (List<RulerInfo>) session.get("rulerInfolist");//菜单
-		rulerRoleList = (List<RulerRole>) session.get("rulerRoleList");//所以权限
-
-		//检查权限和输出操作权限iudv
-
 		syslog.setUser(user);
 
-		String checkRet = this.checkRights(action, method);
 		if(checkRet==Util.FAILE)
 		{
 			msg = "警告：非法操作，请重新登录系统或联系管理员";
@@ -239,8 +249,36 @@ public abstract class BaseAction extends ActionSupport {
 				e.printStackTrace();
 			}
 			return Util.FAILE;
+		}else if(rightWord.trim().isEmpty()){
+			// read only
+			return Util.SUCCESS;
+		}else{
+			String rightkeys [] = rightWord.split("");
+			for(String key : rightkeys){
+				request.setAttribute(key, 1);//保存权限->jsp, 大于0 即拥有该权限
+			}
+			if(methodName==null)
+				return Util.SUCCESS;
+			
+			char ch = ' ';
+			if(methodName.endsWith("beforeAdd") || methodName.endsWith("add"))
+				ch = 'i';
+			else if(methodName.endsWith("beforeUpdate") || methodName.endsWith("update") )
+				ch = 'u';
+			else  if(methodName.endsWith("delete") )
+				ch = 'd';
+			else  if(methodName.endsWith("view") )
+				ch = 'v';
+			if(ch!=' '){
+				if(rightWord.indexOf(ch)>=0)
+					return Util.SUCCESS;
+				else
+					return Util.FAILE;
+			}else
+				return Util.SUCCESS;
 		}
 
+		/*
 		//点击菜单默认执行查询操作
 		if(methodName==null || methodName.endsWith("query")){ // 菜单权限
 			for(int i=0; i<rulerInfolist.size(); i++){
@@ -274,6 +312,7 @@ public abstract class BaseAction extends ActionSupport {
 			else
 				return Util.FAILE;
 		}
+		*/
 	}
 
 

@@ -26,9 +26,17 @@ public class HelpAction extends BaseAction {
 	HelpService helpService;// ObjectService
 	Help help;// object
 	List<Help> list;// Object list
+	
+	Integer flag;
 
 	@Override
 	public String handle() throws Exception {
+		
+		if(flag!=null && flag==1){
+			request.getRequestDispatcher("/modules/help/oa.jsp").forward(request, response);
+			return Util.NONE;
+		}
+		
 		if(method==null){
 			if(id==null)
 				return query();
@@ -256,6 +264,14 @@ public class HelpAction extends BaseAction {
 
 	public void setList(List<Help> list) {
 		this.list = list;
+	}
+
+	public Integer getFlag() {
+		return flag;
+	}
+
+	public void setFlag(Integer flag) {
+		this.flag = flag;
 	}
 
 }

@@ -59,6 +59,8 @@ public class ArticleDao extends BaseDao {
 				"a.content, a.lastUpdate, a.ctTime, a.status " +
 				" From ArticleInfo a where a.status!=0 ";
 		if(articleInfo!=null){
+			if(articleInfo.getAuthor()!=null && articleInfo.getAuthor()>0)
+				hql += " and a.author="+articleInfo.getAuthor() +" ";
 			if(articleInfo.getCategory()!=null && articleInfo.getCategory()>0)
 				hql += " and a.category="+articleInfo.getCategory() +" ";
 			if(articleInfo.getTitle()!=null && articleInfo.getTitle().trim().length()>0)
@@ -66,7 +68,7 @@ public class ArticleDao extends BaseDao {
 			if(articleInfo.getContent()!=null && articleInfo.getContent().trim().length()>0)
 				hql += " and a.content like '%"+articleInfo.getContent()+"%' ";
 		}
-		
+		hql += " order by id desc ";
 	//	List<ArticleInfo> list = session.createQuery("From ArticleInfo where status!=0").list();
 		List<Object> list1 = session.createQuery(hql).list();
 		List<ArticleInfo> list = null;

@@ -8,6 +8,10 @@ import com.service.RoleService;
 
 public class RoleServiceImpl implements RoleService {
 
+	public RoleInfo get(Integer id)throws Exception {
+		return roleDao.get(id);
+	}
+	
 	@Override
 	public List<RoleInfo> query(RoleInfo roleInfo) throws Exception {
 		return roleDao.query(roleInfo);

@@ -7,6 +7,7 @@ import com.bean.RoleInfo;
 
 
 public interface RoleService extends BaseService {
+	public RoleInfo get(Integer id)throws Exception;
 	public List<RoleInfo> query(RoleInfo roleInfo) throws Exception;
 	public String beforeUpdate(int id) throws Exception;
 	public String update(RoleInfo roleInfo,String rightString) throws Exception;

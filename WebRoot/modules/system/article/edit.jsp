@@ -162,7 +162,7 @@
 								 <td width="100%" class="" colspan="2">
 									上传附件：<br/>
 									<div style="height:100px;">
-										<iframe src="modules/file/uploadframe.jsp?callback=InsertContext" 
+										<iframe src="modules/system/file/uploadframe.jsp?callback=InsertContext" 
 											style="border:1px solid #000;width:80%;height:100%;"></iframe>
 									</div>
 									<script>

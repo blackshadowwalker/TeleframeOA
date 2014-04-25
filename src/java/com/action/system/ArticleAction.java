@@ -3,6 +3,7 @@ package com.action.system;
 import java.io.PrintWriter;
 import java.util.List;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import com.base.BaseAction;
@@ -14,22 +15,43 @@ import com.util.Util;
 
 public class ArticleAction extends BaseAction {
 
-	ArticleService articleService;
-	ArticleInfo articleInfo;
-	List<ArticleInfo> list;
-	List<CategoryInfo> CategoryList;
+	protected ArticleService articleService;
+	protected ArticleInfo articleInfo;
+	protected List<ArticleInfo> list;
+	protected List<CategoryInfo> CategoryList;
 
-	CategoryService categoryService;
+	protected CategoryService categoryService;
+	protected String title;
 
+	String m ;
+	
 	@Override
 	public String handle() throws Exception {
+		if(m!=null && m.equals("getJson"))
+			return this.getJson();
+		
 		if(method==null){
 			if(id==null)
 				return query();
 			else
 				return view();
 		}
-		return null;
+		return Util.NONE;
+	}
+	
+	public String getJson() throws Exception{
+		this.setLogmsg("查询文章");
+		
+		list = articleService.query(articleInfo);
+		
+		//response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setContentType("text/html");
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println(JSONArray.fromObject(list));
+		out.close();
+		
+		return Util.NONE;
 	}
 
 	public String save() throws Exception{
@@ -138,7 +160,13 @@ public class ArticleAction extends BaseAction {
 		if(articleInfo!=null)
 			request.setAttribute("category", articleInfo.getCategory());
 		list = articleService.query(articleInfo);
+		
+		String flag = request.getParameter("flag");
+		if(flag!=null && flag.equals("index"))
+			return Util.LIST_INDEX;
+		
 		return Util.LIST;
+		
 	}
 
 	@Override
@@ -169,7 +197,13 @@ public class ArticleAction extends BaseAction {
 		articleInfo = articleService.get(id);
 		if(articleInfo==null)
 			msg = "文章不存在";
-		return Util.VIEW;
+		
+		String viewurl = request.getParameter("viewurl");
+		if(viewurl==null || viewurl.trim().isEmpty())
+			return Util.VIEW;
+		
+		request.getRequestDispatcher(viewurl).forward(request, response);
+		return Util.NONE;
 	}
 
 	public ArticleService getArticleService() {
@@ -210,6 +244,22 @@ public class ArticleAction extends BaseAction {
 
 	public void setCategoryList(List<CategoryInfo> categoryList) {
 		CategoryList = categoryList;
+	}
+
+	public String getM() {
+		return m;
+	}
+
+	public void setM(String m) {
+		this.m = m;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }

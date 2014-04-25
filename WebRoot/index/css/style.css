@@ -1,0 +1,34 @@
+
+.booter{
+	margin-bottom: 100px;
+}
+
+.requied{
+	color:#f00;
+}
+.errorMessage{
+	color:#f00;
+}
+
+body{
+	background:#fafefb;
+	margin-top:2px;
+}
+
+.pagetop{
+	width: 1000px;
+	border:1pxp #f00 solid;
+	margin:0 auto;
+	text-align:right;
+}
+
+.loginbody {
+	margin-top:20px;
+	margin-left: auto;
+	margin-right: auto;
+	width:500px;
+    padding: 10px; /* 60px to make the container go all the way to the bottom of the topbar */
+	background-color: #fafafa;
+	font-size:15px;
+	align:center;
+}

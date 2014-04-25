@@ -30,16 +30,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	<script type="text/javascript">
-		function add(){
-			location.href="<%= basePath%>/${action}?method=beforeAdd&articleInfo.category=${category}";
-		}
-		function del(id){
-			if(confirm("确定删除吗？"))
-			location.href="<%= basePath%>/${action}?method=delete&id="+id;
-		}
-	</script>
-
   </head>
   
   <body>
@@ -68,7 +58,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</td>
 								<td align="right">
 									<s:if test="#request.i>=0">
-										<input id="button1"  type="button" value="添加" class="button" onclick="add();"/>
+										<a href="${action}?method=beforeAdd&articleInfo.category=${category}"  class="button">
+											添加
+										</a>
 									</s:if>
 									
 								</td>									

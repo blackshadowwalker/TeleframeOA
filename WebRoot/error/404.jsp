@@ -6,7 +6,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML >
 <html>
 <head>
   <title></title>
@@ -29,7 +29,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 
 	<div class="main" align=center>
-		<font color=red style="font-size:30px" >404! 出错了,您访问的信息不存在</font>
+		<font color="#ff0" style="font-size:30px" >404! 出错了,您访问的信息不存在</font>
+		
 		<font color=green >		<a href="javascript:history.back(-1);">返回</a></font>
 		<div>
 			<script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8"></script>

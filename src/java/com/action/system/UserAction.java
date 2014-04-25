@@ -32,6 +32,13 @@ public class UserAction extends BaseAction {
 		}
 		return Util.NONE;
 	}
+	public String personal() throws Exception{
+		
+		this.person();
+		
+		return Util.PERSONAL;
+		
+	}
 	public String person() throws Exception{
 		if(request.getParameter("save")==null){
 			//	userInfo= user;//userService.beforeUpdate(id);

@@ -6,17 +6,23 @@
 	<!-- Struts 2的Action必须放在指定的包空间下定义 -->
 	<package name="sys" extends="common" >
 	
+		<!-- Index -->
+		<action name="IndexAction" class="IndexAction" >
+			<result name="success">index/index.jsp</result>
+		</action>
+	
 	    <!-- 登录  Login & Log off-->
 		<action name="LoginAction" class="LoginAction" >
 			<result name="success">/frame/index.jsp</result>
-			<result name="faile">/login.jsp</result>
+			<result name="faile">/admin/login.jsp</result>
 		</action>
 		
 		<!-- 角色/权限管理  Role Management  -->
 		<action name="RoleAction" class="RoleAction">
 			<result name="list">/modules/system/role/query.jsp</result>
-			<result name="update">/modules/system/role/update.jsp</result>
-			<result name="add">/modules/system/role/add.jsp</result>
+			<result name="edit">/modules/system/role/edit.jsp</result>
+			<result name="update">/modules/system/role/edit.jsp</result>
+			<result name="add">/modules/system/role/edit.jsp</result>
 		</action>
 		
 		<!-- 菜单管理  Menu Management -->
@@ -45,6 +51,7 @@
 			<result name="add">/modules/system/user/add.jsp</result>
 			<result name="update">/modules/system/user/update.jsp</result>
 			<result name="person">/modules/system/user/person.jsp</result>
+			<result name="personal">/index/personal.jsp</result>
 		</action>
 		
 		<!-- karl file manager  文件管理-->
@@ -77,6 +84,7 @@
 		<!-- 文章管理  -->
 		<action name="ArticleAction" class="ArticleAction">
 			<result name="list">/modules/system/article/query.jsp</result>
+			<result name="listindex">/modules/oa/article/list.jsp</result>
 			<result name="view">/modules/system/article/view.jsp</result>
 			<result name="edit">/modules/system/article/edit.jsp</result>
 		</action>
@@ -95,6 +103,11 @@
 			<result name="list">/modules/system/help/query.jsp</result>
 			<result name="edit">/modules/system/help/edit.jsp</result>
 			<result name="view">/modules/system/help/view.jsp</result>
+		</action>
+		
+		<!-- 二维码  QR CODE -->
+		<action name="qrservlet" class="qrservlet">
+			<result name="help">/modules/help/qrcode.jsp</result>
 		</action>
 		
 

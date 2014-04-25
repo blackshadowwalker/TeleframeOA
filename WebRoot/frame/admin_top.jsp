@@ -9,6 +9,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+	<base href="">
 	<title>管理页面</title>
 	<meta http-equiv=Content-Type content=text/html;charset=utf-8>
 	<base target="main">
@@ -60,9 +61,13 @@
 			        	<span>
 			        		版本:<s:property value="#application['version']"/>
 			        	</span>
+			        	|
+			        	<span>
+			        		<a href="<%=path %>/IndexAction?" style="color:#fff;" target="_blank" >前台首页</a>
+			        	</span>
 			        		|
 			        	<span>
-			        		<a href="HelpAction?" style="color:#fff;">帮助?</a>	
+			        		<a href="<%=path %>/HelpAction?" style="color:#fff;">帮助?</a>	
 			        	</span>
 			        	|
 			        	<a href="javascript:logout();" style="color:#fff;">	

@@ -5,25 +5,41 @@
 <struts>
 	<!-- Struts 2的Action必须放在指定的包空间下定义 -->
 	<package name="oa-action" extends="common">
+	
+		 <!-- 登录  Login & Log off-->
+		<action name="UserLoginAction" class="UserLoginAction" >
+			<result name="success">/index/index.jsp</result>
+			<result name="faile">/index/login.jsp</result>
+			<result name="userlogin">/index/login.jsp</result>
+		</action>
 
 		<!-- 财务文章管理 -->
 		<action name="FinanceAction" class="FinanceAction">
-			<result name="list">/modules/article/query.jsp</result>
-			<result name="view">/modules/article/view.jsp</result>
-			<result name="edit">/modules/article/edit.jsp</result>
+			<result name="listindex">/modules/oa/article/list.jsp</result>
+			<result name="list">/modules/system/article/query.jsp</result>
+			<result name="view">/modules/system/article/view.jsp</result>
+			<result name="edit">/modules/system/article/edit.jsp</result>
 		</action>
 		<!-- 技术文章管理 -->
 		<action name="TechnologyAction" class="TechnologyAction">
-			<result name="list">/modules/article/query.jsp</result>
-			<result name="view">/modules/article/view.jsp</result>
-			<result name="edit">/modules/article/edit.jsp</result>
+			<result name="listindex">/modules/oa/article/list.jsp</result>
+			<result name="list">/modules/system/article/query.jsp</result>
+			<result name="view">/modules/system/article/view.jsp</result>
+			<result name="edit">/modules/system/article/edit.jsp</result>
 		</action>
 		<!-- 行政文章管理 -->
 		<action name="RegulationAction" class="RegulationAction">
-			<result name="list">/modules/article/query.jsp</result>
-			<result name="view">/modules/article/view.jsp</result>
-			<result name="edit">/modules/article/edit.jsp</result>
+			<result name="listindex">/modules/oa/article/list.jsp</result>
+			<result name="list">/modules/system/article/query.jsp</result>
+			<result name="view">/modules/system/article/view.jsp</result>
+			<result name="edit">/modules/system/article/edit.jsp</result>
 		</action>
+		
+		<!-- 文章搜索 -->
+		<action name="SearchAction" class="SearchAction">
+			<result name="success">/modules/oa/search.jsp</result>
+		</action>
+		
 		
 	</package>
 </struts>

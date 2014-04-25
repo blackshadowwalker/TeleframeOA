@@ -44,6 +44,7 @@ public class RoleAction extends BaseAction {
 	public String beforeAdd() throws Exception {
 		rightString =roleService.beforeAdd();
 		request.setAttribute("rightString", rightString);
+		method = Util.ADD;
 		return Util.ADD;
 	}
 
@@ -76,8 +77,10 @@ public class RoleAction extends BaseAction {
 
 	public String beforeUpdate() throws Exception {
 		int id = roleInfo.getRoleId();
+		roleInfo = roleService.get(id);
 		rightString =roleService.beforeUpdate(id);
 		request.setAttribute("rightString", rightString);
+		method = Util.UPDATE;
 		return Util.UPDATE;
 	}
 

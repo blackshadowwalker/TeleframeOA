@@ -1,7 +1,384 @@
+Revision: 41
+Author: karl.li
+Date: 2014年4月25日 13:13:55
+Message:
+1.修复了权限BUG
+2.加入了OA的文章搜索
+----
+Modified : /WebRoot/WEB-INF/web.xml
+Modified : /WebRoot/index/booter.jsp
+Modified : /WebRoot/index/js/index.js
+Modified : /WebRoot/index/nav.jsp
+Added : /WebRoot/modules/help/images/10.png
+Added : /WebRoot/modules/help/images/7.png
+Added : /WebRoot/modules/help/images/8.png
+Added : /WebRoot/modules/help/images/9.png
+Modified : /WebRoot/modules/help/oa.jsp
+Modified : /WebRoot/modules/oa/article/view.jsp
+Added : /WebRoot/modules/oa/search.jsp
+Modified : /WebRoot/modules/system/article/view.jsp
+Deleted : /WebRoot/modules/system/role/add.jsp
+Added : /WebRoot/modules/system/role/edit.jsp
+Modified : /WebRoot/modules/system/role/update.jsp
+Modified : /WebRoot/modules/system/ruler/query.jsp
+Modified : /WebRoot/scripts/main.js
+Modified : /pom.xml
+Added : /src/java/com/action/oa/SearchAction.java
+Modified : /src/java/com/action/system/RoleAction.java
+Modified : /src/java/com/base/BaseAction.java
+Modified : /src/java/com/dao/ArticleDao.java
+Modified : /src/java/com/dao/RoleDao.java
+Modified : /src/java/com/dao/RulerDao.java
+Modified : /src/java/com/service/RoleService.java
+Modified : /src/java/com/service/impl/RoleServiceImpl.java
+Modified : /src/java/spring/action-oa-spring.xml
+Modified : /src/java/struts/struts-oa.xml
+Modified : /src/java/struts/struts-sys.xml
+
+Revision: 40
+Author: karl.li
+Date: 2014年4月24日 18:23:25
+Message:
+OA系统基本完工，下一步
+规章制度添加几个实例
+----
+Added : /WebRoot/api
+Added : /WebRoot/api/index.jsp
+Added : /WebRoot/bootstrap/3/css/docs.css
+Added : /WebRoot/bootstrap/3/js/application.js
+Added : /WebRoot/favicon.ico
+Modified : /WebRoot/frame/admin_top.jsp
+Modified : /WebRoot/index/booter.jsp
+Modified : /WebRoot/index/index.jsp
+Modified : /WebRoot/index/js/index.js
+Modified : /WebRoot/index/nav.jsp
+Modified : /WebRoot/index/top.jsp
+Added : /WebRoot/modules/help/images
+Added : /WebRoot/modules/help/images/1.png
+Added : /WebRoot/modules/help/images/2.png
+Added : /WebRoot/modules/help/images/3.png
+Added : /WebRoot/modules/help/images/4.png
+Added : /WebRoot/modules/help/images/5.png
+Added : /WebRoot/modules/help/images/6.png
+Added : /WebRoot/modules/help/oa.jsp
+Added : /WebRoot/modules/oa/article
+Added : /WebRoot/modules/oa/article/list.jsp
+Added : /WebRoot/modules/oa/article/view.jsp
+Modified : /WebRoot/modules/system/article/edit.jsp
+Modified : /WebRoot/modules/system/article/query.jsp
+Modified : /src/dataBase/oa/oa.sql
+Modified : /src/dataBase/ssh2.sql/ssh2.sql
+Modified : /src/java/com/action/oa/FinanceAction.java
+Modified : /src/java/com/action/oa/RegulationAction.java
+Modified : /src/java/com/action/system/ArticleAction.java
+Modified : /src/java/com/action/system/HelpAction.java
+Modified : /src/java/com/action/system/LoginAction.java
+Modified : /src/java/com/base/BaseAction.java
+Modified : /src/java/com/dao/ArticleDao.java
+Modified : /src/java/com/util/Util.java
+Modified : /src/java/struts/struts-oa.xml
+Modified : /src/java/struts/struts-sys.xml
+
+Revision: 39
+Author: karl.li
+Date: 2014年4月24日 11:37:55
+Message:
+1.完成了主页的版面设计
+2.加入了QR二维码servlet
+3.加入关于我们
+4.加入APP应用下载页面
+----
+Modified : /WebRoot/WEB-INF/web.xml
+Added : /WebRoot/images/loading
+Added : /WebRoot/images/loading/loading_001.gif
+Added : /WebRoot/images/loading/loading_002.gif
+Added : /WebRoot/images/loading/loading_003.gif
+Added : /WebRoot/images/loading/loading_004.gif
+Added : /WebRoot/images/loading/loading_005.gif
+Added : /WebRoot/images/loading/loading_006.gif
+Added : /WebRoot/images/loading/loading_007.gif
+Added : /WebRoot/images/loading/loading_008.gif
+Added : /WebRoot/images/loading/loading_009.gif
+Added : /WebRoot/images/loading/loading_010.gif
+Added : /WebRoot/images/loading/loading_011.gif
+Added : /WebRoot/images/loading/loading_012.gif
+Added : /WebRoot/images/loading/loading_013.gif
+Added : /WebRoot/images/loading/loading_014.gif
+Added : /WebRoot/images/loading/loading_015.gif
+Added : /WebRoot/images/loading/loading_016.gif
+Added : /WebRoot/images/loading/loading_017.gif
+Added : /WebRoot/images/loading/loading_018.gif
+Added : /WebRoot/images/loading/loading_019.gif
+Added : /WebRoot/images/loading/loading_020.gif
+Added : /WebRoot/images/loading/loading_021.gif
+Added : /WebRoot/images/loading/loading_022.gif
+Added : /WebRoot/images/loading/loading_023.gif
+Added : /WebRoot/images/loading/loading_024.gif
+Added : /WebRoot/images/loading/loading_025.gif
+Added : /WebRoot/images/loading/loading_026.gif
+Added : /WebRoot/images/loading/loading_027.gif
+Added : /WebRoot/images/loading/loading_028.gif
+Added : /WebRoot/images/loading/loading_029.gif
+Added : /WebRoot/images/loading/loading_030.gif
+Added : /WebRoot/images/loading/loading_031.gif
+Added : /WebRoot/images/loading/loading_032.gif
+Added : /WebRoot/images/loading/loading_033.gif
+Added : /WebRoot/images/loading/loading_034.gif
+Added : /WebRoot/images/loading/loading_035.gif
+Added : /WebRoot/images/loading/loading_036.gif
+Added : /WebRoot/images/loading/loading_037.gif
+Added : /WebRoot/images/loading/loading_038.gif
+Added : /WebRoot/images/loading/loading_039.gif
+Added : /WebRoot/images/loading/loading_040.gif
+Added : /WebRoot/images/loading/loading_041.gif
+Added : /WebRoot/images/loading/loading_042.gif
+Added : /WebRoot/images/loading/loading_043.gif
+Added : /WebRoot/images/loading/loading_044.gif
+Added : /WebRoot/images/loading/loading_045.gif
+Added : /WebRoot/images/loading/loading_046.gif
+Added : /WebRoot/images/loading/loading_047.gif
+Added : /WebRoot/images/loading/loading_048.gif
+Added : /WebRoot/images/loading/loading_049.gif
+Added : /WebRoot/images/loading/loading_050.gif
+Added : /WebRoot/images/loading/loading_051.gif
+Added : /WebRoot/images/loading/loading_052.gif
+Added : /WebRoot/images/loading/loading_053.gif
+Added : /WebRoot/images/loading/loading_054.gif
+Added : /WebRoot/images/loading/loading_055.gif
+Added : /WebRoot/images/loading/loading_056.gif
+Added : /WebRoot/images/loading/loading_057.gif
+Added : /WebRoot/images/loading/loading_058.gif
+Added : /WebRoot/images/loading/loading_059.gif
+Added : /WebRoot/images/loading/loading_060.gif
+Added : /WebRoot/images/loading/loading_061.gif
+Added : /WebRoot/images/loading/loading_062.gif
+Added : /WebRoot/images/loading/loading_063.gif
+Added : /WebRoot/images/loading/loading_064.gif
+Added : /WebRoot/images/loading/loading_065-small.gif
+Added : /WebRoot/images/loading/loading_065.gif
+Added : /WebRoot/index/about.jsp
+Modified : /WebRoot/index/booter.jsp
+Modified : /WebRoot/index/css/justified-nav.css
+Added : /WebRoot/index/images/1.JPG
+Added : /WebRoot/index/images/its_sps.png
+Added : /WebRoot/index/images/loading_007.gif
+Added : /WebRoot/index/images/tfMobileAuth.png
+Added : /WebRoot/index/images/vlpr.png
+Modified : /WebRoot/index/index.jsp
+Modified : /WebRoot/index/js/index.js
+Modified : /WebRoot/index/nav.jsp
+Added : /WebRoot/modules/help
+Added : /WebRoot/modules/help/index.jsp
+Added : /WebRoot/modules/help/qrcode.jsp
+Added : /WebRoot/modules/oa/app.jsp
+Modified : /pom.xml
+Added : /src/java/com/action/system/qrservlet.java
+Added : /src/java/com/base/FileUtil.java
+Added : /src/java/com/base/qr
+Added : /src/java/com/base/qr/BufferedImageLuminanceSource.java
+Added : /src/java/com/base/qr/QRCodeUtil.java
+Added : /src/java/com/base/qr/QRImageServlet.java
+Modified : /src/java/com/util/Util.java
+Modified : /src/java/spring/action-sys-spring.xml
+Modified : /src/java/struts/struts-sys.xml
+Deleted : /svn.log
+Added : /svn.log.txt
+
+Revision: 38
+Author: karl.li
+Date: 2014年4月23日 19:31:30
+Message:
+delete login.jsp and move to admin/login.jsp
+----
+Deleted : /WebRoot/login.jsp
+
+Revision: 37
+Author: karl.li
+Date: 2014年4月23日 19:30:48
+Message:
+完成个人信息修改，下一步
+主界面+规章制度阅读
+----
+Modified : /WebRoot/WEB-INF/web.xml
+Added : /WebRoot/admin
+Added : /WebRoot/admin/login.jsp
+Added : /WebRoot/bootstrap/3/css/datepicker.css
+Added : /WebRoot/bootstrap/3/js/bootstrap-datepicker.js
+Added : /WebRoot/index/booter.jsp
+Modified : /WebRoot/index/css/justified-nav.css
+Added : /WebRoot/index/css/nav.css
+Modified : /WebRoot/index/css/style.css
+Modified : /WebRoot/index/index.jsp
+Added : /WebRoot/index/js
+Added : /WebRoot/index/js/index.js
+Modified : /WebRoot/index/login.jsp
+Modified : /WebRoot/index/nav.jsp
+Added : /WebRoot/index/personal.jsp
+Modified : /WebRoot/index/top.jsp
+Added : /src/java/com/action/oa/UserLoginAction.java
+Modified : /src/java/com/action/system/LoginAction.java
+Modified : /src/java/com/action/system/UserAction.java
+Modified : /src/java/com/util/Util.java
+Modified : /src/java/spring/action-oa-spring.xml
+Modified : /src/java/spring/action-sys-spring.xml
+Modified : /src/java/struts/struts-oa.xml
+Modified : /src/java/struts/struts-sys.xml
+Modified : /src/java/struts.xml
+Modified : /svn.log
+
+
+
+Revision: 36
+Author: karl.li
+Date: 2014年4月22日 17:20:03
+Message:
+开始写index.jsp + bootstrap
+----
+Modified : /WebRoot/WEB-INF/web.xml
+Modified : /WebRoot/login.jsp
+Modified : /src/java/struts/struts-oa.xml
+Modified : /src/java/struts/struts-sys.xml
+Modified : /pom.xml
+Modified : /WebRoot/error/404.jsp
+Modified : /.settings/org.eclipse.core.resources.prefs
+Added : /WebRoot/bootstrap
+Added : /WebRoot/bootstrap/2
+Added : /WebRoot/bootstrap/2/css
+Added : /WebRoot/bootstrap/2/css/bootstrap-responsive.css
+Added : /WebRoot/bootstrap/2/css/bootstrap-responsive.min.css
+Added : /WebRoot/bootstrap/2/css/bootstrap.css
+Added : /WebRoot/bootstrap/2/css/bootstrap.min.css
+Added : /WebRoot/bootstrap/2/img
+Added : /WebRoot/bootstrap/2/img/glyphicons-halflings-white.png
+Added : /WebRoot/bootstrap/2/img/glyphicons-halflings.png
+Added : /WebRoot/bootstrap/2/js
+Added : /WebRoot/bootstrap/2/js/bootstrap.js
+Added : /WebRoot/bootstrap/2/js/bootstrap.min.js
+Added : /WebRoot/bootstrap/3
+Added : /WebRoot/bootstrap/3/css
+Added : /WebRoot/bootstrap/3/css/bootstrap-theme.css
+Added : /WebRoot/bootstrap/3/css/bootstrap-theme.min.css
+Added : /WebRoot/bootstrap/3/css/bootstrap.css
+Added : /WebRoot/bootstrap/3/css/bootstrap.min.css
+Added : /WebRoot/bootstrap/3/fonts
+Added : /WebRoot/bootstrap/3/fonts/glyphicons-halflings-regular.eot
+Added : /WebRoot/bootstrap/3/fonts/glyphicons-halflings-regular.svg
+Added : /WebRoot/bootstrap/3/fonts/glyphicons-halflings-regular.ttf
+Added : /WebRoot/bootstrap/3/fonts/glyphicons-halflings-regular.woff
+Added : /WebRoot/bootstrap/3/js
+Added : /WebRoot/bootstrap/3/js/bootstrap.js
+Added : /WebRoot/bootstrap/3/js/bootstrap.min.js
+Added : /WebRoot/index
+Added : /WebRoot/index/css
+Added : /WebRoot/index/css/justified-nav.css
+Added : /WebRoot/index/css/style.css
+Added : /WebRoot/index/images
+Added : /WebRoot/index/images/ico_sear_top.gif
+Added : /WebRoot/index/index.jsp
+Added : /WebRoot/index/login.jsp
+Added : /WebRoot/index/nav.jsp
+Added : /WebRoot/index/top.jsp
+Deleted : /WebRoot/public.jsp
+
+Revision: 35
+Author: karl.li
+Date: 2014年4月22日 16:08:47
+Message:
+
+----
+Added : /src/resources/document/web用户界面
+Added : /src/resources/document/web用户界面/查询界面
+Added : /src/resources/document/web用户界面/查询界面/2查询界面.jpg
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/logo.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/下拉框_03.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/圆角矩形 8.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/形状 10 拷贝 2.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/形状 10 拷贝 3.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/形状 10 拷贝.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/形状 10.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/形状 3.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/形状 5.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/形状 6.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/形状 9 拷贝 2.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/形状 9 拷贝 3.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/形状 9 拷贝.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/形状 9.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/形状4.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/搜索.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/搜索底图.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/搜索栏划线.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/查询图标.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/灰色底.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/点击效果.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/点击效果圆角矩形 8.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/矩形 12.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/矩形 4 拷贝 2.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/矩形 5 拷贝.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/矩形 5.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/矩形 6.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/背景.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/退出.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/顶部划线.png
+Added : /src/resources/document/web用户界面/查询界面/2查询界面png资源/黑色底图.png
+Added : /src/resources/document/web用户界面/详情界面
+Added : /src/resources/document/web用户界面/详情界面/3详情界面.jpg
+Added : /src/resources/document/web用户界面/详情界面/3详情界面png资源
+Added : /src/resources/document/web用户界面/详情界面/3详情界面png资源/表格框.png
+Added : /src/resources/document/web用户界面/详情界面/3详情界面png资源/详情界面底图.png
+Added : /src/resources/document/web用户界面/首界面
+Added : /src/resources/document/web用户界面/首界面/1首界面.jpg
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源/三角.png
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源/右.png
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源/向右.png
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源/向左.png
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源/圆点.png
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源/圆角矩形.png
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源/圆角矩形点击效果.png
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源/左.png
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源/最新交通资讯.png
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源/最近违章车辆.png
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源/用户名输入框.png
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源/登录区底图.png
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源/短虚线.png
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源/统计数据区.png
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源/网站公告.png
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源/背景.png
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源/违章图片.png
+Added : /src/resources/document/web用户界面/首界面/1首界面png资源/长虚线.png
+
+Revision: 34
+Author: karl.li
+Date: 2014年4月22日 15:06:09
+Message:
+add IndexAction.java for IndexAction
+----
+Added : /src/java/com/action/system/IndexAction.java
+
+Revision: 33
+Author: karl.li
+Date: 2014年4月22日 14:58:08
+Message:
+add public.jsp for IndexAction
+----
+Added : /WebRoot/public.jsp
+
+Revision: 32
+Author: karl.li
+Date: 2014年4月22日 14:55:35
+Message:
+加入 IndexAction
+----
+Modified : /WebRoot/WEB-INF/web.xml
+Modified : /src/java/com/action/system/LoginAction.java
+Modified : /src/java/spring/action-sys-spring.xml
+Modified : /src/java/struts/struts-sys.xml
+Modified : /WebRoot/index.jsp
 
 Revision: 31
 Author: karl.li
-Date: 2014年4月18日 16:25:14
+Date: 2014年4月18日 13:25:14
 Message:
 
 ----
@@ -11,7 +388,7 @@ Deleted : /src/java/com/action/xtgl
 
 Revision: 30
 Author: karl.li
-Date: 2014年4月18日 16:24:52
+Date: 2014年4月18日 13:24:52
 Message:
 
 ----
@@ -26,7 +403,7 @@ Deleted : /WebRoot/modules/user
 
 Revision: 29
 Author: karl.li
-Date: 2014年4月18日 15:43:44
+Date: 2014年4月18日 12:43:44
 Message:
 重新改造了OA系统结构
 ----
@@ -697,7 +1074,7 @@ Added : /src/resources/document-changsha/长沙市刑警支队解决方案.doc
 
 Revision: 28
 Author: karl.li
-Date: 2014年4月17日 16:02:33
+Date: 2014年4月17日 13:02:33
 Message:
 
 ----
@@ -708,11 +1085,9 @@ Modified : /WebRoot/modules/ruler/add.jsp
 Modified : /WebRoot/modules/syslog/query.jsp
 Modified : /WebRoot/modules/user/update.jsp
 
-
-
 Revision: 27
 Author: karl.li
-Date: 2014年3月28日 15:21:40
+Date: 2014年3月28日 11:21:40
 Message:
 
 ----
@@ -720,19 +1095,19 @@ Modified : /src/resources/document/SSH2Frame.doc
 
 Revision: 26
 Author: karl.li
-Date: 2014年3月26日 21:13:07
+Date: 2014年3月26日 17:13:07
 Message:
 加入title @ web.xml
 ----
 Modified : /WebRoot/WEB-INF/web.xml
 Modified : /WebRoot/frame/index.jsp
 Modified : /WebRoot/login.jsp
-Added : /src/java/com/base/Config.java
 Modified : /src/java/com/listener/ContextListener.java
+Added : /src/java/com/base/Config.java
 
 Revision: 25
 Author: karl.li
-Date: 2014年3月26日 20:43:39
+Date: 2014年3月26日 16:43:39
 Message:
 add sql for OA | ssh2
 ----
@@ -742,19 +1117,14 @@ Modified : /src/dataBase/ssh2.sql/ssh2.sql
 
 Revision: 24
 Author: karl.li
-Date: 2014年3月26日 20:15:51
+Date: 2014年3月26日 16:15:51
 Message:
 加入文章管理，并拆分成并存的 行政规章制度、财务制度、技术文章
 日志管理已经完成
 用户加入userCode，并完成CURD
 ----
-Modified : /WebRoot/css/common.css
 Added : /WebRoot/modules/syslog
-Added : /WebRoot/modules/syslog/query.jsp
-Added : /WebRoot/modules/syslog/view.jsp
-Modified : /WebRoot/modules/user/add.jsp
-Modified : /WebRoot/modules/user/person.jsp
-Modified : /WebRoot/modules/user/update.jsp
+Modified : /WebRoot/css/common.css
 Modified : /src/java/com/action/ArticleAction.java
 Modified : /src/java/com/action/DeptAction.java
 Modified : /src/java/com/action/FinanceAction.java
@@ -762,60 +1132,61 @@ Added : /src/java/com/action/RegulationAction.java
 Modified : /src/java/com/action/SyslogAction.java
 Modified : /src/java/com/action/TechnologyAction.java
 Modified : /src/java/com/action/UserAction.java
-Modified : /src/java/com/action/xtgl/RulerAction.java
 Modified : /src/java/com/base/BaseAction.java
 Modified : /src/java/com/dao/SyslogDao.java
-Modified : /src/java/com/dao/UserDao.java
 Modified : /src/java/com/hbm/Syslog.hbm.xml
 Modified : /src/java/spring/action-spring.xml
 Modified : /src/java/struts/struts-sys.xml
-
-next version see vlpr-changsha
+Added : /WebRoot/modules/syslog/query.jsp
+Modified : /WebRoot/modules/user/update.jsp
+Added : /WebRoot/modules/syslog/view.jsp
+Modified : /WebRoot/modules/user/add.jsp
+Modified : /WebRoot/modules/user/person.jsp
+Modified : /src/java/com/action/xtgl/RulerAction.java
+Modified : /src/java/com/dao/UserDao.java
 
 Revision: 23
 Author: karl.li
-Date: 2014年3月26日 16:40:35
+Date: 2014年3月26日 12:40:35
 Message:
 修改权限checkRight @ BaseAction
 目前文章类的行政、财务、技术都公用也没，运行良好，权限可以分别控制
 ----
 Modified : /WebRoot/login.jsp
-Modified : /WebRoot/modules/article/query.jsp
-Modified : /WebRoot/modules/ruler/add.jsp
-Modified : /WebRoot/modules/user/add.jsp
-Modified : /WebRoot/modules/user/query.jsp
-Modified : /WebRoot/modules/user/update.jsp
 Modified : /src/java/com/action/FinanceAction.java
 Modified : /src/java/com/action/LoginAction.java
 Added : /src/java/com/action/TechnologyAction.java
 Modified : /src/java/com/action/UserAction.java
 Modified : /src/java/com/base/BaseAction.java
-Modified : /src/java/com/bean/Syslog.java
 Modified : /src/java/com/bean/UserInfo.java
-Modified : /src/java/com/dao/LoginDao.java
 Modified : /src/java/com/dao/RulerDao.java
-Modified : /src/java/com/dao/UserDao.java
 Modified : /src/java/com/hbm/UserInfo.hbm.xml
 Modified : /src/java/spring/action-spring.xml
 Modified : /src/java/struts/struts-sys.xml
+Modified : /WebRoot/modules/ruler/add.jsp
+Modified : /WebRoot/modules/user/update.jsp
+Modified : /WebRoot/modules/user/add.jsp
+Modified : /src/java/com/dao/UserDao.java
+Modified : /WebRoot/modules/article/query.jsp
+Modified : /WebRoot/modules/user/query.jsp
+Modified : /src/java/com/bean/Syslog.java
+Modified : /src/java/com/dao/LoginDao.java
 
 Revision: 22
 Author: karl.li
-Date: 2014年3月26日 11:01:21
+Date: 2014年3月26日 7:01:21
 Message:
 修改部分小细节
 加入uploadframe
 ----
-Modified : /.myhibernatedata
 Modified : /WebRoot/frame/admin_left.jsp
+Modified : /.myhibernatedata
 Modified : /WebRoot/modules/file/add.jsp
 Added : /WebRoot/modules/file/uploadframe.jsp
 
-
-
 Revision: 21
 Author: karl.li
-Date: 2014年3月26日 10:13:55
+Date: 2014年3月26日 6:13:55
 Message:
 
 ----
@@ -824,17 +1195,12 @@ Deleted : /WebRoot/modules/article/update.jsp
 
 Revision: 20
 Author: karl.li
-Date: 2014年3月26日 10:10:36
+Date: 2014年3月26日 6:10:36
 Message:
 加入了Syslog.java 日志管理功能，下一步加入日志显示
 
 ----
 Modified : /WebRoot/WEB-INF/web.xml
-Modified : /WebRoot/modules/article/edit.jsp
-Modified : /WebRoot/modules/article/query.jsp
-Modified : /WebRoot/modules/article/view.jsp
-Modified : /WebRoot/modules/ruler/add.jsp
-Modified : /WebRoot/modules/ruler/query.jsp
 Modified : /src/dataBase/ssh2.sql/ssh2.sql
 Modified : /src/java/applicationContext.xml
 Modified : /src/java/com/action/ArticleAction.java
@@ -842,40 +1208,45 @@ Added : /src/java/com/action/FinanceAction.java
 Modified : /src/java/com/action/LoginAction.java
 Added : /src/java/com/action/SyslogAction.java
 Modified : /src/java/com/action/UserAction.java
-Modified : /src/java/com/action/xtgl/RulerAction.java
 Modified : /src/java/com/base/BaseAction.java
 Modified : /src/java/com/base/BaseDao.java
-Added : /src/java/com/base/BaseService.java
-Modified : /src/java/com/bean/RulerInfo.java
-Added : /src/java/com/bean/Syslog.java
 Modified : /src/java/com/bean/UserInfo.java
 Modified : /src/java/com/dao/ArticleDao.java
 Modified : /src/java/com/dao/RulerDao.java
 Added : /src/java/com/dao/SyslogDao.java
 Added : /src/java/com/hbm/Syslog.hbm.xml
-Modified : /src/java/com/service/ArticleService.java
-Modified : /src/java/com/service/CategoryService.java
 Modified : /src/java/com/service/DeptService.java
-Modified : /src/java/com/service/FileService.java
-Modified : /src/java/com/service/LoginService.java
-Modified : /src/java/com/service/RightService.java
-Modified : /src/java/com/service/RoleService.java
-Modified : /src/java/com/service/RulerService.java
 Added : /src/java/com/service/SyslogService.java
 Modified : /src/java/com/service/TestService.java
-Modified : /src/java/com/service/UserService.java
-Modified : /src/java/com/service/impl/ArticleServiceImpl.java
 Added : /src/java/com/service/impl/SyslogServiceImpl.java
-Modified : /src/java/com/util/Util.java
 Modified : /src/java/spring/action-spring.xml
 Modified : /src/java/spring/dao-spring.xml
 Modified : /src/java/spring/service-spring.xml
 Modified : /src/java/struts/struts-sys.xml
 Modified : /src/java/struts.properties
+Modified : /WebRoot/modules/ruler/add.jsp
+Modified : /src/java/com/action/xtgl/RulerAction.java
+Modified : /WebRoot/modules/article/query.jsp
+Added : /src/java/com/bean/Syslog.java
+Modified : /WebRoot/modules/article/edit.jsp
+Modified : /WebRoot/modules/article/view.jsp
+Modified : /WebRoot/modules/ruler/query.jsp
+Added : /src/java/com/base/BaseService.java
+Modified : /src/java/com/bean/RulerInfo.java
+Modified : /src/java/com/service/ArticleService.java
+Modified : /src/java/com/service/CategoryService.java
+Modified : /src/java/com/service/FileService.java
+Modified : /src/java/com/service/LoginService.java
+Modified : /src/java/com/service/RightService.java
+Modified : /src/java/com/service/RoleService.java
+Modified : /src/java/com/service/RulerService.java
+Modified : /src/java/com/service/UserService.java
+Modified : /src/java/com/service/impl/ArticleServiceImpl.java
+Modified : /src/java/com/util/Util.java
 
 Revision: 19
 Author: karl.li
-Date: 2014年3月25日 16:07:08
+Date: 2014年3月25日 12:07:08
 Message:
 完成了文章管理
 ----
@@ -884,37 +1255,52 @@ Modified : /WebRoot/frame/admin_bottom.jsp
 Modified : /WebRoot/frame/admin_left.jsp
 Modified : /WebRoot/frame/admin_top.jsp
 Modified : /WebRoot/frame/index.jsp
-Modified : /WebRoot/modules/article/add.jsp
-Added : /WebRoot/modules/article/edit.jsp
-Modified : /WebRoot/modules/article/query.jsp
-Added : /WebRoot/modules/article/view.jsp
-Added : /WebRoot/modules/user/person.jsp
 Modified : /src/dataBase/ssh2.sql/ssh2.sql
 Modified : /src/java/com/action/ArticleAction.java
 Modified : /src/java/com/action/LoginAction.java
 Modified : /src/java/com/action/UploadAction.java
 Modified : /src/java/com/action/UserAction.java
 Modified : /src/java/com/base/BaseAction.java
-Modified : /src/java/com/bean/ArticleInfo.java
 Modified : /src/java/com/dao/ArticleDao.java
-Modified : /src/java/com/dao/UserDao.java
 Modified : /src/java/com/hbm/ArticleInfo.hbm.xml
-Modified : /src/java/com/service/UserService.java
-Modified : /src/java/com/service/impl/ArticleServiceImpl.java
-Modified : /src/java/com/service/impl/UserServiceImpl.java
-Modified : /src/java/com/util/Util.java
 Modified : /src/java/spring/action-spring.xml
 Modified : /src/java/struts/struts-sys.xml
+Added : /WebRoot/modules/user/person.jsp
+Modified : /src/java/com/dao/UserDao.java
+Modified : /WebRoot/modules/article/query.jsp
+Modified : /WebRoot/modules/article/add.jsp
+Added : /WebRoot/modules/article/edit.jsp
+Added : /WebRoot/modules/article/view.jsp
+Modified : /src/java/com/service/UserService.java
+Modified : /src/java/com/service/impl/ArticleServiceImpl.java
+Modified : /src/java/com/util/Util.java
+Modified : /src/java/com/bean/ArticleInfo.java
+Modified : /src/java/com/service/impl/UserServiceImpl.java
 
 Revision: 18
 Author: karl.li
-Date: 2014年3月24日 18:01:36
+Date: 2014年3月24日 14:01:36
 Message:
 add ckeditor
 正在开发article
 ----
 Modified : /Readme.txt
 Modified : /WebRoot/WEB-INF/web.xml
+Modified : /WebRoot/css/common.css
+Modified : /WebRoot/login.jsp
+Modified : /src/dataBase/ssh2.sql/ssh2.sql
+Modified : /src/java/com/action/ArticleAction.java
+Added : /src/java/com/action/CkeditorUpload.java
+Modified : /src/java/com/base/BaseAction.java
+Added : /src/java/com/listener
+Added : /src/java/com/listener/ContextListener.java
+Modified : /src/java/jdbc.properties
+Modified : /src/java/spring/action-spring.xml
+Modified : /src/java/struts/struts-sys.xml
+Modified : /WebRoot/modules/user/update.jsp
+Modified : /WebRoot/modules/file/add.jsp
+Modified : /WebRoot/modules/article/add.jsp
+Modified : /WebRoot/modules/article/update.jsp
 Added : /WebRoot/ckeditor
 Added : /WebRoot/ckeditor/CHANGES.md
 Added : /WebRoot/ckeditor/LICENSE.md
@@ -1352,59 +1738,29 @@ Added : /WebRoot/ckeditor/skins/moono/images/lock.png
 Added : /WebRoot/ckeditor/skins/moono/images/refresh.png
 Added : /WebRoot/ckeditor/skins/moono/readme.md
 Added : /WebRoot/ckeditor/styles.js
-Modified : /WebRoot/css/common.css
 Modified : /WebRoot/index.jsp
-Modified : /WebRoot/login.jsp
-Modified : /WebRoot/modules/article/add.jsp
-Modified : /WebRoot/modules/article/update.jsp
 Modified : /WebRoot/modules/category/update.jsp
-Modified : /WebRoot/modules/file/add.jsp
-Modified : /WebRoot/modules/user/update.jsp
 Modified : /pom.xml
-Modified : /src/dataBase/ssh2.sql/ssh2.sql
-Modified : /src/java/com/action/ArticleAction.java
-Added : /src/java/com/action/CkeditorUpload.java
-Modified : /src/java/com/base/BaseAction.java
 Modified : /src/java/com/dao/RightDao.java
 Modified : /src/java/com/dao/RoleDao.java
-Added : /src/java/com/listener
-Added : /src/java/com/listener/ContextListener.java
-Modified : /src/java/jdbc.properties
-Modified : /src/java/spring/action-spring.xml
-Modified : /src/java/struts/struts-sys.xml
 Modified : /svn.log
 
 Revision: 17
 Author: karl.li
-Date: 2014年3月19日 19:50:42
+Date: 2014年3月19日 15:50:42
 Message:
 添加了文章管理和文章类别管理
 ----
-Modified : /.gitignore
-Modified : /.myhibernatedata
-Modified : /Readme.txt
 Added : /WebRoot/modules/article
-Added : /WebRoot/modules/article/add.jsp
-Added : /WebRoot/modules/article/query.jsp
-Added : /WebRoot/modules/article/update.jsp
 Added : /WebRoot/modules/category
-Added : /WebRoot/modules/category/add.jsp
-Added : /WebRoot/modules/category/query.jsp
-Added : /WebRoot/modules/category/update.jsp
+Modified : /Readme.txt
 Modified : /src/dataBase/ssh2.sql/ssh2.sql
 Added : /src/java/com/action/ArticleAction.java
 Added : /src/java/com/action/CategoryAction.java
 Modified : /src/java/com/base/BaseAction.java
-Added : /src/java/com/bean/ArticleInfo.java
-Added : /src/java/com/bean/CategoryInfo.java
 Added : /src/java/com/dao/ArticleDao.java
-Added : /src/java/com/dao/CategoryDao.java
 Added : /src/java/com/hbm/ArticleInfo.hbm.xml
 Added : /src/java/com/hbm/CategoryInfo.hbm.xml
-Added : /src/java/com/service/ArticleService.java
-Added : /src/java/com/service/CategoryService.java
-Added : /src/java/com/service/impl/ArticleServiceImpl.java
-Added : /src/java/com/service/impl/CategoryServiceImpl.java
 Modified : /src/java/spring/action-spring.xml
 Modified : /src/java/spring/dao-spring.xml
 Modified : /src/java/spring/service-spring.xml
@@ -1413,7 +1769,22 @@ Added : /src/resources/document
 Added : /src/resources/document/SSH2Frame.doc
 Added : /src/resources/document/~$H2Frame.doc
 Added : /src/resources/document/~WRL0001.tmp
+Added : /WebRoot/modules/category/add.jsp
+Added : /WebRoot/modules/article/query.jsp
+Modified : /.myhibernatedata
+Added : /WebRoot/modules/article/add.jsp
+Added : /WebRoot/modules/article/update.jsp
+Added : /src/java/com/service/ArticleService.java
+Added : /src/java/com/service/CategoryService.java
+Added : /src/java/com/service/impl/ArticleServiceImpl.java
+Added : /src/java/com/bean/ArticleInfo.java
+Added : /WebRoot/modules/category/update.jsp
 Modified : /svn.log
+Modified : /.gitignore
+Added : /WebRoot/modules/category/query.jsp
+Added : /src/java/com/bean/CategoryInfo.java
+Added : /src/java/com/dao/CategoryDao.java
+Added : /src/java/com/service/impl/CategoryServiceImpl.java
 
 
 

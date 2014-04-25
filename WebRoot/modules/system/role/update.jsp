@@ -82,6 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		};
 		
 		function zTreeOnCheck2(event, treeId, treeNode){
+			return ;
 			var treeObj = $.fn.zTree.getZTreeObj("rulerTree");
 			if(true){
 				var uivd = "uivd_node_"+treeNode.id;
@@ -113,6 +114,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  			word += v[i].value;
 	  		}
 	  		treeNode.rulerWord = word;
+	  		console.log(word);
+		}
+		
+		function selectParentSub(obj){
+			var checked = $(obj).attr("checked")=="checked" ? true:false;
+			console.log("checked = "+checked);
+			$(obj).parent().children("input:checkbox").each(function(){
+			    if ('' != $(this).attr("value")) {
+				console.log( $(this).attr("value") );
+			         $(this).attr('checked', checked); 
+			    }
+			});
 		}
 		
 		function addDiyDom(treeId, treeNode) {
@@ -121,9 +134,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var aObj = $("#" + treeNode.tId + IDMark_A);
 			var editStr = "<span id=uivd_node_"+treeNode.id+" >";
 			editStr +="<input type=checkbox value='i' />增加 &nbsp;";
-			editStr +="<input type=checkbox value='d' />删除 &nbsp;";
 			editStr +="<input type=checkbox value='u' />修改 &nbsp;";
+			editStr +="<input type=checkbox value='d' />删除 &nbsp;";
 			editStr +="<input type=checkbox value='v' />查看详情&nbsp;";
+			editStr +="<input type=checkbox value='' onclick=\"selectParentSub(this)\" />全选&nbsp;";
 			editStr +="</span>";
 			aObj.append(editStr);
 
@@ -151,10 +165,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var treeObj = $.fn.zTree.getZTreeObj("rulerTree");
 				var nodes = treeObj.getCheckedNodes(true);
 				var str="";
+				var tmp = "";
 				for(var i=0;i<nodes.length;i++){
-					
-					str+=nodes[i].id+",";
-					str+=nodes[i].rulerWord+";";
+					tmp = "";
+					tmp +=nodes[i].id+",";
+					if( nodes[i].rulerWord == "undefined")
+						tmp +=";";
+					else
+						tmp +=nodes[i].rulerWord+";";
+					str += tmp;
+					console.log(nodes[i].name+": "+tmp);
 				}
 				
 				$("#rightString").val(str);
@@ -162,6 +182,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				document.forms[0].submit();
 			}
 		}
+		
+		function selectAll(obj, wd){
+			var checked = $(obj).attr("checked")=="checked" ? true:false;
+			console.log("checked="+checked);
+			var treeObj = $.fn.zTree.getZTreeObj("rulerTree");
+			/*
+			//遍历属性
+			for(var p in treeObj){
+			 	if(typeof(treeObj[p])=="function")
+				 	console.log(p+"()");
+				 else
+				 	console.log(p);
+			}
+			*/
+			var nodes = treeObj.getNodes();
+		//	console.log(nodes);
+			/*
+			//遍历属性
+			for(var p in nodes[0]){
+			 	if(typeof(nodes[0][p])=="function")
+				 	console.log(p+"()");
+				 else
+				 	console.log(p);
+			}
+			*/
+			if(wd==''){
+				treeObj.checkAllNodes(checked);
+				$(".ztree input[type=checkbox]").attr("checked",  checked);
+			}else if(wd=='readonly'){
+				treeObj.checkAllNodes(checked);
+				$(".ztree input[type=checkbox]").attr("checked",  false);
+			}else{
+				$(".ztree input:checkbox[value='"+wd+"']").attr("checked",  checked);
+			}
+		}
+		
 	</script>
   </head>
   
@@ -175,11 +231,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
   
   	<s:form action="RoleAction?method=update" method="post" theme="simple">
-		<div id="con" style="width:600px;">
+		<div id="con" style="width:800px;">
 			
 			<input type="hidden" id="rid" name="roleInfo.roleId"  value="${r_id}"/>
 			
 			<input type="hidden" id="rightString" name="rightString" />
+			
+			
 			<table id="table-data-outter">
 				<tr>
 					<td>
@@ -193,7 +251,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td colspan="2">
 									<div class="content_wrap">
 										<div class="zTreeDemoBackground right">
-											<ul id="rulerTree" class="ztree" style="width:400px;" ></ul>
+											<div style="width:500px;">
+												<input type="checkbox" onclick="selectAll(this,'');" />全选  
+												<input type="checkbox" onclick="selectAll(this,'readonly');" />只读全选  
+												&nbsp; 
+												<input type="checkbox" onclick="selectAll(this,'i');" />[增加]全选 
+												&nbsp; 
+												<input type="checkbox" onclick="selectAll(this,'u');" />[修改]全选  
+												&nbsp; 
+												<input type="checkbox" onclick="selectAll(this,'d');" />[删除]全选  
+												&nbsp; 
+												<input type="checkbox" onclick="selectAll(this,'v');" />[查看详情]全选  
+											</div>
+											<ul id="rulerTree" class="ztree" style="width:500px;" ></ul>
 										</div>
 									</div>
 									<br/>

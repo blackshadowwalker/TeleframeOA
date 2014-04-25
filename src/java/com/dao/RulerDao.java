@@ -95,6 +95,10 @@ public class RulerDao extends BaseDao {
 		query.setInteger("roleId", roleid);
 		list=(List< RulerRole>)query.list();
 		if(list!=null && list.size()>0){
+			for(RulerRole r : list){
+				if(r.getRulerWord()==null || r.getRulerWord().equals("null"))
+					r.setRulerWord("");
+			}
 			return list;
 		}
 		return null;

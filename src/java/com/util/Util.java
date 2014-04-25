@@ -5,8 +5,10 @@ public class Util {
 	public  static String NULL			= "null";
 	public  static String NONE			= "none";
 	public  static String LOGIN			= "login";
+	public  static String USER_LOGIN			= "userlogin";
 
 	public  static String OK 			= "ok";
+	public  static String HELP 			= "help";
 
 	public  static String SUCCESS		= "success";
 	public  static String FAILE			= "faile";
@@ -17,6 +19,8 @@ public class Util {
 	public  static String FALSE 		= "false";
 
 	public  static String LIST 			= "list";
+	public  static String LIST_INDEX 			= "listindex";
+	
 	public  static String EDIT 			= "edit";
 	public  static String ADD 			= "add";
 	public  static String BEFORE_ADD 	= "beforeAdd";
@@ -25,6 +29,7 @@ public class Util {
 	public  static String DELETE 		= "delete";
 	public  static String VIEW 			= "view";
 	public  static String PERSON 		= "person";
+	public  static String PERSONAL		= "personal";
 
 	public  static String SHOWFILE 		= "showfile";
 	

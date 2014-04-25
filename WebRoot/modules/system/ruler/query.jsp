@@ -35,6 +35,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	//	ymPrompt.alert("参数");
 	//	ymPrompt.confirmInfo("参数");
 	
+		var msg = "${msg}";
+		if(msg!="")
+			alert(msg);
+	
 		function query(id,val,text){
 			if(val==text){
 				document.getElementById(id).value="";

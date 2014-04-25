@@ -16,10 +16,26 @@ public class LoginAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
 	protected UserService userService;
-
+	
+	protected String RedirectUrl ;//after login redirect to this url
+	Integer flag;
+	
 	@Override
 	public String handle() throws Exception {
 		String retMapping = Util.NONE;
+		
+		UserInfo u = (UserInfo) session.get("user");
+		if(flag!=null && flag==1 && u!=null){
+			user = u;
+			
+			//登录成功，返回指定页面
+			if( RedirectUrl !=null && !RedirectUrl.isEmpty() ){
+				response.sendRedirect(RedirectUrl);
+				return Util.NONE;
+			}
+			return Util.SUCCESS;
+		}
+		
 		if(method==null)
 			return Util.LOGIN;
 		if (method.equals("login")) {
@@ -94,6 +110,13 @@ public class LoginAction extends BaseAction {
 			for(int i=0; i<rulerInfolist.size(); i++)
 				System.out.println(rulerInfolist.get(i).getRulerid()+": "+rulerInfolist.get(i).getRulerName()+"="+rulerInfolist.get(i).getUrl());
 			System.out.println("-----------END----------------");
+			
+			//登录成功，返回指定页面
+			if( RedirectUrl !=null && !RedirectUrl.isEmpty() ){
+				response.sendRedirect(RedirectUrl);
+				return Util.NONE;
+			}
+			
 			return Util.SUCCESS;
 		}
 	}
@@ -203,6 +226,28 @@ public class LoginAction extends BaseAction {
 
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+	}
+
+	/**
+	 * @return the redirectUrl
+	 */
+	public String getRedirectUrl() {
+		return RedirectUrl;
+	}
+
+	/**
+	 * @param redirectUrl the redirectUrl to set
+	 */
+	public void setRedirectUrl(String redirectUrl) {
+		RedirectUrl = redirectUrl;
+	}
+
+	public Integer getFlag() {
+		return flag;
+	}
+
+	public void setFlag(Integer flag) {
+		this.flag = flag;
 	}
 
 }

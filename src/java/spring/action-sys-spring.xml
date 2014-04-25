@@ -4,14 +4,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
 	<!-- ======== System Action配置====	-->
+	<bean name="IndexAction" class="com.action.system.IndexAction" scope="prototype">
+	</bean>
 	
 	<!-- 登录管理 -->
 	<bean name="LoginAction" class="com.action.system.LoginAction" scope="prototype">
 		<property name="loginService" ref="LoginService" />
-		<property name="syslogService" ref="SyslogService" />
+		<property name="userService" ref="UserService" />
 		<property name="rightService" ref="RightService" />
 		<property name="rulerService" ref="RulerService" />
-		<property name="userService" ref="UserService" />
+		<property name="syslogService" ref="SyslogService" />
 	</bean>
 
 	<!-- 角色/权限管理 -->
@@ -104,4 +106,10 @@
 		<property name="rulerService" ref="RulerService" />
 		<property name="syslogService" ref="SyslogService" />
 	</bean>
+	
+	<!-- 二维码  QR CODE -->
+		
+	<bean name="qrservlet" class="com.action.system.qrservlet" scope="prototype">
+	</bean>
+	
 </beans>

@@ -13,6 +13,11 @@ import com.bean.RulerRole;
 import com.util.Util;
 
 public class RoleDao extends BaseDao {
+	
+	public RoleInfo get(Integer id) throws Exception{
+		Session session=this.getSession();
+		return (RoleInfo) session.get(RoleInfo.class, id);
+	}
 	@SuppressWarnings("unchecked")
 	public List<RoleInfo> query(RoleInfo roleInfo) throws Exception{
 		Session session=this.getSession();
