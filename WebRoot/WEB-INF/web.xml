@@ -12,7 +12,12 @@
 	
 	<context-param>
 		<param-name>version</param-name>
-		<param-value>0.9.0</param-value>
+		<param-value>0.9.3</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>logo</param-name>
+		<param-value>images/logo/logo.png</param-value>
 	</context-param>
 	
 	<context-param>
