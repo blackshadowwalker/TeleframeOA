@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 
 import com.base.Config;
+import com.util.G;
 
 
 public class ContextListener implements ServletContextListener {
@@ -45,12 +46,23 @@ public class ContextListener implements ServletContextListener {
 		}
 		sc.setAttribute("actionMap", actionMap);
 		
-
+		//文件上传根路径
+		String uploadRootDir = sc.getInitParameter("uploadRootDir");
+		if(uploadRootDir ==null)
+			uploadRootDir = "upload";
+		G.setUploadRootDir(uploadRootDir);
+		
+		//用户默认头像 
+		String defaultUserPhoto = sc.getInitParameter("defaultUserPhoto");
+		if(defaultUserPhoto!=null)
+			G.setDefaultUserPhoto(defaultUserPhoto);
+		
 		/*
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("../applicationContext.xml");  
 		DataSource ds = (DataSource)ctx.getBean("dataSource");  
 		sc.setAttribute("basedb", ds);
 		 */
+		
 	}
 
 

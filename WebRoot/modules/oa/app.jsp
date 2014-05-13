@@ -1,8 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String baseServer = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
+	String basePath = baseServer + path+"/";
+
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -94,7 +96,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							    html += "      <h2>"+app.name+"</h2>";
 							    html += "      ";
 							    html += "      <p id=its_spsDownload>";
-							    html += "      	<img src=\"qrservlet?text="+app.url+" \" ";
+							    html += "      	<img src=\"qrservlet?text=<%=baseServer%>/update/FileServlet/download?appname="+app.app_name+" \" ";
 							    html += "      		class=\"img-thumbnail\" style=\"width:240px;height:240px;\" >";
 							    html += "      	<br /> <br />";
 							    html += "      	<a name=Download href=\" "+app.url+" \" class=\"btn btn-info btn-large\" > 下载 </a>";

@@ -103,7 +103,7 @@ public class CkeditorUpload extends BaseAction {
 			return null;
 		String path = ServletActionContext.getServletContext().getRealPath("/../"); 
 
-		String wabappUploadDir = G.wabappUploadDir; 
+		String wabappUploadDir = G.getUploadRootDir(); 
 
 		if(dir!=null && dir.length()>0 && !dir.startsWith(".") ){
 			File dirFile = new File(path,dir);

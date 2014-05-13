@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<!--  ======= OA Action配置====================	-->
+	
+	<!-- UserLogin -->
+	<bean name="UserLoginAction" class="com.action.oa.UserLoginAction" scope="prototype">
+		<property name="loginService" ref="LoginService" />
+		<property name="userService" ref="UserService" />
+		<property name="rightService" ref="RightService" />
+		<property name="rulerService" ref="RulerService" />
+		<property name="syslogService" ref="SyslogService" />
+	</bean>
+
+	<!-- 财务文章管理 -->
+	<bean name="FinanceAction" class="com.action.oa.FinanceAction" scope="prototype">
+		<property name="articleService" ref="ArticleService" />
+		<property name="categoryService" ref="CategoryService" />
+		<property name="rightService" ref="RightService" />
+		<property name="rulerService" ref="RulerService" />
+		<property name="syslogService" ref="SyslogService" />
+	</bean>
+
+	<!-- 技术文章管理 -->
+	<bean name="TechnologyAction" class="com.action.oa.TechnologyAction"
+		scope="prototype">
+		<property name="articleService" ref="ArticleService" />
+		<property name="categoryService" ref="CategoryService" />
+		<property name="rightService" ref="RightService" />
+		<property name="rulerService" ref="RulerService" />
+		<property name="syslogService" ref="SyslogService" />
+	</bean>
+
+	<!-- 行政文章管理 -->
+	<bean name="RegulationAction" class="com.action.oa.RegulationAction"
+		scope="prototype">
+		<property name="articleService" ref="ArticleService" />
+		<property name="categoryService" ref="CategoryService" />
+		<property name="rightService" ref="RightService" />
+		<property name="rulerService" ref="RulerService" />
+		<property name="syslogService" ref="SyslogService" />
+	</bean>
+	
+	<!-- 文章搜索 -->
+	<bean name="SearchAction" class="com.action.oa.SearchAction"
+		scope="prototype">
+		<property name="articleService" ref="ArticleService" />
+		<property name="rightService" ref="RightService" />
+		<property name="rulerService" ref="RulerService" />
+		<property name="syslogService" ref="SyslogService" />
+	</bean>
+	
+
+
+</beans>

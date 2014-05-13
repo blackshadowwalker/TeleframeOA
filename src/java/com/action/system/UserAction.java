@@ -16,14 +16,24 @@ import com.bean.UserInfo;
 import com.service.FileService;
 import com.service.UserService;
 import com.util.EncoderHandler;
+import com.util.G;
 import com.util.Util;
 
 public class UserAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
 
+	UserService userService;
+	List<UserInfo> list;
+	UserInfo userInfo;
+
 	protected File photoFile=null;
 	private FileService fileService;
+	
+	public String query() throws Exception {
+		list=userService.query(userInfo);
+		return Util.LIST;
+	}
 
 	@Override
 	public String handle() throws Exception {
@@ -31,13 +41,6 @@ public class UserAction extends BaseAction {
 			return query();
 		}
 		return Util.NONE;
-	}
-	public String personal() throws Exception{
-		
-		this.person();
-		
-		return Util.PERSONAL;
-		
 	}
 	public String person() throws Exception{
 		if(request.getParameter("save")==null){
@@ -103,6 +106,23 @@ public class UserAction extends BaseAction {
 		if(userInfo.getUserId()==null || userInfo.getUserId()<0)
 			return Util.ERROR;
 
+		//check user photo
+		String pic = userInfo.getUserPhoto();
+		if(pic.startsWith("/")){
+			String path = sc.getRealPath("/../");
+			File f = new File(path, pic);
+			if( !f.exists() )
+				pic = G.getDefaultUserPhoto();
+		}else if(pic.startsWith("http")){
+			//todo nothing
+		}else{
+			String path = sc.getRealPath("/");
+			File f = new File(path, pic);
+			if( !f.exists() )
+				pic = G.getDefaultUserPhoto();
+		}
+		
+		
 		String result = userService.update(userInfo);
 		if(result.endsWith(Util.SUCCESS)){
 			msg = "修改成功";
@@ -198,6 +218,23 @@ public class UserAction extends BaseAction {
 		
 		if( ! this.validate(null) )
 			return Util.ADD;
+		
+		//check user photo
+		String pic = userInfo.getUserPhoto();
+		if(pic.startsWith("/")){
+			String path = sc.getRealPath("/../");
+			File f = new File(path, pic);
+			if( !f.exists() )
+				pic = G.getDefaultUserPhoto();
+		}else if(pic.startsWith("http")){
+			//todo nothing
+		}else{
+			String path = sc.getRealPath("/");
+			File f = new File(path, pic);
+			if( !f.exists() )
+				pic = G.getDefaultUserPhoto();
+		}
+		
 
 		System.out.println("UserAction add() size="+this.getFieldErrors().size());
 		String result=userService.add(userInfo);
@@ -218,15 +255,6 @@ public class UserAction extends BaseAction {
 		request.setAttribute("RulerAndRolerList", userService.beforeAdd());
 		return Util.ADD;
 	}
-
-	public String query() throws Exception {
-		list=userService.query(userInfo);
-		return Util.LIST;
-	}
-
-	UserService userService;
-	List<UserInfo> list;
-	UserInfo userInfo;
 
 	public UserService getUserService() {
 		return userService;

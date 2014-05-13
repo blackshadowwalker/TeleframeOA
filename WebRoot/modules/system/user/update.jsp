@@ -14,7 +14,7 @@ String[] role=str.split("#")[1].split(";");
 <html>
   <head>
     
-    <title>role update</title>
+    <title>用户修改</title>
     <base href="<%=basePath%>/">
 	<link rel="stylesheet" href="css/common.css" type="text/css" media="all"/>
 	<link rel="stylesheet" href="css/main.css" type="text/css" media="all"/>
@@ -70,7 +70,7 @@ String[] role=str.split("#")[1].split(";");
 								</td>
 							</tr>
 							<tr>
-								<td width="10%" class="field-title">用户编号:</td>
+								<td width="10%" class="field-title">用户帐号:</td>
 								<td width="30%" class="field-content">
 									<input type="hidden" name="userInfo.userId" value="${userInfo.userId }" />
 									<input type="text"  name="userInfo.userCode" value="${userInfo.userCode }"  readonly/>

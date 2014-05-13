@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<!-- ======== System Action配置====	-->
+	<bean name="IndexAction" class="com.action.system.IndexAction" scope="prototype">
+	</bean>
+	
+	<!-- 登录管理 -->
+	<bean name="LoginAction" class="com.action.system.LoginAction" scope="prototype">
+		<property name="loginService" ref="LoginService" />
+		<property name="userService" ref="UserService" />
+		<property name="rightService" ref="RightService" />
+		<property name="rulerService" ref="RulerService" />
+		<property name="syslogService" ref="SyslogService" />
+	</bean>
+
+	<!-- 角色/权限管理 -->
+	<bean name="RoleAction" class="com.action.system.RoleAction" scope="prototype">
+		<property name="roleService" ref="RoleService" />
+		<property name="rulerService" ref="RulerService" />
+		<property name="rightService" ref="RightService" />
+		<property name="syslogService" ref="SyslogService" />
+	</bean>
+
+	<!-- 菜单管理 -->
+	<bean name="RulerAction" class="com.action.system.RulerAction"
+		scope="prototype">
+		<property name="rulerService" ref="RulerService" />
+		<property name="rightService" ref="RightService" />
+		<property name="syslogService" ref="SyslogService" />
+	</bean>
+
+	<!-- 部门管理  唐梦岚-->
+	<bean name="DeptAction" class="com.action.system.DeptAction" scope="prototype">
+		<property name="deptService" ref="DeptService" />
+		<property name="rulerService" ref="RulerService" />
+		<property name="rightService" ref="RightService" />
+		<property name="syslogService" ref="SyslogService" />
+	</bean>
+
+	<!-- 用户管理 -->
+	<bean name="UserAction" class="com.action.system.UserAction" scope="prototype">
+		<property name="userService" ref="UserService"></property>
+		<property name="rulerService" ref="RulerService"></property>
+		<property name="fileService" ref="FileService"></property>
+		<property name="rightService" ref="RightService" />
+		<property name="syslogService" ref="SyslogService" />
+	</bean>
+
+	<!-- 文件管理 -->
+	<bean name="FileAction" class="com.action.system.FileAction" scope="prototype">
+		<property name="fileService" ref="FileService"></property>
+		<property name="rulerService" ref="RulerService" />
+		<property name="rightService" ref="RightService" />
+		<property name="syslogService" ref="SyslogService" />
+	</bean>
+
+	<!-- 文件上传 -->
+	<bean name="UploadAction" class="com.action.system.UploadAction" scope="prototype">
+		<property name="fileService" ref="FileService" />
+		<property name="rulerService" ref="RulerService" />
+		<property name="rightService" ref="RightService" />
+		<property name="syslogService" ref="SyslogService" />
+	</bean>
+
+	<!-- 文章管理 -->
+	<bean name="ArticleAction" class="com.action.system.ArticleAction" scope="prototype">
+		<property name="articleService" ref="ArticleService" />
+		<property name="categoryService" ref="CategoryService" />
+		<property name="rulerService" ref="RulerService" />
+		<property name="rightService" ref="RightService" />
+		<property name="syslogService" ref="SyslogService" />
+	</bean>
+
+	<!-- 文章类别管理 -->
+	<bean name="CategoryAction" class="com.action.system.CategoryAction"
+		scope="prototype">
+		<property name="categoryService" ref="CategoryService" />
+		<property name="rulerService" ref="RulerService" />
+		<property name="rightService" ref="RightService" />
+		<property name="syslogService" ref="SyslogService" />
+	</bean>
+
+	<!-- Ckeditor 文件上传 -->
+	<bean name="CkeditorUpload" class="com.action.system.CkeditorUpload"
+		scope="prototype">
+		<property name="fileService" ref="FileService"></property>
+		<property name="rulerService" ref="RulerService" />
+		<property name="rightService" ref="RightService" />
+		<property name="syslogService" ref="SyslogService" />
+	</bean>
+
+	<!-- 系统日志管理 -->
+	<bean name="SyslogAction" class="com.action.system.SyslogAction" scope="prototype">
+		<property name="rulerService" ref="RulerService" />
+		<property name="syslogService" ref="SyslogService" />
+	</bean>
+	
+		<!-- 帮助 -->
+	<bean name="HelpAction" class="com.action.system.HelpAction"
+		scope="prototype">
+		<property name="helpService" ref="HelpService" />
+		<property name="rightService" ref="RightService" />
+		<property name="rulerService" ref="RulerService" />
+		<property name="syslogService" ref="SyslogService" />
+	</bean>
+	
+	<!-- 二维码  QR CODE -->
+		
+	<bean name="qrservlet" class="com.action.system.qrservlet" scope="prototype">
+	</bean>
+	
+</beans>

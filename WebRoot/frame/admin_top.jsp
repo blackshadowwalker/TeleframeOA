@@ -47,7 +47,7 @@
 <table width="100%" height="58" border="0" cellpadding="0" cellspacing="0" class="admin_topbg">
 	  <tr>
 	    <td width="61%" height="34">
-	   	 <img src="../images/logo/TeleFrameLogo.png" style="width:150px;heiht:50px;" >
+	   	 bl<img src="../images/logo/TeleFrameLogo.png" style="width:150px;heiht:50px;" >
 	    </td>
 	    <td width="39%" valign="top">
 		    <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -63,14 +63,14 @@
 			        	</span>
 			        	|
 			        	<span>
-			        		<a href="<%=path %>/IndexAction?" style="color:#fff;" target="_blank" >前台首页</a>
+			        		<a href="<%=path %>/IndexAction?" style="color:#0f0;" target="_blank" >前台首页</a>
 			        	</span>
 			        		|
 			        	<span>
-			        		<a href="<%=path %>/HelpAction?" style="color:#fff;">帮助?</a>	
+			        		<a href="<%=path %>/HelpAction?flag=1" style="color:#0f0;" target="_blank">帮助?</a>	
 			        	</span>
 			        	|
-			        	<a href="javascript:logout();" style="color:#fff;">	
+			        	<a href="javascript:logout();" style="color:#0f0;">	
 			        	安全退出
 			        	</a>	
 			        	&nbsp;&nbsp;&nbsp;

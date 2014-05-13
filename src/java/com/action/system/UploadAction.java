@@ -44,7 +44,7 @@ public class UploadAction extends BaseAction {
 
 	private String destFileFileName;
 	private String destFileFileNameExt;
-	private int	   pathFlag=2;
+	private int	   pathFlag=2; // 0: absolute path  1: current path sub project 	2: sub webapp
 	private String md5;
 	private String sha1;
 	private FileInfo fileInfo;
@@ -93,17 +93,21 @@ public class UploadAction extends BaseAction {
 
 	private JSONObject upload(){
 
-		String path = ServletActionContext.getServletContext().getRealPath("/../"); 
+		String path = ServletActionContext.getServletContext().getRealPath("/"); 
 		
-		String wabappUploadDir = G.wabappUploadDir; 
+		String wabappUploadDir = G.getUploadRootDir(); 
 		
+		if(wabappUploadDir.startsWith("/") || wabappUploadDir.startsWith("../")){
+			pathFlag = 2;// 2: sub wabapp;
+			path += "../";
+		}else{
+			pathFlag = 1;// 1: current path sub project 
+		}
 		if(dir!=null && dir.length()>0 && !dir.startsWith(".") ){
 			File dirFile = new File(path,dir);
 			wabappUploadDir += "/"+dir;
 		}
-		
 		path += wabappUploadDir;
-		pathFlag = 2;//sub wabapp;
 		
 		System.out.println("dirroot="+dirroot);
 		System.out.println("dir="+dir);
@@ -113,7 +117,7 @@ public class UploadAction extends BaseAction {
 			dirrootFile.mkdirs();
 			if(dirrootFile.exists()){
 				path = dirrootFile.getAbsolutePath();
-				pathFlag = 0;
+				pathFlag = 0; // 0: absolute path 
 			}
 			if(dir!=null && dir.length()>0 && !dir.startsWith(".") ){
 				File dirFile = new File(path,dir);

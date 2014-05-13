@@ -118,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							     >
 							    
 							    <div property="columns">
-							        <div name="rulerid" field="rulerid" width="30">ID</div>
+							        <div name="rulerid" field="rulerid" width="0">ID</div>
 							        <div name="rulerName" field="rulerName" width="150">菜单名称
 							        	
 							    	</div> 

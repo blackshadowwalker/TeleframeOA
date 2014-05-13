@@ -139,7 +139,7 @@ $(function() {
 	    allowResize="true" expandOnLoad="true" allowCellEdit="false" allowCellSelect="true">
 	    
 	    <div property="columns">
-	        <div  field="deptId" width="30">ID</div>
+	        <div  field="deptId" width="0" >ID</div>
 	        <div name="deptName" field="deptName" width="200">部门名称
 	        <input property="editor" class="mini-textbox" style="width:100%;"  /> 
 	    </div> 

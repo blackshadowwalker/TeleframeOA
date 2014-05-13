@@ -92,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div id="car_use">
 						<table id="table-view" cellpadding="0" cellspacing="1">
 							<tr class="row-header">
-								<td width="">序号</td>
+								<td width="" class="hidden">序号</td>
 								<td ondblclick="return sortQuery('carNumber')" style="cursor:pointer;" >名称</td>
 								<td ondblclick="return sortQuery('carName')" style="cursor:pointer;" >最后更新时间</td>
 	                            <td colspan="2" align="center">操作</td> 
@@ -107,7 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								
 								<tr class="<s:property value='var_class' />" onmouseover="this.className='row-over'" 
 									onmouseout="this.className='<s:property value='var_class' />'">
-									<td align="center"><s:property value="#l.roleId" /></td>
+									<td align="center" class="hidden"><s:property value="#l.roleId" /></td>
 									<td align="center"><s:property value="#l.roleName" /></td>
 									<td align="center"><s:date name="#l.lastUpdate" format="yyyy-MM-dd hh:mm:ss" /></td>
 									<td align="center">

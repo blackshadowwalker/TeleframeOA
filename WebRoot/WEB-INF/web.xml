@@ -12,7 +12,7 @@
 	
 	<context-param>
 		<param-name>version</param-name>
-		<param-value>0.9.3</param-value>
+		<param-value>0.9.4</param-value>
 	</context-param>
 	
 	<context-param>
@@ -24,6 +24,18 @@
 		<param-name>gmapurl</param-name>
 		<param-value></param-value>
 		<!-- Default : http://127.0.0.1 -->
+	</context-param>
+	
+	<context-param>
+		<param-name>defaultUserPhoto</param-name>
+		<param-value>images/user/default.gif</param-value>
+		<!-- 用户默认头像 -->
+	</context-param>
+	
+	<context-param>
+		<param-name>uploadRootDir</param-name>
+		<param-value>/download-center/upload</param-value>
+		<!-- 文件上传根路径 : 默认是项目下的upload目录  startwith "/" means sub wabapps-->
 	</context-param>
 	
 	<context-param>

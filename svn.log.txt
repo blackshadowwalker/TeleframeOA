@@ -1,3 +1,61 @@
+
+Revision: 45
+Author: karl.li
+Date: 2014年5月13日 12:59:00
+Message:
+add device/
+----
+Added : /WebRoot/modules/vlpr
+Added : /WebRoot/modules/vlpr/base
+Added : /WebRoot/modules/vlpr/base/device
+Added : /WebRoot/modules/vlpr/base/device/edit.jsp
+Added : /WebRoot/modules/vlpr/base/device/query.jsp
+
+Revision: 44
+Author: karl.li
+Date: 2014年5月13日 12:58:08
+Message:
+
+----
+Modified : /WebRoot/frame/admin_top.jsp
+Added : /WebRoot/images/user
+Added : /WebRoot/images/user/default.gif
+Modified : /WebRoot/modules/system/user/query.jsp
+Deleted : /WebRoot/modules/vlpr
+
+Revision: 43
+Author: karl.li
+Date: 2014年5月13日 11:56:28
+Message:
+1.修改关于用户的bug
+2.修改文件上传的bug
+3.
+----
+Modified : /WebRoot/WEB-INF/web.xml
+Modified : /WebRoot/modules/oa/app.jsp
+Modified : /WebRoot/modules/system/dept/query.jsp
+Modified : /WebRoot/modules/system/role/query.jsp
+Modified : /WebRoot/modules/system/ruler/query.jsp
+Modified : /WebRoot/modules/system/user/add.jsp
+Modified : /WebRoot/modules/system/user/query.jsp
+Modified : /WebRoot/modules/system/user/update.jsp
+Modified : /src/java/com/action/system/CkeditorUpload.java
+Modified : /src/java/com/action/system/UploadAction.java
+Modified : /src/java/com/action/system/UserAction.java
+Modified : /src/java/com/dao/UserDao.java
+Modified : /src/java/com/listener/ContextListener.java
+Modified : /src/java/com/util/G.java
+
+Revision: 42
+Author: karl.li
+Date: 2014年4月25日 16:39:59
+Message:
+
+----
+Modified : /svn.log.txt
+
+
+
 Revision: 41
 Author: karl.li
 Date: 2014年4月25日 13:13:55

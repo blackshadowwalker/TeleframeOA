@@ -97,7 +97,7 @@
 	    >
 	    
 	    <div property="columns">
-	        <div  field="id" width="30">ID</div>
+	        <div  field="id" width="0">ID</div>
 		    <div name="name" field="name" width="200">卡点名称
 		        <input property="editor" class="mini-textbox" style="width:100%;"  /> 
 		    </div> 

@@ -26,8 +26,8 @@ public class UserDao extends BaseDao{
 		if(id==null)
 			return null;
 		Session session = getSession();
-		String hql =" select u.userId, u.userCode, u.userName, u.userPasswd, u.userRole, (select r.roleName from RoleInfo r where r.roleId=u.userRole), u.userBirth, " +
-			"u.userDepartment, (select deptName from DeptInfo d where d.deptId=u.userDepartment), u.lastUpdate, u.userPhoto, u.status " +
+		String hql =" select u.userId, u.userCode, u.userName, u.userPasswd, u.userRole, (select r.roleName from RoleInfo r where r.status=1 and r.roleId=u.userRole), u.userBirth, " +
+			"u.userDepartment, (select deptName from DeptInfo d where d.status=1 and d.deptId=u.userDepartment), u.lastUpdate, u.userPhoto, u.status " +
 			"from UserInfo u where u.userId=:userId and u.status=1";
 
 //		Query query = session.createQuery("from UserInfo where userId=:userId");
@@ -74,13 +74,16 @@ public class UserDao extends BaseDao{
 		
 //		String hql="select u.userId, u.userCode, u.userName,u.userPasswd,r.roleName,u.userBirth,d.deptName,u.lastUpdate from UserInfo u,RoleInfo r,DeptInfo d " +
 //				"where (1=1 or u.userRole=r.roleId or u.userDepartment=d.deptId) and u.status=1";
-		
-		String hql =" select u.userId, u.userCode, u.userName, u.userPasswd, (select r.roleName from RoleInfo r where r.roleId=u.userRole), u.userBirth, " +
-				"(select deptName from DeptInfo d where d.deptId=u.userDepartment), u.lastUpdate, u.userPhoto from UserInfo u where u.status=1";
-		if(userInfo!=null && userInfo.getUserName()!=null && !userInfo.getUserName().equals("")){
-			System.out.println(userInfo.getUserName());
-			hql+=" and u.userName like '%"+userInfo.getUserName()+"%'";
+
+		String hql =" select u.userId, u.userCode, u.userName, u.userPasswd, (select r.roleName from RoleInfo r where r.status=1 and r.roleId=u.userRole), u.userBirth, " +
+		"(select deptName from DeptInfo d where  d.status=1 and d.deptId=u.userDepartment ), u.lastUpdate, u.userPhoto from UserInfo u where u.status=1";
+		if(userInfo!=null){
+			if(	userInfo.getUserName()!=null && !userInfo.getUserName().equals(""))
+				hql+=" and u.userName like '%"+userInfo.getUserName()+"%'";
+			if( userInfo.getUserCode()!=null && !userInfo.getUserCode().isEmpty())
+				hql+=" and u.userCode like '%"+userInfo.getUserCode()+"%'";
 		}
+		System.out.println( hql );
 		List<Object> list = session.createQuery(hql).list();
 		List<UserInfo> list2 = new ArrayList<UserInfo>();
 		UserInfo user;
@@ -92,7 +95,7 @@ public class UserDao extends BaseDao{
 			user.setUserCode((String)object[k++]);
 			user.setUserName((String)object[k++]);
 			user.setUserPasswd((String)object[k++]);
-			user.setUserPasswd("******");
+			user.setUserPasswd("");
 			user.setUserRoleName((String)object[k++]);
 			user.setUserBirth((Timestamp)object[k++]);
 			user.setUserDepartmentName((String)object[k++]);

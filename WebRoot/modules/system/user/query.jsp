@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>/">
     
-    <title>My JSP 'userQuery.jsp' starting page</title>
+    <title>用户管理</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -31,9 +31,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	<script type="text/javascript">
-		function add(){
-			location.href="<%= basePath%>/UserAction?method=beforeAdd";
-		}
 		function upd(userId){
 			location.href="<%= basePath%>/UserAction?method=beforeUpdate&userId="+userId;
 		}
@@ -48,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   	
 	<div>
-		<form id="opForm" name="opForm" method="post" action="<%= basePath%>/UserAction?method=query">
+		<form id="opForm" name="opForm" method="post" action="<%= basePath%>/UserAction?">
 			<table id="table-data-outter">
 				<tr>
 					<td>
@@ -64,17 +61,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</tr>
 							<tr>
 								<td>
-								用户名称：
-									<input type="text" name="userInfo.userName" id="userName" value="${userInfo.userName}" />
-									<input  type="submit" value="查询" class="btns_mouseout" onmouseover="this.className='btns_mouseover'" 
-									onmouseout="this.className='btns_mouseout'" />       
-									<span style="color:#f00;">${msg}</span>                       
+									用户帐号：
+									<input type="text" name="userInfo.userCode"  value="${userInfo.userCode}" />
+									用户名称：
+									<input type="text" name="userInfo.userName"  value="${userInfo.userName}" />
+									<input  type="submit" value="查询" class="button" />  
+									<input type="button" class="button" value="重置"  onclick="clear1(this)" />
+									<script>
+										function clear1(obj){
+											var p = $(obj).parent();
+											p.children("input[name='userInfo.userCode']").val("");
+											p.children("input[name='userInfo.userName']").val("");
+										}
+									</script>     
+									<span style="color:#f00;">${msg}</span>                      
 								</td>
 								<td align="right">
 									<s:property value='#request.insert'/>
 									<s:if test="#request.i>=0">
-										<input id="button1"  type="button" value="添加" class="btns_mouseout" onmouseover="this.className='btns_mouseover'" 
-											onmouseout="this.className='btns_mouseout'" onclick="add();"/>
+										<a href="UserAction?method=beforeAdd" >
+											<input id="button1"  type="button" class="button" value="添加"  />
+										</a>
 									</s:if>
 									
 								</td>									
@@ -90,7 +97,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td width="">头像</td>
 								<td ondblclick="return sortQuery('carNumber')" style="cursor:pointer;" >用户编号</td>
 								<td ondblclick="return sortQuery('carNumber')" style="cursor:pointer;" >用户名称</td>
-								<td ondblclick="return sortQuery('carName')" style="cursor:pointer;" >用户密码</td>
 								<td ondblclick="return sortQuery('carName')" style="cursor:pointer;" >用户角色</td>
 								<td ondblclick="return sortQuery('carName')" style="cursor:pointer;" >用户生日</td>
 								<td ondblclick="return sortQuery('carName')" style="cursor:pointer;" >用户部门</td>
@@ -112,7 +118,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</td>
 									<td align="center"><s:property value="#l.userCode" /></td>
 									<td align="center"><s:property value="#l.userName" /></td>
-									<td align="center"><s:property value="#l.userPasswd" /></td>
 									<td align="center"><s:property value="#l.userRoleName" /></td>
 									<td align="center"><s:date name="#l.userBirth" format="yyyy-MM-dd" /></td>
 									<td align="center"><s:property value="#l.userDepartmentName" /></td>
@@ -127,26 +132,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</table>
 						</div>
 						
-						<div style=" font-size:13px font-family:'宋体'"  align="center">
-						  共&nbsp;2&nbsp;条记录,共&nbsp;1&nbsp;页,每页15条记录&nbsp;
-						  
-						  <a href="#"><img  src="images/page/PaginStartInactive.gif" border="0"/></a>&nbsp;
-						  <a href="#"><img src="images/page/PaginLeftInactive.gif" border="0"/></a>&nbsp;当前页:1
-						  <a href="#"><img src="images/page/PaginRightInactive.gif" border="0"/></a>&nbsp;
-						  <a href="#"><img src="images/page/PaginEndInactive.gif" border="0"/></a>
-						  第:
-						  <select name="page">
-						   <option  title="1" value="1">1</option>
-						   <option title="2" value="2">2</option>
-						  </select>
-						  页
-						 </div>
-						<div>
-	                       	<script language="javascript">
-	                           	//initSelect("100","15");
-								
-	                           </script>	
-						</div>
+							
+							
 					</td>
 				</tr>
 			</table>		
